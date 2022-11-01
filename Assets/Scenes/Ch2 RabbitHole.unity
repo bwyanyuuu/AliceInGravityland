@@ -22956,7 +22956,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6700055415718341520}
-  - component: {fileID: 6700055415718341523}
   m_Layer: 0
   m_Name: mirror_border
   m_TagString: Untagged
@@ -22964,19 +22963,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &6700055415718341523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6700055415718341521}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77903fdc28e5b6e45b32822d4f00a2bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: 2c4c40627bd4a574f973911ec1d26641, type: 2}
 --- !u!4 &6711498679118564612
 Transform:
   m_ObjectHideFlags: 0
