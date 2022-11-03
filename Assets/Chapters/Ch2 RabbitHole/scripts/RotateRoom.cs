@@ -39,19 +39,19 @@ public class RotateRoom : MonoBehaviour
         {
             case 0: // up
                 this.transform.RotateAround(center.position, Vector3.forward, 180);
-                player.transform.Rotate(180f, 90f, 0f, Space.Self);
+                //player.transform.Rotate(180f, 90f, 0f, Space.Self);
                 break;
             case 1: // front
-                this.transform.RotateAround(center.position, Vector3.forward, 180);
+                this.transform.RotateAround(center.position, Vector3.forward, 90);
                 break;
             case 2: // back
                 this.transform.RotateAround(center.position, Vector3.forward, 180);
                 break;
             case 3: // left
-                this.transform.RotateAround(center.position, Vector3.forward, 180);
+                this.transform.RotateAround(center.position, Vector3.forward, 90);
                 break;
             case 4: // right
-                this.transform.RotateAround(center.position, Vector3.forward, 180);
+                this.transform.RotateAround(center.position, Vector3.forward, 270);
                 break;
             default:
                 break;
