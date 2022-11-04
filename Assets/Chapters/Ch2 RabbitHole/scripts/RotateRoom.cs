@@ -31,6 +31,12 @@ public class RotateRoom : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.D)){
             this.transform.RotateAround(center.position, Vector3.forward, 270);
         }
+        if (Input.GetKeyDown(KeyCode.X)){
+            this.transform.RotateAround(center.position, Vector3.left, 90);
+        }
+        if (Input.GetKeyDown(KeyCode.C)){
+            this.transform.RotateAround(center.position, Vector3.left, -90);
+        }
 		
 	}
     public void rotate(int i)
