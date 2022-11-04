@@ -36,7 +36,7 @@ public class PockerController : MonoBehaviour
         //card2.transform.rotation = trans[idx].rotation;
         //card2.SetActive(true);
         card.transform.parent = gameObject.transform;
-        card.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.GetComponent<Animator>().enabled = true;
+        //card.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.GetComponent<Animator>().enabled = true;
         card.GetComponent<UnityEngine.Playables.PlayableDirector>().Play();
         //card.GetComponent<UnityEngine.Playables.PlayableDirector>().enabled = true;
 
