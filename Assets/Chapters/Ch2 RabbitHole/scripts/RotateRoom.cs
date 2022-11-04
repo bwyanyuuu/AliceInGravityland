@@ -22,7 +22,7 @@ public class RotateRoom : MonoBehaviour
 		//跟随center转圈圈
         if (Input.GetKeyDown(KeyCode.W)){
             this.transform.RotateAround(center.position, Vector3.forward, 180);
-            player.transform.Rotate(180f, 90f, 0f, Space.Self);
+            //player.transform.Rotate(180f, 90f, 0f, Space.Self);
 
         }
 		if (Input.GetKeyDown(KeyCode.A)){
@@ -39,7 +39,8 @@ public class RotateRoom : MonoBehaviour
         {
             case 0: // up
                 this.transform.RotateAround(center.position, Vector3.forward, 180);
-                //player.transform.Rotate(180f, 90f, 0f, Space.Self);
+                //player.transform.Rotate(180f, 0f, 0f, Space.Self);
+                StartCoroutine(rotatePlayer(90f, 0f, 0f));
                 break;
             case 1: // front
                 //this.transform.RotateAround(center.position, Vector3.forward, 90);
@@ -57,5 +58,13 @@ public class RotateRoom : MonoBehaviour
                 break;
         }
     }
-
+    IEnumerator rotatePlayer(float x, float y, float z)
+    {
+        for(int i = 0; i < 60; i++)
+        {
+            yield return new WaitForSeconds(0.01f);
+            player.transform.Rotate(x/60f, y/60f, z/60f, Space.Self);
+        }
+        
+    }
 }
