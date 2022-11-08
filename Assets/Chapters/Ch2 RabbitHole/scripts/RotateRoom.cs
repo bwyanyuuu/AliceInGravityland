@@ -20,23 +20,79 @@ public class RotateRoom : MonoBehaviour
 	public float rotationSpeed=10;
 	void Update() {
 		//跟随center转圈圈
-        if (Input.GetKeyDown(KeyCode.W)){
-            this.transform.RotateAround(center.position, Vector3.forward, 180);
-            //player.transform.Rotate(180f, 90f, 0f, Space.Self);
-
+        // 面向+z軸
+        if (player.transform.eulerAngles.y%360 > 315.0f || player.transform.eulerAngles.y%360 < 45.0f){ 
+            if (Input.GetKeyDown(KeyCode.W)){   
+                this.transform.RotateAround(center.position, Vector3.forward, 180);
+            }
+            if (Input.GetKeyDown(KeyCode.A)){   //吸到左邊(-x)
+                this.transform.RotateAround(center.position, Vector3.forward, 90);  //以Z軸為中心逆時針轉90
+            }
+            if (Input.GetKeyDown(KeyCode.D)){   //吸到右邊(+x)
+                this.transform.RotateAround(center.position, Vector3.forward, -90); //以Z軸為中心逆時針轉270(-90)
+            }
+            if (Input.GetKeyDown(KeyCode.X)){   //吸到前面(+z)
+                this.transform.RotateAround(center.position, Vector3.right, 90);    //以X軸為中心逆時針轉90
+            }
+            if (Input.GetKeyDown(KeyCode.C)){   //吸到後面(-z)
+                this.transform.RotateAround(center.position, Vector3.right, -90);   //以X軸為中心逆時針轉-90
+            }
         }
-		if (Input.GetKeyDown(KeyCode.A)){
-            this.transform.RotateAround(center.position, Vector3.forward, 90);
+        // 面向-z軸
+        if (player.transform.eulerAngles.y%360 >= 135.0f && player.transform.eulerAngles.y%360 < 225.0f){ 
+            if (Input.GetKeyDown(KeyCode.W)){   
+                this.transform.RotateAround(center.position, Vector3.forward, 180);
+            }
+            if (Input.GetKeyDown(KeyCode.A)){   //吸到左邊(-x)
+                this.transform.RotateAround(center.position, Vector3.forward, -90);  //以Z軸為中心逆時針轉-90
+            }
+            if (Input.GetKeyDown(KeyCode.D)){   //吸到右邊(+x)
+                this.transform.RotateAround(center.position, Vector3.forward, 90);   //以Z軸為中心逆時針轉90
+            }
+            if (Input.GetKeyDown(KeyCode.X)){   //吸到前面(-z)
+                this.transform.RotateAround(center.position, Vector3.right, -90);    //以X軸為中心逆時針轉-90
+            }
+            if (Input.GetKeyDown(KeyCode.C)){   //吸到後面(+z)
+                this.transform.RotateAround(center.position, Vector3.right, 90);     //以X軸為中心逆時針轉90
+            }
         }
-		if (Input.GetKeyDown(KeyCode.D)){
-            this.transform.RotateAround(center.position, Vector3.forward, 270);
+        // 面向+x軸
+        if (player.transform.eulerAngles.y%360 >= 45.0f && player.transform.eulerAngles.y%360 < 135.0f){ 
+            if (Input.GetKeyDown(KeyCode.W)){   
+                this.transform.RotateAround(center.position, Vector3.right, 180);
+            }
+            if (Input.GetKeyDown(KeyCode.A)){   //吸到左邊(+z)
+                this.transform.RotateAround(center.position, Vector3.right, 90);    //以X軸為中心逆時針轉90
+            }
+            if (Input.GetKeyDown(KeyCode.D)){   //吸到右邊(-z)
+                this.transform.RotateAround(center.position, Vector3.right, -90);   //以X軸為中心逆時針轉-90
+            }
+            if (Input.GetKeyDown(KeyCode.X)){   //吸到前面(+x)
+                this.transform.RotateAround(center.position, Vector3.forward, -90);  //以Z軸為中心逆時針轉-90
+            }
+            if (Input.GetKeyDown(KeyCode.C)){   //吸到後面(-x)
+                this.transform.RotateAround(center.position, Vector3.forward, 90); //以Z軸為中心逆時針轉90
+            }
         }
-        if (Input.GetKeyDown(KeyCode.X)){
-            this.transform.RotateAround(center.position, Vector3.left, 90);
+        // 面向-x軸
+        if (player.transform.eulerAngles.y%360 >= 225.0f && player.transform.eulerAngles.y%360 < 315.0f){ 
+            if (Input.GetKeyDown(KeyCode.W)){   
+                this.transform.RotateAround(center.position, Vector3.right, 180);
+            }
+            if (Input.GetKeyDown(KeyCode.A)){   //吸到左邊(-z)
+                this.transform.RotateAround(center.position, Vector3.right, -90);    //以X軸為中心逆時針轉-90
+            }
+            if (Input.GetKeyDown(KeyCode.D)){   //吸到右邊(+z)
+                this.transform.RotateAround(center.position, Vector3.right, 90);   //以X軸為中心逆時針轉90
+            }
+            if (Input.GetKeyDown(KeyCode.X)){   //吸到前面(-x)
+                this.transform.RotateAround(center.position, Vector3.forward, 90);  //以Z軸為中心逆時針轉90
+            }
+            if (Input.GetKeyDown(KeyCode.C)){   //吸到後面(+x)
+                this.transform.RotateAround(center.position, Vector3.forward, -90); //以Z軸為中心逆時針轉-90
+            }
         }
-        if (Input.GetKeyDown(KeyCode.C)){
-            this.transform.RotateAround(center.position, Vector3.left, -90);
-        }
+        
 		
 	}
     public void rotate(int i)
