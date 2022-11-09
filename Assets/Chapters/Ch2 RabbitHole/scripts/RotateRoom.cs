@@ -18,6 +18,8 @@ public class RotateRoom : MonoBehaviour
     public GameObject player;
     public GameObject camera;
     public Animator black;
+    public GameObject testbox;
+    bool startroatate=false;
 	//转动速度
 	public float rotationSpeed=10;
     private void Start()
@@ -31,6 +33,15 @@ public class RotateRoom : MonoBehaviour
         //{
         //    black.SetBool("start", false);
         //}
+
+        //站起來測試box
+        if (testbox.transform.right.y < 1.1f && testbox.transform.right.y > 0.9f){
+            startroatate = true;
+        }
+        if (startroatate){
+            testbox.transform.Rotate(new Vector3(0,0,-0.05f));
+        }
+
         if (player.transform.eulerAngles.y%360 > 315.0f || player.transform.eulerAngles.y%360 < 45.0f){ 
             if (Input.GetKeyDown(KeyCode.W)){   
                 this.transform.RotateAround(center.position, Vector3.forward, 180);
@@ -257,25 +268,43 @@ public class RotateRoom : MonoBehaviour
     }
     IEnumerator standUp(float x, float y, float z)
     {
-        // 面向+z軸
-        if (camera.transform.eulerAngles.y % 360 > 315.0f || camera.transform.eulerAngles.y % 360 < 45.0f)
-        {
+        // // 面向+z軸
+        // if (camera.transform.eulerAngles.y % 360 > 315.0f || camera.transform.eulerAngles.y % 360 < 45.0f)
+        // {
             
-        }
-        // 面向-z軸
-        if (camera.transform.eulerAngles.y % 360 >= 135.0f && camera.transform.eulerAngles.y % 360 < 225.0f)
-        {
+        // }
+        // // 面向-z軸
+        // if (camera.transform.eulerAngles.y % 360 >= 135.0f && camera.transform.eulerAngles.y % 360 < 225.0f)
+        // {
             
-        }
-        // 面向+x軸
-        if (camera.transform.eulerAngles.y % 360 >= 45.0f && camera.transform.eulerAngles.y % 360 < 135.0f)
-        {
-        }
-        // 面向-x軸
-        if (camera.transform.eulerAngles.y % 360 >= 225.0f && camera.transform.eulerAngles.y % 360 < 315.0f)
-        {
+        // }
+        // // 面向+x軸
+        // if (camera.transform.eulerAngles.y % 360 >= 45.0f && camera.transform.eulerAngles.y % 360 < 135.0f)
+        // {
+        // }
+        // // 面向-x軸
+        // if (camera.transform.eulerAngles.y % 360 >= 225.0f && camera.transform.eulerAngles.y % 360 < 315.0f)
+        // {
             
+        // }
+
+        // 面朝地：物體Z軸為(0,-1,0)
+        if (camera.transform.forward.y > -1.1f && camera.transform.forward.y < -0.9f){
+            StartCoroutine(rotatePlayer(-90f, 0f, 0f));
         }
+        // 面朝上：物體Z軸為(0,1,0)
+        if (camera.transform.forward.y < 1.1f && camera.transform.forward.y > 0.9f){
+            StartCoroutine(rotatePlayer(90f, 0f, 0f));
+        }
+        // 右手朝下：物體X軸為(0,-1,0)
+        if (camera.transform.right.y > -1.1f && camera.transform.right.y < -0.9f){
+            StartCoroutine(rotatePlayer(0f, 0f, 90f));
+        }
+        // 左手朝下：物體X軸為(0,1,0)
+        if (camera.transform.right.y < 1.1f && camera.transform.right.y > 0.9f){
+            StartCoroutine(rotatePlayer(0f, 0f, -90f));
+        }
+
         yield return new WaitForSeconds(2f);
         player.GetComponent<Rigidbody>().isKinematic = true;
 
