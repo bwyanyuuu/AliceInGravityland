@@ -16,11 +16,21 @@ public class RotateRoom : MonoBehaviour
 // 	}
     public Transform center;
     public GameObject player;
+    public GameObject camera;
+    public Animator black;
 	//转动速度
 	public float rotationSpeed=10;
-	void Update() {
-		//跟随center转圈圈
+    private void Start()
+    {
+        //StartCoroutine(standUp(90f, 0f, 0f));
+    }
+    void Update() {
+        //跟随center转圈圈
         // 面向+z軸
+        //if (black.GetBool("start"))
+        //{
+        //    black.SetBool("start", false);
+        //}
         if (player.transform.eulerAngles.y%360 > 315.0f || player.transform.eulerAngles.y%360 < 45.0f){ 
             if (Input.GetKeyDown(KeyCode.W)){   
                 this.transform.RotateAround(center.position, Vector3.forward, 180);
@@ -97,27 +107,143 @@ public class RotateRoom : MonoBehaviour
 	}
     public void rotate(int i)
     {
-        switch(i)
+        //switch(i)
+        //{
+        //    case 0: // up
+        //        this.transform.RotateAround(center.position, Vector3.forward, 180);
+        //        //player.transform.Rotate(180f, 0f, 0f, Space.Self);
+        //        StartCoroutine(rotatePlayer(90f, 0f, 0f));
+        //        break;
+        //    case 1: // front
+        //        //this.transform.RotateAround(center.position, Vector3.forward, 90);
+        //        break;
+        //    case 2: // back
+        //        //this.transform.RotateAround(center.position, Vector3.forward, 180);
+        //        break;
+        //    case 3: // left
+        //        this.transform.RotateAround(center.position, Vector3.forward, 90);
+        //        break;
+        //    case 4: // right
+        //        this.transform.RotateAround(center.position, Vector3.forward, 270);
+        //        break;
+        //    default:
+        //        break;
+        //}
+        if (camera.transform.eulerAngles.y % 360 > 315.0f || camera.transform.eulerAngles.y % 360 < 45.0f)
         {
-            case 0: // up
-                this.transform.RotateAround(center.position, Vector3.forward, 180);
-                //player.transform.Rotate(180f, 0f, 0f, Space.Self);
-                StartCoroutine(rotatePlayer(90f, 0f, 0f));
-                break;
-            case 1: // front
-                //this.transform.RotateAround(center.position, Vector3.forward, 90);
-                break;
-            case 2: // back
-                //this.transform.RotateAround(center.position, Vector3.forward, 180);
-                break;
-            case 3: // left
-                this.transform.RotateAround(center.position, Vector3.forward, 90);
-                break;
-            case 4: // right
-                this.transform.RotateAround(center.position, Vector3.forward, 270);
-                break;
-            default:
-                break;
+            switch (i)
+            {
+                case 0: // up
+                    this.transform.RotateAround(center.position, Vector3.forward, 180);
+                    //StartCoroutine(standUp(90f, 0f, 0f));
+                    //StartCoroutine(standUp(90f, 0f, 0f));
+                    StartCoroutine(rotatePlayer(90f, 0f, 0f));
+                    break;
+                case 1: // front
+                    this.transform.RotateAround(center.position, Vector3.right, 90);    //以X軸為中心逆時針轉90
+                    //StartCoroutine(standUp(-90f, 0f, 0f));
+                    break;
+                case 2: // back
+                    this.transform.RotateAround(center.position, Vector3.right, -90);   //以X軸為中心逆時針轉-90
+                    break;
+                case 3: // left
+                    this.transform.RotateAround(center.position, Vector3.forward, 90);  //以Z軸為中心逆時針轉90
+                    StartCoroutine(standUp(0f, 0f, -90f));
+                    break;
+                case 4: // right
+                    this.transform.RotateAround(center.position, Vector3.forward, -90); //以Z軸為中心逆時針轉270(-90)
+                    StartCoroutine(standUp(0f, 0f, 90f));
+                    break;
+                default:
+                    break;
+            }
+        }
+        // 面向-z軸
+        if (camera.transform.eulerAngles.y % 360 >= 135.0f && camera.transform.eulerAngles.y % 360 < 225.0f)
+        {
+            switch (i)
+            {
+                case 0: // up
+                    this.transform.RotateAround(center.position, Vector3.forward, 180);
+                    //StartCoroutine(standUp(90f, 0f, 0f));
+                    StartCoroutine(rotatePlayer(90f, 0f, 0f));
+                    break;
+                case 1: // front
+                    this.transform.RotateAround(center.position, Vector3.right, -90);    //以X軸為中心逆時針轉-90
+                    //StartCoroutine(standUp(-90f, 0f, 0f));
+                    break;
+                case 2: // back
+                    this.transform.RotateAround(center.position, Vector3.right, 90);     //以X軸為中心逆時針轉90
+                    break;
+                case 3: // left
+                    this.transform.RotateAround(center.position, Vector3.forward, -90);  //以Z軸為中心逆時針轉-90
+                    StartCoroutine(standUp(0f, 0f, -90f));
+                    break;
+                case 4: // right
+                    this.transform.RotateAround(center.position, Vector3.forward, 90);   //以Z軸為中心逆時針轉90
+                    StartCoroutine(standUp(0f, 0f, 90f));
+                    break;
+                default:
+                    break;
+            }
+        }
+        // 面向+x軸
+        if (camera.transform.eulerAngles.y % 360 >= 45.0f && camera.transform.eulerAngles.y % 360 < 135.0f)
+        {
+            switch (i)
+            {
+                case 0: // up
+                    this.transform.RotateAround(center.position, Vector3.forward, 180);
+                    //StartCoroutine(standUp(90f, 0f, 0f));
+                    StartCoroutine(rotatePlayer(90f, 0f, 0f));
+                    break;
+                case 1: // front
+                    this.transform.RotateAround(center.position, Vector3.forward, -90);  //以Z軸為中心逆時針轉-90
+                    //StartCoroutine(standUp(-90f, 0f, 0f));
+                    break;
+                case 2: // back
+                    this.transform.RotateAround(center.position, Vector3.forward, 90); //以Z軸為中心逆時針轉90
+                    break;
+                case 3: // left
+                    this.transform.RotateAround(center.position, Vector3.right, 90);    //以X軸為中心逆時針轉90
+                    StartCoroutine(standUp(0f, 0f, -90f));
+                    break;
+                case 4: // right
+                    this.transform.RotateAround(center.position, Vector3.right, -90);   //以X軸為中心逆時針轉-90
+                    StartCoroutine(standUp(0f, 0f, 90f));
+                    break;
+                default:
+                    break;
+            }
+        }
+        // 面向-x軸
+        if (camera.transform.eulerAngles.y % 360 >= 225.0f && camera.transform.eulerAngles.y % 360 < 315.0f)
+        {
+            switch (i)
+            {
+                case 0: // up
+                    this.transform.RotateAround(center.position, Vector3.forward, 180);
+                    //StartCoroutine(standUp(90f, 0f, 0f));
+                    StartCoroutine(rotatePlayer(90f, 0f, 0f));
+                    break;
+                case 1: // front
+                    this.transform.RotateAround(center.position, Vector3.forward, 90);  //以Z軸為中心逆時針轉90
+                    //StartCoroutine(standUp(-90f, 0f, 0f));
+                    break;
+                case 2: // back
+                    this.transform.RotateAround(center.position, Vector3.forward, -90); //以Z軸為中心逆時針轉-90
+                    break;
+                case 3: // left
+                    this.transform.RotateAround(center.position, Vector3.right, -90);    //以X軸為中心逆時針轉-90
+                    StartCoroutine(standUp(0f, 0f, -90f));
+                    break;
+                case 4: // right
+                    this.transform.RotateAround(center.position, Vector3.right, 90);   //以X軸為中心逆時針轉90
+                    StartCoroutine(standUp(0f, 0f, 90f));
+                    break;
+                default:
+                    break;
+            }
         }
     }
     IEnumerator rotatePlayer(float x, float y, float z)
@@ -127,6 +253,50 @@ public class RotateRoom : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
             player.transform.Rotate(x/60f, y/60f, z/60f, Space.Self);
         }
+        
+    }
+    IEnumerator standUp(float x, float y, float z)
+    {
+        // 面向+z軸
+        if (camera.transform.eulerAngles.y % 360 > 315.0f || camera.transform.eulerAngles.y % 360 < 45.0f)
+        {
+            
+        }
+        // 面向-z軸
+        if (camera.transform.eulerAngles.y % 360 >= 135.0f && camera.transform.eulerAngles.y % 360 < 225.0f)
+        {
+            
+        }
+        // 面向+x軸
+        if (camera.transform.eulerAngles.y % 360 >= 45.0f && camera.transform.eulerAngles.y % 360 < 135.0f)
+        {
+        }
+        // 面向-x軸
+        if (camera.transform.eulerAngles.y % 360 >= 225.0f && camera.transform.eulerAngles.y % 360 < 315.0f)
+        {
+            
+        }
+        yield return new WaitForSeconds(2f);
+        player.GetComponent<Rigidbody>().isKinematic = true;
+
+        //player.GetComponent<CameraShake>().isShaking = true;
+
+        //black.enabled = true;
+        //black.Play("wakeup");
+        black.SetBool("start", true);
+        yield return new WaitForSeconds(0.01f);
+        black.SetBool("start", false);
+        float time = 60f;
+        for (float i = 0; i < time; i++)
+        {
+            yield return new WaitForSeconds(0.01f);
+            player.transform.Rotate(x / time, y / time, z / time, Space.Self);
+        }
+        
+        //player.GetComponent<CameraShake>().isShaking = false;
+        player.GetComponent<Rigidbody>().isKinematic = false;
+        yield return new WaitForSeconds(2f);
+        //black.enabled = false;
         
     }
 }

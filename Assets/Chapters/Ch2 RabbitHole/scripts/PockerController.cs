@@ -43,10 +43,18 @@ public class PockerController : MonoBehaviour
 
         //emit.GetComponent<CurlNoiseParticleSystem.Emitter.ShapeEmitter>().Emit();
         StartCoroutine(disappear(idx));
+        StartCoroutine(disappeara(card));
     }
     IEnumerator disappear(int idx)
     {
         yield return new WaitForSeconds(1.5f);
         rotateRoom.rotate(idx);
+
+    }
+    IEnumerator disappeara(GameObject card)
+    {
+        yield return new WaitForSeconds(1.5f);
+        card.SetActive(false);
+
     }
 }
