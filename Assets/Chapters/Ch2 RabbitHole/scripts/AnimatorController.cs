@@ -13,62 +13,55 @@ public class AnimatorController : MonoBehaviour
     void Start()
     {
         anim.speed = 0f;
-        KnobAngle = knob.transform.eulerAngles.y;
+        KnobAngle = knob.transform.eulerAngles.z;
     }
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        // if (Input.GetKeyDown(KeyCode.K))
+        // {
+        //     Debug.Log(knob.transform.eulerAngles.z);
+        // }
+        if (knob.transform.eulerAngles.z- KnobAngle > 0)
         {
-            Debug.Log(knob.transform.eulerAngles.y);
+            if (knob.transform.eulerAngles.z- KnobAngle < 180.0f)
+            {
+                perframe(anim, i);
+                i = i + 0.002f* (knob.transform.eulerAngles.z- KnobAngle)*1.5f;
+                KnobAngle = knob.transform.eulerAngles.z;
+                if(i > 1.0f) i = 1.0f;
+            }
+            else
+            {
+                KnobAngle = knob.transform.eulerAngles.z;
+            }
+            
         }
-        if (knob.transform.eulerAngles.y - KnobAngle > 0)
+        if (knob.transform.eulerAngles.z- KnobAngle < 0)
         {
-            perframe(anim, i);
-            i = i + 0.002f* (knob.transform.eulerAngles.y - KnobAngle)*0.001f;
-            if(i > 1.0f) i = 1.0f;
-            Debug.Log(i);
+            if (knob.transform.eulerAngles.z- KnobAngle > -180.0f)
+            {
+                perframe(anim, i);
+                i = i - 0.002f * (KnobAngle - knob.transform.eulerAngles.z)*1.5f;
+                KnobAngle = knob.transform.eulerAngles.z;
+                if(i < 0.0f) i = 0.0f;
+            }
+            else
+            {
+                KnobAngle = knob.transform.eulerAngles.z;
+            }
         }
-        if (knob.transform.eulerAngles.y - KnobAngle < 0)
-        {
-            perframe(anim, i);
-            i = i - 0.002f * (knob.transform.eulerAngles.y - KnobAngle)*0.001f;
-            if(i < 0.0f) i = 0.0f;
-            Debug.Log(i);
-        }
-        if (knob.transform.eulerAngles.y - KnobAngle == 0)
+
+        if (knob.transform.eulerAngles.z- KnobAngle == 0)
         {
             anim.SetFloat("speed", 0.0f);
         }
-
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            // AnimatorManager.Instance.PlayAnim(anim, 1f);//一倍速播放
-            // anim.SetFloat("speed", 1.0f);
-            perframe(anim, i);
-            i = i + 0.002f;
-            if(i > 1.0f) i = 1.0f;
-            Debug.Log(i);
-        }
-        
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            // AnimatorManager.Instance.PlayAnim(anim, -1f);//一倍速倒放
-            // anim.SetFloat("speed", -1.0f);
-            perframe(anim, i);
-            i = i - 0.002f;
-            if(i < 0.0f) i = 0.0f;
-            Debug.Log(i);
-        }
-        
-        if(Input.GetKeyDown(KeyCode.G))
-        {
-            anim.SetFloat("speed", 0.0f);
-        }
-
     }
+
+
     public void perframe(Animator anim, float idx){
         anim.Play("Scene",0,idx);
         anim.SetFloat("speed", 0.0f);
     }
+
 }
