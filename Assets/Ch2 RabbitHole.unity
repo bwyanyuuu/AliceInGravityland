@@ -264,6 +264,7 @@ GameObject:
   - component: {fileID: 29331355}
   - component: {fileID: 29331357}
   - component: {fileID: 29331356}
+  - component: {fileID: 29331358}
   m_Layer: 0
   m_Name: card
   m_TagString: Untagged
@@ -337,6 +338,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 29331354}
   m_Mesh: {fileID: -8302102485596996044, guid: 1374b1bdc4674e24dbd038b2b753e4c3, type: 3}
+--- !u!95 &29331358
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29331354}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f9b38b57e938285458303ebbee179e8f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &71797534
 GameObject:
   m_ObjectHideFlags: 0
@@ -2430,6 +2451,7 @@ GameObject:
   - component: {fileID: 337700083}
   - component: {fileID: 337700085}
   - component: {fileID: 337700084}
+  - component: {fileID: 337700086}
   m_Layer: 0
   m_Name: card
   m_TagString: Untagged
@@ -2503,6 +2525,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 337700082}
   m_Mesh: {fileID: -8302102485596996044, guid: 1374b1bdc4674e24dbd038b2b753e4c3, type: 3}
+--- !u!95 &337700086
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 337700082}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f9b38b57e938285458303ebbee179e8f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &362574883
 GameObject:
   m_ObjectHideFlags: 0
@@ -4816,7 +4858,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &717863690
 Transform:
   m_ObjectHideFlags: 0
@@ -11790,6 +11832,7 @@ GameObject:
   - component: {fileID: 1784106156}
   - component: {fileID: 1784106158}
   - component: {fileID: 1784106157}
+  - component: {fileID: 1784106159}
   m_Layer: 0
   m_Name: card
   m_TagString: Untagged
@@ -11863,6 +11906,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1784106155}
   m_Mesh: {fileID: -8302102485596996044, guid: 1374b1bdc4674e24dbd038b2b753e4c3, type: 3}
+--- !u!95 &1784106159
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784106155}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f9b38b57e938285458303ebbee179e8f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1797829258
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13997,6 +14060,7 @@ GameObject:
   - component: {fileID: 2087039293}
   - component: {fileID: 2087039295}
   - component: {fileID: 2087039294}
+  - component: {fileID: 2087039296}
   m_Layer: 0
   m_Name: card
   m_TagString: Untagged
@@ -14070,6 +14134,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2087039292}
   m_Mesh: {fileID: -8302102485596996044, guid: 1374b1bdc4674e24dbd038b2b753e4c3, type: 3}
+--- !u!95 &2087039296
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087039292}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f9b38b57e938285458303ebbee179e8f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2104364386
 GameObject:
   m_ObjectHideFlags: 0
@@ -27497,6 +27581,7 @@ GameObject:
   - component: {fileID: 5528165736624986967}
   - component: {fileID: 8869882243595343090}
   - component: {fileID: 6700460890927095864}
+  - component: {fileID: 8869882243595343091}
   m_Layer: 0
   m_Name: card
   m_TagString: Untagged
@@ -43584,6 +43669,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5187071303230996973}
   m_Mesh: {fileID: -8302102485596996044, guid: 1374b1bdc4674e24dbd038b2b753e4c3, type: 3}
+--- !u!95 &8869882243595343091
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5187071303230996973}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f9b38b57e938285458303ebbee179e8f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &8872638189663707455
 Transform:
   m_ObjectHideFlags: 0
