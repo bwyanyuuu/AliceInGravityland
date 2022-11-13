@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pocker_up
+  m_Name: poker_up
   m_Shader: {fileID: -6465566751694194690, guid: 9bbfeaa933511874b9aaa009ace0df7d, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
