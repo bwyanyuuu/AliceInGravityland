@@ -33,6 +33,7 @@ public class RotateRoom : MonoBehaviour
         //{
         //    black.SetBool("start", false);
         //}
+        //print(player.transform.forward);
 
         //站起來測試box
         if (testbox.transform.right.y < 1.1f && testbox.transform.right.y > 0.9f){
@@ -118,6 +119,7 @@ public class RotateRoom : MonoBehaviour
 	}
     public void rotate(int i)
     {
+        print(player.transform.forward);
         //switch(i)
         //{
         //    case 0: // up
@@ -146,24 +148,20 @@ public class RotateRoom : MonoBehaviour
             {
                 case 0: // up
                     this.transform.RotateAround(center.position, Vector3.forward, 180);
-                    //StartCoroutine(standUp(90f, 0f, 0f));
-                    //StartCoroutine(standUp(90f, 0f, 0f));
                     StartCoroutine(rotatePlayer(90f, 0f, 0f));
+                  
                     break;
                 case 1: // front
                     this.transform.RotateAround(center.position, Vector3.right, 90);    //以X軸為中心逆時針轉90
-                    //StartCoroutine(standUp(-90f, 0f, 0f));
                     break;
                 case 2: // back
                     this.transform.RotateAround(center.position, Vector3.right, -90);   //以X軸為中心逆時針轉-90
                     break;
                 case 3: // left
                     this.transform.RotateAround(center.position, Vector3.forward, 90);  //以Z軸為中心逆時針轉90
-                    StartCoroutine(standUp(0f, 0f, -90f));
                     break;
                 case 4: // right
                     this.transform.RotateAround(center.position, Vector3.forward, -90); //以Z軸為中心逆時針轉270(-90)
-                    StartCoroutine(standUp(0f, 0f, 90f));
                     break;
                 default:
                     break;
@@ -176,23 +174,21 @@ public class RotateRoom : MonoBehaviour
             {
                 case 0: // up
                     this.transform.RotateAround(center.position, Vector3.forward, 180);
-                    //StartCoroutine(standUp(90f, 0f, 0f));
                     StartCoroutine(rotatePlayer(90f, 0f, 0f));
+
                     break;
                 case 1: // front
                     this.transform.RotateAround(center.position, Vector3.right, -90);    //以X軸為中心逆時針轉-90
-                    //StartCoroutine(standUp(-90f, 0f, 0f));
                     break;
                 case 2: // back
                     this.transform.RotateAround(center.position, Vector3.right, 90);     //以X軸為中心逆時針轉90
                     break;
                 case 3: // left
                     this.transform.RotateAround(center.position, Vector3.forward, -90);  //以Z軸為中心逆時針轉-90
-                    StartCoroutine(standUp(0f, 0f, -90f));
+
                     break;
                 case 4: // right
                     this.transform.RotateAround(center.position, Vector3.forward, 90);   //以Z軸為中心逆時針轉90
-                    StartCoroutine(standUp(0f, 0f, 90f));
                     break;
                 default:
                     break;
@@ -205,23 +201,21 @@ public class RotateRoom : MonoBehaviour
             {
                 case 0: // up
                     this.transform.RotateAround(center.position, Vector3.forward, 180);
-                    //StartCoroutine(standUp(90f, 0f, 0f));
+                    //StartCoroutine(rotatePlayer(90f, 0f, 0f));
                     StartCoroutine(rotatePlayer(90f, 0f, 0f));
+
                     break;
                 case 1: // front
                     this.transform.RotateAround(center.position, Vector3.forward, -90);  //以Z軸為中心逆時針轉-90
-                    //StartCoroutine(standUp(-90f, 0f, 0f));
                     break;
                 case 2: // back
                     this.transform.RotateAround(center.position, Vector3.forward, 90); //以Z軸為中心逆時針轉90
                     break;
                 case 3: // left
                     this.transform.RotateAround(center.position, Vector3.right, 90);    //以X軸為中心逆時針轉90
-                    StartCoroutine(standUp(0f, 0f, -90f));
                     break;
                 case 4: // right
                     this.transform.RotateAround(center.position, Vector3.right, -90);   //以X軸為中心逆時針轉-90
-                    StartCoroutine(standUp(0f, 0f, 90f));
                     break;
                 default:
                     break;
@@ -246,16 +240,16 @@ public class RotateRoom : MonoBehaviour
                     break;
                 case 3: // left
                     this.transform.RotateAround(center.position, Vector3.right, -90);    //以X軸為中心逆時針轉-90
-                    StartCoroutine(standUp(0f, 0f, -90f));
                     break;
                 case 4: // right
                     this.transform.RotateAround(center.position, Vector3.right, 90);   //以X軸為中心逆時針轉90
-                    StartCoroutine(standUp(0f, 0f, 90f));
                     break;
                 default:
                     break;
             }
         }
+        StartCoroutine(standUp());
+
     }
     IEnumerator rotatePlayer(float x, float y, float z)
     {
@@ -266,17 +260,19 @@ public class RotateRoom : MonoBehaviour
         }
         
     }
-    IEnumerator standUp(float x, float y, float z)
-    {
+    IEnumerator standUp()
+    {yield return new WaitForSeconds(2f);
+        player.GetComponent<Rigidbody>().isKinematic = true;
+        print(player.transform.forward);
         // // 面向+z軸
         // if (camera.transform.eulerAngles.y % 360 > 315.0f || camera.transform.eulerAngles.y % 360 < 45.0f)
         // {
-            
+
         // }
         // // 面向-z軸
         // if (camera.transform.eulerAngles.y % 360 >= 135.0f && camera.transform.eulerAngles.y % 360 < 225.0f)
         // {
-            
+
         // }
         // // 面向+x軸
         // if (camera.transform.eulerAngles.y % 360 >= 45.0f && camera.transform.eulerAngles.y % 360 < 135.0f)
@@ -285,28 +281,32 @@ public class RotateRoom : MonoBehaviour
         // // 面向-x軸
         // if (camera.transform.eulerAngles.y % 360 >= 225.0f && camera.transform.eulerAngles.y % 360 < 315.0f)
         // {
-            
-        // }
 
+        // }
+        float x = 0f;
+        float y = 0f;
+        float z = 0f;
+        
         // 面朝地：物體Z軸為(0,-1,0)
-        if (camera.transform.forward.y > -1.1f && camera.transform.forward.y < -0.9f){
-            StartCoroutine(rotatePlayer(-90f, 0f, 0f));
+        if (player.transform.forward.y > -1.1f && player.transform.forward.y < -0.9f){
+            x = -90f;
         }
         // 面朝上：物體Z軸為(0,1,0)
-        if (camera.transform.forward.y < 1.1f && camera.transform.forward.y > 0.9f){
-            StartCoroutine(rotatePlayer(90f, 0f, 0f));
+        if (player.transform.forward.y < 1.1f && player.transform.forward.y > 0.9f){
+           x = 90f;
         }
         // 右手朝下：物體X軸為(0,-1,0)
-        if (camera.transform.right.y > -1.1f && camera.transform.right.y < -0.9f){
-            StartCoroutine(rotatePlayer(0f, 0f, 90f));
+        if (player.transform.right.y > -1.1f && player.transform.right.y < -0.9f){
+            z = 90f;
         }
         // 左手朝下：物體X軸為(0,1,0)
-        if (camera.transform.right.y < 1.1f && camera.transform.right.y > 0.9f){
-            StartCoroutine(rotatePlayer(0f, 0f, -90f));
+        if (player.transform.right.y < 1.1f && player.transform.right.y > 0.9f){
+            z = -90f;
         }
+        print(x);
+        print(z);
 
-        yield return new WaitForSeconds(2f);
-        player.GetComponent<Rigidbody>().isKinematic = true;
+        
 
         //player.GetComponent<CameraShake>().isShaking = true;
 
