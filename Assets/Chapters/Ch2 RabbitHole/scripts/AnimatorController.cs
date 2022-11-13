@@ -9,11 +9,17 @@ public class AnimatorController : MonoBehaviour
     public GameObject knob;//旋轉鈕
     float i = 0.0f;
     float KnobAngle = 0.0f;
+    Vector3 konbposition = new Vector3(0.0f, 0.0f, 0.0f);
+    float KnobAngle_x = 0.0f;
+    float KnobAngle_y = 0.0f;
 
     void Start()
     {
         anim.speed = 0f;
         KnobAngle = knob.transform.eulerAngles.z;
+        konbposition = knob.transform.position;
+        KnobAngle_x = knob.transform.rotation.x;
+        KnobAngle_y = knob.transform.eulerAngles.y;
     }
     // Update is called once per frame
     void Update()
@@ -22,6 +28,8 @@ public class AnimatorController : MonoBehaviour
         // {
         //     Debug.Log(knob.transform.eulerAngles.z);
         // }
+        knob.transform.position = konbposition;
+        knob.transform.eulerAngles = new Vector3(KnobAngle_x, KnobAngle_y, knob.transform.eulerAngles.z);
         if (knob.transform.eulerAngles.z- KnobAngle > 0)
         {
             if (knob.transform.eulerAngles.z- KnobAngle < 180.0f)
