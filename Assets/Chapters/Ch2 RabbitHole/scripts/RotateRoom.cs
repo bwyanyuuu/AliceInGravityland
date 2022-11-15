@@ -18,13 +18,18 @@ public class RotateRoom : MonoBehaviour
     public GameObject player;
     public GameObject camera;
     public Animator black;
-    public GameObject testbox;
-    bool startroatate=false;
+    // public GameObject testbox;
+    // bool startroatate=false;
+    public GameObject Chandelier;
 	//转动速度
 	public float rotationSpeed=10;
+    public int RotateTime=0;
+    public bool ChandelierFloor=false;
+    // public bool ChandelierMirror=false;
+    
     private void Start()
     {
-        //StartCoroutine(standUp(90f, 0f, 0f));
+        
     }
     void Update() {
         //跟随center转圈圈
@@ -36,112 +41,143 @@ public class RotateRoom : MonoBehaviour
         //print(player.transform.forward);
 
         //站起來測試box
-        if (testbox.transform.right.y < 1.1f && testbox.transform.right.y > 0.9f){
-            startroatate = true;
+        // if (testbox.transform.right.y < 1.1f && testbox.transform.right.y > 0.9f){
+        //     startroatate = true;
+        // }
+        // if (startroatate){
+        //     testbox.transform.Rotate(new Vector3(0,0,-0.05f));
+        // }
+        if (RotateTime == 5)
+        {
+            // Rigidbody ChandelierRigidBody = Chandelier.AddComponent<Rigidbody>();
+            // ChandelierRigidBody.useGravity = true;
+            Chandelier.GetComponent<Rigidbody>().useGravity = true;
+            Chandelier.GetComponent<Collider>().enabled = true;
         }
-        if (startroatate){
-            testbox.transform.Rotate(new Vector3(0,0,-0.05f));
-        }
+        // if (RotateTime >= 5)
+        // {
+        //     Debug.Log(ChandelierFloor);
+        // }
 
         if (player.transform.eulerAngles.y%360 > 315.0f || player.transform.eulerAngles.y%360 < 45.0f){ 
             if (Input.GetKeyDown(KeyCode.W)){   
                 this.transform.RotateAround(center.position, Vector3.forward, 180);
+                RotateTime++;
             }
             if (Input.GetKeyDown(KeyCode.A)){   //吸到左邊(-x)
                 this.transform.RotateAround(center.position, Vector3.forward, 90);  //以Z軸為中心逆時針轉90
+                RotateTime++;
+                if (ChandelierFloor) ChandelierFloor = false;
             }
             if (Input.GetKeyDown(KeyCode.D)){   //吸到右邊(+x)
                 this.transform.RotateAround(center.position, Vector3.forward, -90); //以Z軸為中心逆時針轉270(-90)
+                RotateTime++;
+                if (ChandelierFloor) ChandelierFloor = false;
             }
             if (Input.GetKeyDown(KeyCode.X)){   //吸到前面(+z)
                 this.transform.RotateAround(center.position, Vector3.right, 90);    //以X軸為中心逆時針轉90
+                RotateTime++;
+                if (ChandelierFloor) ChandelierFloor = false;
             }
             if (Input.GetKeyDown(KeyCode.C)){   //吸到後面(-z)
                 this.transform.RotateAround(center.position, Vector3.right, -90);   //以X軸為中心逆時針轉-90
+                RotateTime++;
+                if (ChandelierFloor) ChandelierFloor = false;
             }
         }
         // 面向-z軸
         if (player.transform.eulerAngles.y%360 >= 135.0f && player.transform.eulerAngles.y%360 < 225.0f){ 
             if (Input.GetKeyDown(KeyCode.W)){   
                 this.transform.RotateAround(center.position, Vector3.forward, 180);
+                RotateTime++;
             }
             if (Input.GetKeyDown(KeyCode.A)){   //吸到左邊(-x)
                 this.transform.RotateAround(center.position, Vector3.forward, -90);  //以Z軸為中心逆時針轉-90
+                RotateTime++;
+                if (ChandelierFloor) ChandelierFloor = false;
             }
             if (Input.GetKeyDown(KeyCode.D)){   //吸到右邊(+x)
                 this.transform.RotateAround(center.position, Vector3.forward, 90);   //以Z軸為中心逆時針轉90
+                RotateTime++;
+                if (ChandelierFloor) ChandelierFloor = false;
             }
             if (Input.GetKeyDown(KeyCode.X)){   //吸到前面(-z)
                 this.transform.RotateAround(center.position, Vector3.right, -90);    //以X軸為中心逆時針轉-90
+                RotateTime++;
+                if (ChandelierFloor) ChandelierFloor = false;
             }
             if (Input.GetKeyDown(KeyCode.C)){   //吸到後面(+z)
                 this.transform.RotateAround(center.position, Vector3.right, 90);     //以X軸為中心逆時針轉90
+                RotateTime++;
+                if (ChandelierFloor) ChandelierFloor = false;
             }
         }
         // 面向+x軸
         if (player.transform.eulerAngles.y%360 >= 45.0f && player.transform.eulerAngles.y%360 < 135.0f){ 
             if (Input.GetKeyDown(KeyCode.W)){   
                 this.transform.RotateAround(center.position, Vector3.right, 180);
+                RotateTime++;
             }
             if (Input.GetKeyDown(KeyCode.A)){   //吸到左邊(+z)
                 this.transform.RotateAround(center.position, Vector3.right, 90);    //以X軸為中心逆時針轉90
+                RotateTime++;
+                if (ChandelierFloor) ChandelierFloor = false;
             }
             if (Input.GetKeyDown(KeyCode.D)){   //吸到右邊(-z)
                 this.transform.RotateAround(center.position, Vector3.right, -90);   //以X軸為中心逆時針轉-90
+                RotateTime++;
+                if (ChandelierFloor) ChandelierFloor = false;
             }
             if (Input.GetKeyDown(KeyCode.X)){   //吸到前面(+x)
                 this.transform.RotateAround(center.position, Vector3.forward, -90);  //以Z軸為中心逆時針轉-90
+                RotateTime++;
+                if (ChandelierFloor) ChandelierFloor = false;
             }
             if (Input.GetKeyDown(KeyCode.C)){   //吸到後面(-x)
                 this.transform.RotateAround(center.position, Vector3.forward, 90); //以Z軸為中心逆時針轉90
+                RotateTime++;
+                if (ChandelierFloor) ChandelierFloor = false;
             }
         }
         // 面向-x軸
         if (player.transform.eulerAngles.y%360 >= 225.0f && player.transform.eulerAngles.y%360 < 315.0f){ 
             if (Input.GetKeyDown(KeyCode.W)){   
                 this.transform.RotateAround(center.position, Vector3.right, 180);
+                RotateTime++;
+                if (ChandelierFloor) ChandelierFloor = false;
             }
             if (Input.GetKeyDown(KeyCode.A)){   //吸到左邊(-z)
                 this.transform.RotateAround(center.position, Vector3.right, -90);    //以X軸為中心逆時針轉-90
+                RotateTime++;
+                if (ChandelierFloor) ChandelierFloor = false;
             }
             if (Input.GetKeyDown(KeyCode.D)){   //吸到右邊(+z)
                 this.transform.RotateAround(center.position, Vector3.right, 90);   //以X軸為中心逆時針轉90
+                RotateTime++;
+                if (ChandelierFloor) ChandelierFloor = false;
             }
             if (Input.GetKeyDown(KeyCode.X)){   //吸到前面(-x)
                 this.transform.RotateAround(center.position, Vector3.forward, 90);  //以Z軸為中心逆時針轉90
+                RotateTime++;
+                if (ChandelierFloor) ChandelierFloor = false;
             }
             if (Input.GetKeyDown(KeyCode.C)){   //吸到後面(+x)
                 this.transform.RotateAround(center.position, Vector3.forward, -90); //以Z軸為中心逆時針轉-90
+                RotateTime++;
+                if (ChandelierFloor) ChandelierFloor = false;
             }
         }
         
 		
 	}
+    // void OnCollisionEnter(Collision collision)
+    // {
+
+    // }
     public void rotate(int i)
     {
         print(player.transform.forward);
-        //switch(i)
-        //{
-        //    case 0: // up
-        //        this.transform.RotateAround(center.position, Vector3.forward, 180);
-        //        //player.transform.Rotate(180f, 0f, 0f, Space.Self);
-        //        StartCoroutine(rotatePlayer(90f, 0f, 0f));
-        //        break;
-        //    case 1: // front
-        //        //this.transform.RotateAround(center.position, Vector3.forward, 90);
-        //        break;
-        //    case 2: // back
-        //        //this.transform.RotateAround(center.position, Vector3.forward, 180);
-        //        break;
-        //    case 3: // left
-        //        this.transform.RotateAround(center.position, Vector3.forward, 90);
-        //        break;
-        //    case 4: // right
-        //        this.transform.RotateAround(center.position, Vector3.forward, 270);
-        //        break;
-        //    default:
-        //        break;
-        //}
+       
         if (camera.transform.eulerAngles.y % 360 > 315.0f || camera.transform.eulerAngles.y % 360 < 45.0f)
         {
             switch (i)
@@ -149,19 +185,27 @@ public class RotateRoom : MonoBehaviour
                 case 0: // up
                     this.transform.RotateAround(center.position, Vector3.forward, 180);
                     StartCoroutine(rotatePlayer(90f, 0f, 0f));
-                  
+                    RotateTime++;
                     break;
                 case 1: // front
                     this.transform.RotateAround(center.position, Vector3.right, 90);    //以X軸為中心逆時針轉90
+                    RotateTime++;
+                    if (ChandelierFloor) ChandelierFloor = false;
                     break;
                 case 2: // back
                     this.transform.RotateAround(center.position, Vector3.right, -90);   //以X軸為中心逆時針轉-90
+                    RotateTime++;
+                    if (ChandelierFloor) ChandelierFloor = false;
                     break;
                 case 3: // left
                     this.transform.RotateAround(center.position, Vector3.forward, 90);  //以Z軸為中心逆時針轉90
+                    RotateTime++;
+                    if (ChandelierFloor) ChandelierFloor = false;
                     break;
                 case 4: // right
                     this.transform.RotateAround(center.position, Vector3.forward, -90); //以Z軸為中心逆時針轉270(-90)
+                    RotateTime++;
+                    if (ChandelierFloor) ChandelierFloor = false;
                     break;
                 default:
                     break;
@@ -175,20 +219,27 @@ public class RotateRoom : MonoBehaviour
                 case 0: // up
                     this.transform.RotateAround(center.position, Vector3.forward, 180);
                     StartCoroutine(rotatePlayer(90f, 0f, 0f));
-
+                    RotateTime++;
                     break;
                 case 1: // front
                     this.transform.RotateAround(center.position, Vector3.right, -90);    //以X軸為中心逆時針轉-90
+                    RotateTime++;
+                    if (ChandelierFloor) ChandelierFloor = false;
                     break;
                 case 2: // back
                     this.transform.RotateAround(center.position, Vector3.right, 90);     //以X軸為中心逆時針轉90
+                    RotateTime++;
+                    if (ChandelierFloor) ChandelierFloor = false;
                     break;
                 case 3: // left
                     this.transform.RotateAround(center.position, Vector3.forward, -90);  //以Z軸為中心逆時針轉-90
-
+                    RotateTime++;
+                    if (ChandelierFloor) ChandelierFloor = false;
                     break;
                 case 4: // right
                     this.transform.RotateAround(center.position, Vector3.forward, 90);   //以Z軸為中心逆時針轉90
+                    RotateTime++;
+                    if (ChandelierFloor) ChandelierFloor = false;
                     break;
                 default:
                     break;
@@ -203,19 +254,27 @@ public class RotateRoom : MonoBehaviour
                     this.transform.RotateAround(center.position, Vector3.forward, 180);
                     //StartCoroutine(rotatePlayer(90f, 0f, 0f));
                     StartCoroutine(rotatePlayer(90f, 0f, 0f));
-
+                    RotateTime++;
                     break;
                 case 1: // front
                     this.transform.RotateAround(center.position, Vector3.forward, -90);  //以Z軸為中心逆時針轉-90
+                    RotateTime++;
+                    if (ChandelierFloor) ChandelierFloor = false;
                     break;
                 case 2: // back
                     this.transform.RotateAround(center.position, Vector3.forward, 90); //以Z軸為中心逆時針轉90
+                    RotateTime++;
+                    if (ChandelierFloor) ChandelierFloor = false;
                     break;
                 case 3: // left
                     this.transform.RotateAround(center.position, Vector3.right, 90);    //以X軸為中心逆時針轉90
+                    RotateTime++;
+                    if (ChandelierFloor) ChandelierFloor = false;
                     break;
                 case 4: // right
                     this.transform.RotateAround(center.position, Vector3.right, -90);   //以X軸為中心逆時針轉-90
+                    RotateTime++;
+                    if (ChandelierFloor) ChandelierFloor = false;
                     break;
                 default:
                     break;
@@ -229,27 +288,36 @@ public class RotateRoom : MonoBehaviour
                 case 0: // up
                     this.transform.RotateAround(center.position, Vector3.forward, 180);
                     //StartCoroutine(standUp(90f, 0f, 0f));
+                    RotateTime++;
                     StartCoroutine(rotatePlayer(90f, 0f, 0f));
                     break;
                 case 1: // front
                     this.transform.RotateAround(center.position, Vector3.forward, 90);  //以Z軸為中心逆時針轉90
                     //StartCoroutine(standUp(-90f, 0f, 0f));
+                    RotateTime++;
+                    if (ChandelierFloor) ChandelierFloor = false;
                     break;
                 case 2: // back
                     this.transform.RotateAround(center.position, Vector3.forward, -90); //以Z軸為中心逆時針轉-90
+                    RotateTime++;
+                    if (ChandelierFloor) ChandelierFloor = false;
                     break;
                 case 3: // left
                     this.transform.RotateAround(center.position, Vector3.right, -90);    //以X軸為中心逆時針轉-90
+                    RotateTime++;
+                    if (ChandelierFloor) ChandelierFloor = false;
                     break;
                 case 4: // right
                     this.transform.RotateAround(center.position, Vector3.right, 90);   //以X軸為中心逆時針轉90
+                    RotateTime++;
+                    if (ChandelierFloor) ChandelierFloor = false;
                     break;
                 default:
                     break;
             }
         }
         StartCoroutine(standUp());
-
+        RotateTime++;
     }
     IEnumerator rotatePlayer(float x, float y, float z)
     {
@@ -264,25 +332,7 @@ public class RotateRoom : MonoBehaviour
     {yield return new WaitForSeconds(2f);
         player.GetComponent<Rigidbody>().isKinematic = true;
         print(player.transform.forward);
-        // // 面向+z軸
-        // if (camera.transform.eulerAngles.y % 360 > 315.0f || camera.transform.eulerAngles.y % 360 < 45.0f)
-        // {
-
-        // }
-        // // 面向-z軸
-        // if (camera.transform.eulerAngles.y % 360 >= 135.0f && camera.transform.eulerAngles.y % 360 < 225.0f)
-        // {
-
-        // }
-        // // 面向+x軸
-        // if (camera.transform.eulerAngles.y % 360 >= 45.0f && camera.transform.eulerAngles.y % 360 < 135.0f)
-        // {
-        // }
-        // // 面向-x軸
-        // if (camera.transform.eulerAngles.y % 360 >= 225.0f && camera.transform.eulerAngles.y % 360 < 315.0f)
-        // {
-
-        // }
+        
         float x = 0f;
         float y = 0f;
         float z = 0f;
@@ -303,11 +353,7 @@ public class RotateRoom : MonoBehaviour
         if (player.transform.right.y < 1.1f && player.transform.right.y > 0.9f){
             z = -90f;
         }
-        print(x);
-        print(z);
-
         
-
         //player.GetComponent<CameraShake>().isShaking = true;
 
         //black.enabled = true;
