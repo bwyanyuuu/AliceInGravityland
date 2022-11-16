@@ -78,7 +78,7 @@ namespace Oculus.Interaction.Input
 
                 capsule.CapsuleCollider = new GameObject((boneTransform.name).ToString() + "_CapsuleCollider")
                     .AddComponent<CapsuleCollider>();
-                capsule.CapsuleCollider.isTrigger = false;
+                capsule.CapsuleCollider.isTrigger = true;
 
                 var p0 = _skeleton.BoneCapsules[i].StartPoint.FromFlippedXVector3f();
                 var p1 = _skeleton.BoneCapsules[i].EndPoint.FromFlippedXVector3f();

@@ -36,7 +36,6 @@ public class PokerController : MonoBehaviour
 
     public void pickUp(GameObject card)
     {
-        print("pickUp");
         // put the card onto the hand
         int idx = -1;
         for(int i = 0; i < cardsOutside.Length; i++)
@@ -47,10 +46,8 @@ public class PokerController : MonoBehaviour
                 break;
             }
         }
-        print(idx);
-        if(idx != -1)
+        if(idx != -1 && !cardOwned.Contains(idx))
         {
-            print(cardOwned.Count);
             GameObject c = cards.transform.GetChild(cardOwned.Count).gameObject;
             c.SetActive(true);
             c.transform.GetChild(0).GetComponent<Renderer>().material = cardsMaterial[idx];
@@ -81,7 +78,7 @@ public class PokerController : MonoBehaviour
     }
     IEnumerator disappear(GameObject card)
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
         card.SetActive(false);
         // GameObject.Destroy(card);
     }

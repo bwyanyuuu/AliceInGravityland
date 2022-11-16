@@ -73,6 +73,7 @@ public class AnimatorController : MonoBehaviour
             // }
         }
     }
+    
 
 
     public void perframe(Animator anim, float idx){
