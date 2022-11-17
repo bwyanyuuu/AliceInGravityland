@@ -7,6 +7,7 @@ public class Poker : MonoBehaviour
     private AnimatorClipInfo clip;
     private Animator animator;
     private AnimatorStateInfo stateinfo;
+    private bool isEnabled = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,12 +30,17 @@ public class Poker : MonoBehaviour
         //     animator.Play("poker_4",0,0.0f);
         //     Debug.Log("start");
         // }
-
+        if(gameObject.activeSelf && !isEnabled)
+        {
+            animator.enabled = true;
+            isEnabled = true;
+        }
         stateinfo = animator.GetCurrentAnimatorStateInfo(0); 
         if ((stateinfo.normalizedTime >= 1.0f) && (stateinfo.IsTag("Poker")))
         {
             // Debug.Log("end");
             animator.enabled = false;
+            isEnabled = false;
         }
     }
 }
