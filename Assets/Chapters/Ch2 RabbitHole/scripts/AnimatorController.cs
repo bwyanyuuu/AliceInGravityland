@@ -6,10 +6,14 @@ public class AnimatorController : MonoBehaviour
 {
     
     public Animator anim;
+    public Animator HourAnim;
+    public Animator MinAnim;
+    public Animator SecAnim;
     public GameObject chandelierCollider;
     public GameObject knob;//旋轉鈕
     public GameObject clock;
-    float i = 50.0f;
+    float i = 1.0f;
+    // float clock_i = 0.0f;
     float KnobAngle = 0.0f;
     Vector3 konbposition = new Vector3(0.0f, 0.0f, 0.0f);
     float KnobAngle_x = 0.0f;
@@ -34,6 +38,12 @@ public class AnimatorController : MonoBehaviour
         KnobAngle_x = knob.transform.localEulerAngles.x;
         KnobAngle_y = knob.transform.localEulerAngles.y;
         diffAngle = clock.transform.eulerAngles - knob.transform.eulerAngles;
+        HourAnim.SetFloat("speed", 0.0f);
+        MinAnim.SetFloat("speed", 0.0f);
+        SecAnim.SetFloat("speed", 0.0f);
+        // HourAnim.speed = 0f;
+        // MinAnim.speed = 0f;
+        // SecAnim.speed = 0f;
     }
     // Update is called once per frame
     void Update()
@@ -43,7 +53,8 @@ public class AnimatorController : MonoBehaviour
         //     Debug.Log(knob.transform.eulerAngles.z);
         // }
 
-        if (chandelier.pocketclockStart && isTouching)
+        // if (chandelier.pocketclockStart && isTouching)
+        if (true)
         {
             
             knob.transform.localPosition = konbposition;
@@ -53,9 +64,13 @@ public class AnimatorController : MonoBehaviour
                 if (knob.transform.localEulerAngles.z- KnobAngle < 180.0f)
                 {
                     perframe(anim, i);
+                    Clockperframe(HourAnim, i, "hour round");
+                    Clockperframe(MinAnim, i, "hour round");
+                    Clockperframe(SecAnim, i, "sec round");
                     i = i + 0.002f* (knob.transform.localEulerAngles.z- KnobAngle)*1.5f;
                     KnobAngle = knob.transform.localEulerAngles.z;
                     if(i > 1.0f) i = 1.0f;
+                    
                 }
                 else
                 {
@@ -68,9 +83,13 @@ public class AnimatorController : MonoBehaviour
                 if (knob.transform.localEulerAngles.z- KnobAngle > -180.0f)
                 {
                     perframe(anim, i);
+                    Clockperframe(HourAnim, i, "hour round");
+                    Clockperframe(MinAnim, i, "hour round");
+                    Clockperframe(SecAnim, i, "sec round");
                     i = i - 0.002f * (KnobAngle - knob.transform.localEulerAngles.z)*1.5f;
                     KnobAngle = knob.transform.localEulerAngles.z;
                     if(i < 0.0f) i = 0.0f;
+                    
                 }
                 else
                 {
@@ -90,6 +109,12 @@ public class AnimatorController : MonoBehaviour
     public void perframe(Animator anim, float idx){
         anim.Play("Scene",0,idx);
         anim.SetFloat("speed", 0.0f);
+    }
+
+    public void Clockperframe(Animator arrowanim, float idx, string name){
+        arrowanim.SetFloat("speed", 1.0f);
+        arrowanim.Play(name,0,idx);
+        arrowanim.SetFloat("speed", 0.0f);
     }
 
 

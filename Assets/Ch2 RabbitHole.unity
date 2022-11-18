@@ -5175,6 +5175,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 426586300}
+  HourAnim: {fileID: 163631019}
+  MinAnim: {fileID: 1907163959}
+  SecAnim: {fileID: 2052438221}
   chandelierCollider: {fileID: 877665220}
   knob: {fileID: 399900762}
   clock: {fileID: 0}
