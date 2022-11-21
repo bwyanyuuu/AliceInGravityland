@@ -696,8 +696,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 107998098}
+  - component: {fileID: 107998099}
   m_Layer: 0
-  m_Name: gameControl
+  m_Name: GameMaster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -716,8 +717,28 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &107998099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107998097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ccb091ccedfa35408bfe843acc07560, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  section: 0
+  pokers:
+  - {fileID: 1315786126}
+  - {fileID: 142843417}
+  - {fileID: 1794882468}
+  - {fileID: 1717279543}
+  - {fileID: 407014401}
+  isTriggered: 0
 --- !u!1 &110502355
 GameObject:
   m_ObjectHideFlags: 0
@@ -6512,7 +6533,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &628243031
 GameObject:
@@ -18348,7 +18369,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1833781175
 MonoBehaviour:
@@ -30852,7 +30873,7 @@ Transform:
   - {fileID: 1002267448}
   - {fileID: 1353135694}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &3909731694642715416
 MeshRenderer:
@@ -35486,7 +35507,7 @@ Transform:
   - {fileID: 396987387}
   - {fileID: 876192305}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5436938498228347258
 GameObject:
