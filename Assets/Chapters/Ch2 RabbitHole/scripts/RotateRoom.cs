@@ -317,7 +317,7 @@ public class RotateRoom : MonoBehaviour
             }
         }
         StartCoroutine(standUp());
-        RotateTime++;
+        
     }
     IEnumerator rotatePlayer(float x, float y, float z)
     {
@@ -329,7 +329,8 @@ public class RotateRoom : MonoBehaviour
     }
     IEnumerator standUp()
     {yield return new WaitForSeconds(2f);
-        player.GetComponent<Rigidbody>().isKinematic = true;
+        //player.GetComponent<Rigidbody>().isKinematic = true;
+        player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
         print(player.transform.forward);
         
         float x = 0f;
@@ -363,7 +364,9 @@ public class RotateRoom : MonoBehaviour
             player.transform.Rotate(x / time, y / time, z / time, Space.Self);
         }
 
-        player.GetComponent<Rigidbody>().isKinematic = false;
+        //player.GetComponent<Rigidbody>().isKinematic = false;
+        player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+
         // yield return new WaitForSeconds(2f);
         isRotating = false;        
     }

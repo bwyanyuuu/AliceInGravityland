@@ -8883,21 +8883,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b3a178d29fb373645a07447bb397df5e, type: 3}
   m_PrefabInstance: {fileID: 394556396}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &877665221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 877665220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 261ea3fcc04eb6f45892e02716a7c425, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anim: {fileID: 426586300}
-  room: {fileID: 4431227083372875556}
-  pocketclockStart: 1
 --- !u!65 &877665222
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13975,7 +13960,6 @@ GameObject:
   - component: {fileID: 1442603345}
   - component: {fileID: 1442603344}
   - component: {fileID: 1442603343}
-  - component: {fileID: 1442603350}
   - component: {fileID: 1442603351}
   m_Layer: 0
   m_Name: 4
@@ -14153,22 +14137,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!111 &1442603350
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1442603341}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 66dcd71cbcda5024187dc7fc11eaafb7, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 66dcd71cbcda5024187dc7fc11eaafb7, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &1442603351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28377,7 +28345,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!33 &3002005704701656229
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -33717,7 +33685,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!65 &4919022600373772434
 BoxCollider:
@@ -33732,6 +33700,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.419205, y: 2.0345616, z: 0.37529996}
   m_Center: {x: 0.03771293, y: 0.6771219, z: -0.0048604608}
+--- !u!114 &4919022600373772437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4919022600373772424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 261ea3fcc04eb6f45892e02716a7c425, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 426586300}
+  room: {fileID: 4431227083372875556}
+  pocketclockStart: 1
 --- !u!1 &4921842362140172330
 GameObject:
   m_ObjectHideFlags: 0

@@ -36,7 +36,7 @@ public class Poker : MonoBehaviour
             isEnabled = true;
         }
         stateinfo = animator.GetCurrentAnimatorStateInfo(0); 
-        if ((stateinfo.normalizedTime >= 1.0f) && (stateinfo.IsTag("Poker")))
+        if ((stateinfo.normalizedTime >= 0.95f) && (stateinfo.IsTag("Poker")))
         {
             // Debug.Log("end");
             animator.enabled = false;

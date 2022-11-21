@@ -8,6 +8,7 @@ public class ChandelierCollider : MonoBehaviour
     public GameObject room;
     public bool pocketclockStart=false;
     private RotateRoom rotateRoom;
+    private bool mirrorbroke=false;
     // int a = 0;
     // Start is called before the first frame update
     void Start()
@@ -38,12 +39,17 @@ public class ChandelierCollider : MonoBehaviour
         {
             // Debug.Log("mirror");
             // Debug.Log(rotateRoom.ChandelierFloor);
-            if (rotateRoom.ChandelierFloor)
+            if (!mirrorbroke)
             {
-                anim.Play("Scene",0,0.0f);
-                anim.SetFloat("speed", 1.0f);
-                pocketclockStart = true;
+                if (rotateRoom.ChandelierFloor)
+                {
+                    anim.Play("Scene", 0, 0.0f);
+                    anim.SetFloat("speed", 1.0f);
+                    pocketclockStart = true;
+                    mirrorbroke = true;
+                }
             }
+            
         }
     }
 }
