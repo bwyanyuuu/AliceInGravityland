@@ -17,6 +17,9 @@ public class GameMaster : MonoBehaviour
 
     [Header("GameObjects")]
     public GameObject[] pokers;
+    public GameObject[] tutorials;
+    public GameObject[] roomA;
+    public GameObject[] roomB;
 
     [Header("APIs")]
     public bool isTriggered = false;
@@ -25,19 +28,35 @@ public class GameMaster : MonoBehaviour
     void Start()
     {
         section = Section.start;
+        activeSet(pokers, false);
+        activeSet(tutorials, false);
+        activeSet(roomB, false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if(section == Section.start)
-        //{
-        //    pokers[0].SetActive(true);
-        //    section = Section.poker1;
-        //}
-        //if(section == Section.poker1)
-        //{
-
-        //}
+        if (section == Section.start)
+        {
+            pokers[0].SetActive(true);
+            tutorials[0].SetActive(true);
+            section = Section.poker1;
+        }
+        if (section == Section.poker1)
+        {
+            if (isTriggered)
+            {
+                pokers[1].SetActive(true);
+                isTriggered = false;
+                section = Section.poker2;
+            }
+        }
+    }
+    void activeSet(GameObject[] list, bool b)
+    {
+        for(int i = 0; i < list.Length; i++)
+        {
+            list[i].SetActive(b);
+        }
     }
 }

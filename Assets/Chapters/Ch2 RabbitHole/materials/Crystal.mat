@@ -8,8 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Crystal
-  m_Shader: {fileID: -6465566751694194690, guid: 4a9fbc41ab635f64ab38d1c3f8856185,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 48f21e9f38df855478a0bd9bf8452e9b, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
