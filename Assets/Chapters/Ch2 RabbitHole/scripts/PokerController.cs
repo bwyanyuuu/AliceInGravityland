@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class PokerController : MonoBehaviour
 {
-    public GameObject cards;
+    
+    public GameObject tutorial;
+    public GameObject cards;    
     public Vector3[] pos;
     public Quaternion[] rot;
     public GameObject[] cardsOutside;
     public Material[] cardsMaterial;
+    
+    private GameMaster gameMaster;   
+    private bool isTutorial = false;
     private RotateRoom rotateRoom;
     private List<int> cardOwned = new List<int>();
     // Start is called before the first frame update
     void Start()
     {
+        gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
         rotateRoom = gameObject.GetComponent<RotateRoom>();
         //for(int i = 0; i < 5; i++)
         //{
@@ -69,6 +75,12 @@ public class PokerController : MonoBehaviour
         card.GetComponent<UnityEngine.Playables.PlayableDirector>().Play();
         StartCoroutine(rotate(cardOwned[posIdx]));
         StartCoroutine(disappear(card));
+        if (!isTutorial)
+        {
+            tutorial.SetActive(false);
+            isTutorial = true;
+        }
+        gameMaster.nxt = true;
     }
     IEnumerator rotate(int idx)
     {

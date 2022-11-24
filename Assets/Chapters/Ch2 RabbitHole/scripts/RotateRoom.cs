@@ -370,4 +370,8 @@ public class RotateRoom : MonoBehaviour
         // yield return new WaitForSeconds(2f);
         isRotating = false;        
     }
+    public void up()
+    {
+        this.transform.RotateAround(center.position, Vector3.forward, 180);
+    }
 }

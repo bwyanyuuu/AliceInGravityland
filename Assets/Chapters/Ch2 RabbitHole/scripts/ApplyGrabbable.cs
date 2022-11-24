@@ -26,8 +26,8 @@ public class ApplyGrabbable : MonoBehaviour
             c.transform.localScale = new Vector3(1f, 1f, 1f);
             
             var o = g.GetComponent<Oculus.Interaction.TouchHandGrabInteractable>();
-            o._boundsCollider = c.GetComponent<BoxCollider>();
-            o._colliders.Add(c.GetComponent<BoxCollider>());
+            //o._boundsCollider = c.GetComponent<BoxCollider>();
+            //o._colliders.Add(c.GetComponent<BoxCollider>());
         }
     }
 

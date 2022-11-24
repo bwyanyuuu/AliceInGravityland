@@ -32,10 +32,10 @@ namespace Oculus.Interaction
     public class TouchHandGrabInteractable : PointerInteractable<TouchHandGrabInteractor, TouchHandGrabInteractable>
     {
         [SerializeField]
-        public Collider _boundsCollider;
+        private Collider _boundsCollider;
 
         [SerializeField]
-        public List<Collider> _colliders;
+        private List<Collider> _colliders;
 
         private ColliderGroup _colliderGroup;
         public ColliderGroup ColliderGroup => _colliderGroup;

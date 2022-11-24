@@ -9,10 +9,12 @@ public class ChandelierCollider : MonoBehaviour
     public bool pocketclockStart=false;
     private RotateRoom rotateRoom;
     private bool mirrorbroke=false;
+    private GameMaster gameMaster;
     // int a = 0;
     // Start is called before the first frame update
     void Start()
     {
+        gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
         rotateRoom = room.GetComponent<RotateRoom>();
         anim.SetFloat("speed", 0.0f);
         
@@ -47,6 +49,7 @@ public class ChandelierCollider : MonoBehaviour
                     anim.SetFloat("speed", 1.0f);
                     pocketclockStart = true;
                     mirrorbroke = true;
+                    gameMaster.nxt = true;
                 }
             }
             
