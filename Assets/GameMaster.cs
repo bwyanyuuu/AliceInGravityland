@@ -35,6 +35,8 @@ public class GameMaster : MonoBehaviour
     public RotateRoom rotateRoom;
     
     private bool isSet = false;
+    public bool intoRoomB = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -134,6 +136,7 @@ public class GameMaster : MonoBehaviour
                 activeSet(roomB, true);
                 activeSet(roomAAfter1, true);
                 isSet = true;
+                intoRoomB = true;
             }
             if (nxt)
             {
@@ -151,7 +154,7 @@ public class GameMaster : MonoBehaviour
                 activeSet(roomB, false);
                 mirrorBreak.SetActive(false);
                 mirrorNormal.SetActive(true);
-                rotateRoom.rotate(0); // 回到A房間時把重力轉回去
+                rotateRoom.rotate(0); // 嚙稷嚙踝蕭A嚙請塚蕭嚙褕把重嚙瞌嚙踝蕭^嚙篁
                 isSet = true;
             }
         }
