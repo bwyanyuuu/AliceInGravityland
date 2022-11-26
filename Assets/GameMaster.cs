@@ -21,14 +21,17 @@ public class GameMaster : MonoBehaviour
     public bool isDebug;
 
     [Header("GameObjects")]
+    public GameObject player;
     public GameObject[] pokers;
-    public GameObject[] tutorials;
     public GameObject[] roomA;
     public GameObject[] roomB;
     public GameObject[] roomAAfter1;
     public GameObject[] roomAAfter2;
+    public GameObject tutorial;
     public GameObject mirrorNormal;
     public GameObject mirrorBreak;
+    public GameObject clock;
+    public GameObject backACollider;
 
     [Header("Controllers")]
     public bool nxt = false;
@@ -43,12 +46,15 @@ public class GameMaster : MonoBehaviour
     {
         if(!isDebug) section = Section.start;
         activeSet(pokers, false);
-        activeSet(tutorials, false);
         activeSet(roomA, false);
         activeSet(roomB, false);
         activeSet(roomAAfter1, false);
         activeSet(roomAAfter2, false);
+        tutorial.SetActive(false);
+        mirrorNormal.SetActive(false);
         mirrorBreak.SetActive(false);
+        clock.SetActive(false);
+        backACollider.SetActive(false);
     }
 
     // Update is called once per frame
@@ -58,7 +64,8 @@ public class GameMaster : MonoBehaviour
         {
             activeSet(roomA, true);
             pokers[0].SetActive(true);
-            tutorials[0].SetActive(true);
+            tutorial.SetActive(true);
+            mirrorNormal.SetActive(true);
             section = Section.poker0;
         }
         if (section == Section.poker0)
@@ -136,13 +143,27 @@ public class GameMaster : MonoBehaviour
                 activeSet(roomB, true);
                 activeSet(roomAAfter1, true);
                 isSet = true;
-                intoRoomB = true;
             }
             if (nxt)
             {
                 isSet = false;
                 nxt = false;
-                // section = Section.roomB;
+                section = Section.roomB;
+            }
+        }
+        if(section == Section.roomB)
+        {
+            if (!isSet)
+            {
+                clock.SetActive(true);
+                backACollider.SetActive(true);
+                isSet = true;
+            }
+            if (nxt)
+            {
+                isSet = false;
+                nxt = false;
+                section = Section.backToA;
             }
         }
         if(section == Section.backToA)
@@ -153,8 +174,9 @@ public class GameMaster : MonoBehaviour
                 activeSet(roomAAfter2, true);
                 activeSet(roomB, false);
                 mirrorBreak.SetActive(false);
+                backACollider.SetActive(false);
                 mirrorNormal.SetActive(true);
-                rotateRoom.rotate(0); // �^��A�ж��ɧ⭫�O��^�h
+                rotateRoom.rotate(0); // turn gavaity back to normal
                 isSet = true;
             }
         }

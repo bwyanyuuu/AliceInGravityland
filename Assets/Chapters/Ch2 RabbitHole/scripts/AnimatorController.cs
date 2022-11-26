@@ -26,13 +26,13 @@ public class AnimatorController : MonoBehaviour
     //float ClockAngle_x = 0.0f;
     //float ClockAngle_y = 0.0f;
     public bool isTouching = false;
-    private ChandelierCollider chandelier;
+    private PlayerController chandelier;
 
     void Start()
     {
         // anim.speed = 0f;
         
-        chandelier = chandelierCollider.GetComponent<ChandelierCollider>();
+        chandelier = chandelierCollider.GetComponent<PlayerController>();
         KnobAngle = knob.transform.localEulerAngles.z;
         konbposition = knob.transform.localPosition;
         KnobAngle_x = knob.transform.localEulerAngles.x;
