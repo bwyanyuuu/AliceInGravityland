@@ -6,18 +6,22 @@ using UnityEngine.Timeline;
 
 public class DoorAnimation : MonoBehaviour
 {
+    private GameMaster gameMaster;
     public GameObject player;
     public GameObject CenterEye;
+    // public GameObject rightEye;
+    // public GameObject leftEye;
     public GameObject timeline;
     public GameObject wall;
     private Vector3 OriginRotate;
     // Start is called before the first frame update
     void Start()
     {
-        player.transform.parent = null;
-        player.transform.SetParent(this.transform, false);
+        // player.transform.parent = null;
+        // player.transform.SetParent(this.transform, true);
+        gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
         player.transform.Rotate(0.0f, -90.0f, 0.0f, Space.Self);    
-        OriginRotate = CenterEye.transform.eulerAngles;
+        // OriginRotate = CenterEye.transform.eulerAngles;
     }
 
     // Update is called once per frame
@@ -25,12 +29,13 @@ public class DoorAnimation : MonoBehaviour
     {
         if (timeline.GetComponent<PlayableDirector>().state == PlayState.Paused)
         {
-            player.transform.SetParent(GameObject.Find("House").transform, true);
+            // player.transform.SetParent(GameObject.Find("House").transform, true);
             wall.GetComponent<BoxCollider>().enabled = true;
+            gameMaster.nxt = true;
         }
-        else
-        {
-            CenterEye.transform.eulerAngles = OriginRotate;
-        }
+        // else
+        // {
+        //     CenterEye.transform.eulerAngles = OriginRotate;
+        // }
     }
 }

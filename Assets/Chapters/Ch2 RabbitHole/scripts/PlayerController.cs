@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public GameObject room;
     public bool pocketclockStart=false;
     public float roomScale;
+    public bool anime;
     private RotateRoom rotateRoom;
     private bool mirrorbroke=false;
     private GameMaster gameMaster;
@@ -29,6 +30,21 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(roomBigger());
         }
+        if(anime){
+            if (!mirrorbroke)
+            {
+                if (rotateRoom.ChandelierFloor)
+                {
+                    anim.Play("Scene", 0, 0.0f);
+                    anim.SetFloat("speed", 1.0f);
+                    pocketclockStart = true;
+                    mirrorbroke = true;
+                    // gameMaster.nxt = true;
+                }
+            }
+            anime = false;
+        }
+        
     }
     void OnCollisionEnter(Collision collision)
     {
@@ -38,26 +54,11 @@ public class PlayerController : MonoBehaviour
             if (rotateRoom.RotateTime >= 5)
             {
                 rotateRoom.ChandelierFloor = true;
-                // Debug.Log("set true");
+                
+                print(gameObject.name+" set true "+rotateRoom.RotateTime);
             }
         }
-        if (collision.collider.name == "mirror_glass")
-        {
-            // Debug.Log("mirror");
-            // Debug.Log(rotateRoom.ChandelierFloor);
-            if (!mirrorbroke)
-            {
-                if (rotateRoom.ChandelierFloor)
-                {
-                    anim.Play("Scene", 0, 0.0f);
-                    anim.SetFloat("speed", 1.0f);
-                    pocketclockStart = true;
-                    mirrorbroke = true;
-                    gameMaster.nxt = true;
-                }
-            }
-            
-        }
+        // f
         if (collision.collider.CompareTag("cookie")){
             collision.collider.gameObject.SetActive(false);
             StartCoroutine(roomBigger());

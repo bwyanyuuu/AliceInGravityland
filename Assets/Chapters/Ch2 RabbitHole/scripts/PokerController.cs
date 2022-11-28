@@ -80,7 +80,7 @@ public class PokerController : MonoBehaviour
             tutorial.SetActive(false);
             isTutorial = true;
         }
-        gameMaster.nxt = true;
+        // gameMaster.nxt = true;
     }
     IEnumerator rotate(int idx)
     {

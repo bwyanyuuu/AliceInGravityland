@@ -18,6 +18,7 @@ public class RotateRoom : MonoBehaviour
     public GameObject player;
     public GameObject camera;
     public Animator black;
+    public GameObject mirrorCollider;
     // public GameObject testbox;
     // bool startroatate=false;
     public GameObject Chandelier;
@@ -48,12 +49,13 @@ public class RotateRoom : MonoBehaviour
         // if (startroatate){
         //     testbox.transform.Rotate(new Vector3(0,0,-0.05f));
         // }
-        if (RotateTime == 5)
+        if (RotateTime >= 5)
         {
             // Rigidbody ChandelierRigidBody = Chandelier.AddComponent<Rigidbody>();
             // ChandelierRigidBody.useGravity = true;
             Chandelier.GetComponent<Rigidbody>().useGravity = true;
             Chandelier.GetComponent<Collider>().enabled = true;
+            mirrorCollider.SetActive(true);
         }
         // if (RotateTime >= 5)
         // {
@@ -329,7 +331,7 @@ public class RotateRoom : MonoBehaviour
     }
     IEnumerator standUp()
     {yield return new WaitForSeconds(2f);
-        //player.GetComponent<Rigidbody>().isKinematic = true;
+        player.GetComponent<Rigidbody>().isKinematic = true;
         player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
         print(player.transform.forward);
         
@@ -364,7 +366,7 @@ public class RotateRoom : MonoBehaviour
             player.transform.Rotate(x / time, y / time, z / time, Space.Self);
         }
 
-        //player.GetComponent<Rigidbody>().isKinematic = false;
+        player.GetComponent<Rigidbody>().isKinematic = false;
         player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
         // yield return new WaitForSeconds(2f);
