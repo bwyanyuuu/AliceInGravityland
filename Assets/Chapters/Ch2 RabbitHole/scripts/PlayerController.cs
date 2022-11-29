@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public bool pocketclockStart=false;
     public float roomScale;
     public bool anime;
+    public float speed;
     private RotateRoom rotateRoom;
     private bool mirrorbroke=false;
     private GameMaster gameMaster;
@@ -48,6 +49,7 @@ public class PlayerController : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
+        //print(collision.collider.name);
         if (collision.collider.name == "Plane")
         {
             // Debug.Log("floor");
@@ -59,19 +61,22 @@ public class PlayerController : MonoBehaviour
             }
         }
         // f
-        if (collision.collider.CompareTag("cookie")){
-            collision.collider.gameObject.SetActive(false);
-            StartCoroutine(roomBigger());
-        }
+        //if (collision.collider.CompareTag("cookie")){
+        //    collision.collider.gameObject.SetActive(false);
+        //    StartCoroutine(roomBigger());
+        //}
     }
     IEnumerator roomBigger()
     {
+        print("big");
+        Vector3 pos = transform.position;
         gameObject.transform.parent = null;
         gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-        float step = roomScale / 60;
-        for(int i = 0; i < 60; i++)
+        float step = roomScale / speed;
+        for(int i = 0; i < speed; i++)
         {
             room.transform.localScale += new Vector3(step, step, step);
+            transform.position = pos * (1 + i * step);
             yield return new WaitForSeconds(0.01f);
         }
         gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;

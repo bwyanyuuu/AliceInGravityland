@@ -26,29 +26,14 @@ public class ClockShine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
-        clock.GetComponent<MeshRenderer>().materials[0] = clockmetalGlowMaterial;
-        clock.GetComponent<MeshRenderer>().materials[1] = clockwhiteGlowMaterial;
-        ArrowHour.GetComponent<MeshRenderer>().material = clockblackGlowMaterial;
-        ArrowMin.GetComponent<MeshRenderer>().material = clockblackGlowMaterial;
-        ArrowSec.GetComponent<MeshRenderer>().material = clockblackGlowMaterial;
-        clockturn.GetComponent<MeshRenderer>().material = knobGlowMaterial;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (gameMaster.intoRoomB)
-        //{
-        //    clock.GetComponent<MeshRenderer>().materials[0] = clockmetalGlowMaterial;
-        //    clock.GetComponent<MeshRenderer>().materials[1] = clockwhiteGlowMaterial;
-        //    ArrowHour.GetComponent<MeshRenderer>().material = clockblackGlowMaterial;
-        //    ArrowMin.GetComponent<MeshRenderer>().material = clockblackGlowMaterial;
-        //    ArrowSec.GetComponent<MeshRenderer>().material = clockblackGlowMaterial;
-        //    clockturn.GetComponent<MeshRenderer>().material = knobGlowMaterial;
-
-        //}
         
+     
     }
 
     public void FirstTake()
