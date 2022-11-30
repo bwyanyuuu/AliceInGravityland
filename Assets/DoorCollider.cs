@@ -26,14 +26,19 @@ public class DoorCollider : MonoBehaviour
             wall.GetComponent<Collider>().enabled = false;
             if (!ishahaed)
             {
-                sphere.SetBool("fadeout", true);
-                //Invoke("haha", 0.01f);
-                ishahaed = true;
+                StartCoroutine(ha());
             }
             
             
             //gameMaster.nxt = true;
         }
+    }
+    IEnumerator ha(){
+        sphere.SetBool("fadeout", true);
+        //Invoke("haha", 0.01f);
+        yield return new WaitForSeconds(0.01f);
+        sphere.SetBool("fadeout", false);
+        ishahaed = true;
     }
     private void haha()
     {

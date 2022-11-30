@@ -31,6 +31,7 @@ public class DoorAnimation : MonoBehaviour
         {
             // player.transform.SetParent(GameObject.Find("House").transform, true);
             wall.GetComponent<BoxCollider>().enabled = true;
+            GameObject.Find("House").GetComponent<RotateRoom>().enabled = true;
             gameMaster.nxt = true;
         }
         // else

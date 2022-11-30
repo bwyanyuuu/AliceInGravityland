@@ -63,6 +63,7 @@ public class GameMaster : MonoBehaviour
         clock.SetActive(false);
         mirrorCollider.SetActive(false);
         op.SetActive(false);
+        rotateRoom.enabled = false;
     }
 
     // Update is called once per frame
@@ -82,8 +83,7 @@ public class GameMaster : MonoBehaviour
                 isSet = false;
                 nxt = false;
                 section = Section.start;
-            }
-            
+            }            
         }
         if (section == Section.start)
         {
