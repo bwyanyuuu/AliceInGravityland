@@ -8,11 +8,6 @@ public class GameMaster : MonoBehaviour
     {
         op,
         start,
-        poker0,
-        poker1,
-        poker2,
-        poker3,
-        poker4,
         mirrorBroke,
         roomB,
         // may be somthing else
@@ -27,7 +22,7 @@ public class GameMaster : MonoBehaviour
     public GameObject player;
     public GameObject handGesture;
     public GameObject poker;
-    public GameObject[] pokers;
+    public GameObject pokerStack;
     public GameObject[] roomA;
     public GameObject[] roomB;
     public GameObject[] roomAAfter1;
@@ -52,7 +47,7 @@ public class GameMaster : MonoBehaviour
     void Start()
     {
         if(!isDebug) section = Section.op;
-        activeSet(pokers, false);
+        pokerStack.SetActive(false);
         activeSet(roomA, false);
         activeSet(roomB, false);
         activeSet(roomAAfter1, false);
@@ -74,7 +69,7 @@ public class GameMaster : MonoBehaviour
             if(!isSet){
                 op.SetActive(true);
                 activeSet(roomA, true);
-                activeSet(pokers, true);
+                pokerStack.SetActive(true);
                 mirrorNormal.SetActive(true);
                 isSet = true;
             }
@@ -87,77 +82,18 @@ public class GameMaster : MonoBehaviour
         }
         if (section == Section.start)
         {
-            activeSet(roomA, true);
-            activeSet(pokers, true);
-            mirrorNormal.SetActive(true);
-
-            tutorial.SetActive(true);
-            
-            section = Section.poker4;
-        }
-        // if (section == Section.poker0)
-        // {
-        //     if (nxt)
-        //     {                
-        //         nxt = false;
-        //         section = Section.poker1;
-        //     }
-        // }
-        // if (section == Section.poker1)
-        // {
-        //     if (!isSet)
-        //     {
-        //         pokers[1].SetActive(true);
-        //         isSet = true;
-        //     }
-        //     if (nxt)
-        //     {
-        //         isSet = false;
-        //         nxt = false;
-        //         section = Section.poker2;
-        //     }
-        // }
-        // if (section == Section.poker2)
-        // {
-        //     if (!isSet)
-        //     {
-        //         pokers[2].SetActive(true);
-        //         isSet = true;
-        //     }
-        //     if (nxt)
-        //     {
-        //         isSet = false;
-        //         nxt = false;
-        //         section = Section.poker3;
-        //     }
-        // }
-        // if (section == Section.poker3)
-        // {
-        //     if (!isSet)
-        //     {
-        //         pokers[3].SetActive(true);
-        //         isSet = true;
-        //     }
-        //     if (nxt)
-        //     {
-        //         isSet = false;
-        //         nxt = false;
-        //         section = Section.poker4;
-        //     }
-        // }
-        if(section == Section.poker4)
-        {
-            // if (!isSet)
-            // {
-            //     // pokers[4].SetActive(true);
-            //     isSet = true;
-            // }
+            if(isDebug){
+                activeSet(roomA, true);
+                pokerStack.SetActive(true);
+                mirrorNormal.SetActive(true);
+            }   
+            if(!isSet) tutorial.SetActive(true);
             if (nxt)
             {
                 isSet = false;
                 nxt = false;
                 section = Section.mirrorBroke;
-            }
+            } 
         }
         if(section == Section.mirrorBroke)
         {

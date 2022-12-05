@@ -202,30 +202,25 @@ public class RotateRoom : MonoBehaviour
             {
                 case 0: // up
                     this.transform.RotateAround(center.position, Vector3.forward, 180);
-                    //rot = player.transform.localEulerAngles;
-                    //rot.x += 90f;
                     StartCoroutine(rotatePlayer(90f, 0f, 0f));
                     RotateTime++;
                     break;
-                case 1: // front
-                    this.transform.RotateAround(center.position, Vector3.right, 90);    //以X軸為中心逆時針轉90
-                    //rot = player.transform.localEulerAngles;
+                // case 1: // front
+                //     this.transform.RotateAround(center.position, Vector3.right, 90);
+                //     RotateTime++;
+                //     if (ChandelierFloor) ChandelierFloor = false;
+                //     break;
+                // case 2: // back
+                //     this.transform.RotateAround(center.position, Vector3.right, -90);
+                //     RotateTime++;
+                //     if (ChandelierFloor) ChandelierFloor = false;
+                //     break;
+                case 1: // left
+                    this.transform.RotateAround(center.position, Vector3.forward, 90);
                     RotateTime++;
                     if (ChandelierFloor) ChandelierFloor = false;
                     break;
-                case 2: // back
-                    this.transform.RotateAround(center.position, Vector3.right, -90);   //以X軸為中心逆時針轉-90
-                    //rot = player.transform.localEulerAngles;
-                    RotateTime++;
-                    if (ChandelierFloor) ChandelierFloor = false;
-                    break;
-                case 3: // left
-                    this.transform.RotateAround(center.position, Vector3.forward, 90);  //以Z軸為中心逆時針轉90
-                    //rot = player.transform.localEulerAngles;
-                    RotateTime++;
-                    if (ChandelierFloor) ChandelierFloor = false;
-                    break;
-                case 4: // right
+                case 2: // right
                     this.transform.RotateAround(center.position, Vector3.forward, -90); //以Z軸為中心逆時針轉270(-90)
                     //rot = player.transform.localEulerAngles;
                     RotateTime++;
@@ -247,25 +242,25 @@ public class RotateRoom : MonoBehaviour
                     StartCoroutine(rotatePlayer(90f, 0f, 0f));
                     RotateTime++;
                     break;
-                case 1: // front
-                    this.transform.RotateAround(center.position, Vector3.right, -90);    //以X軸為中心逆時針轉-90
-                    //rot = player.transform.localEulerAngles;
-                    RotateTime++;
-                    if (ChandelierFloor) ChandelierFloor = false;
-                    break;
-                case 2: // back
-                    this.transform.RotateAround(center.position, Vector3.right, 90);     //以X軸為中心逆時針轉90
-                    //rot = player.transform.localEulerAngles;
-                    RotateTime++;
-                    if (ChandelierFloor) ChandelierFloor = false;
-                    break;
-                case 3: // left
+                // case 1: // front
+                //     this.transform.RotateAround(center.position, Vector3.right, -90);    //以X軸為中心逆時針轉-90
+                //     //rot = player.transform.localEulerAngles;
+                //     RotateTime++;
+                //     if (ChandelierFloor) ChandelierFloor = false;
+                //     break;
+                // case 2: // back
+                //     this.transform.RotateAround(center.position, Vector3.right, 90);     //以X軸為中心逆時針轉90
+                //     //rot = player.transform.localEulerAngles;
+                //     RotateTime++;
+                //     if (ChandelierFloor) ChandelierFloor = false;
+                //     break;
+                case 1: // left
                     this.transform.RotateAround(center.position, Vector3.forward, -90);  //以Z軸為中心逆時針轉-90
                     //rot = player.transform.localEulerAngles;
                     RotateTime++;
                     if (ChandelierFloor) ChandelierFloor = false;
                     break;
-                case 4: // right
+                case 2: // right
                     this.transform.RotateAround(center.position, Vector3.forward, 90);   //以Z軸為中心逆時針轉90
                     //rot = player.transform.localEulerAngles;
                     RotateTime++;
@@ -288,25 +283,25 @@ public class RotateRoom : MonoBehaviour
 
                     RotateTime++;
                     break;
-                case 1: // front
-                    this.transform.RotateAround(center.position, Vector3.forward, -90);  //以Z軸為中心逆時針轉-90
-                    //rot = player.transform.localEulerAngles;
-                    RotateTime++;
-                    if (ChandelierFloor) ChandelierFloor = false;
-                    break;
-                case 2: // back
-                    this.transform.RotateAround(center.position, Vector3.forward, 90); //以Z軸為中心逆時針轉90
-                    //rot = player.transform.localEulerAngles;
-                    RotateTime++;
-                    if (ChandelierFloor) ChandelierFloor = false;
-                    break;
-                case 3: // left
+                // case 1: // front
+                //     this.transform.RotateAround(center.position, Vector3.forward, -90);  //以Z軸為中心逆時針轉-90
+                //     //rot = player.transform.localEulerAngles;
+                //     RotateTime++;
+                //     if (ChandelierFloor) ChandelierFloor = false;
+                //     break;
+                // case 2: // back
+                //     this.transform.RotateAround(center.position, Vector3.forward, 90); //以Z軸為中心逆時針轉90
+                //     //rot = player.transform.localEulerAngles;
+                //     RotateTime++;
+                //     if (ChandelierFloor) ChandelierFloor = false;
+                //     break;
+                case 1: // left
                     this.transform.RotateAround(center.position, Vector3.right, 90);    //以X軸為中心逆時針轉90
                     //rot = player.transform.localEulerAngles;
                     RotateTime++;
                     if (ChandelierFloor) ChandelierFloor = false;
                     break;
-                case 4: // right
+                case 2: // right
                     this.transform.RotateAround(center.position, Vector3.right, -90);   //以X軸為中心逆時針轉-90
                     //rot = player.transform.localEulerAngles;
                     RotateTime++;
@@ -328,25 +323,25 @@ public class RotateRoom : MonoBehaviour
                     //rot.x += 90f;
                     StartCoroutine(rotatePlayer(90f, 0f, 0f));
                     break;
-                case 1: // front
-                    this.transform.RotateAround(center.position, Vector3.forward, 90);  //以Z軸為中心逆時針轉90
-                    ////rot = player.transform.localEulerAngles;
-                    RotateTime++;
-                    if (ChandelierFloor) ChandelierFloor = false;
-                    break;
-                case 2: // back
-                    this.transform.RotateAround(center.position, Vector3.forward, -90); //以Z軸為中心逆時針轉-90
-                    ////rot = player.transform.localEulerAngles;
-                    RotateTime++;
-                    if (ChandelierFloor) ChandelierFloor = false;
-                    break;
-                case 3: // left
+                // case 1: // front
+                //     this.transform.RotateAround(center.position, Vector3.forward, 90);  //以Z軸為中心逆時針轉90
+                //     ////rot = player.transform.localEulerAngles;
+                //     RotateTime++;
+                //     if (ChandelierFloor) ChandelierFloor = false;
+                //     break;
+                // case 2: // back
+                //     this.transform.RotateAround(center.position, Vector3.forward, -90); //以Z軸為中心逆時針轉-90
+                //     ////rot = player.transform.localEulerAngles;
+                //     RotateTime++;
+                //     if (ChandelierFloor) ChandelierFloor = false;
+                //     break;
+                case 1: // left
                     this.transform.RotateAround(center.position, Vector3.right, -90);    //以X軸為中心逆時針轉-90
                     ////rot = player.transform.localEulerAngles;
                     RotateTime++;
                     if (ChandelierFloor) ChandelierFloor = false;
                     break;
-                case 4: // right
+                case 2: // right
                     this.transform.RotateAround(center.position, Vector3.right, 90);   //以X軸為中心逆時針轉90
                     //rot = player.transform.localEulerAngles;
                     RotateTime++;

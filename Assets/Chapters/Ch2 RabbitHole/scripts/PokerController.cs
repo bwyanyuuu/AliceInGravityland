@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class PokerController : MonoBehaviour
 {
-    
+    public GameObject player;
     public GameObject tutorial;
-    public GameObject cards;    
+    public GameObject cards;
+    public GameObject travel;
+    public GameObject[] anchors;
     public Vector3[] pos;
     public Quaternion[] rot;
-    public GameObject[] cardsOutside;
-    public Material[] cardsMaterial;
     
-    private GameMaster gameMaster;   
+    // private GameMaster gameMaster;   
     private bool isTutorial = false;
     private RotateRoom rotateRoom;
-    private List<int> cardOwned = new List<int>();
+    // private List<int> cardOwned = new List<int>();
     // Start is called before the first frame update
     void Start()
     {
-        gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
+        // gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
         rotateRoom = gameObject.GetComponent<RotateRoom>();
         //for(int i = 0; i < 5; i++)
         //{
@@ -32,36 +32,28 @@ public class PokerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //print("sss");
-    }
-    
-    public void showCard(int idx)
-    {
-        cardsOutside[idx].SetActive(true);
+        if(!isTutorial && cards.activeSelf){
+            tutorial.SetActive(true);
+            isTutorial = true;
+        }
     }
 
     public void pickUp(GameObject card)
     {
         // put the card onto the hand
-        int idx = -1;
-        for(int i = 0; i < cardsOutside.Length; i++)
+        for(int i = 0; i < 3; i++)
         {
-            if(card == cardsOutside[i])
-            {
-                idx = i;
-                break;
-            }
-        }
-        if(idx != -1 && !cardOwned.Contains(idx))
-        {
-            GameObject c = cards.transform.GetChild(cardOwned.Count).gameObject;
-            c.SetActive(true);
-            c.transform.GetChild(0).GetComponent<Renderer>().material = cardsMaterial[idx];
-            cardOwned.Add(idx);
-            card.GetComponent<UnityEngine.Playables.PlayableDirector>().Play();
-            StartCoroutine(disappear(card));
-        }        
+            cards.transform.GetChild(i).gameObject.SetActive(true);        
+            StartCoroutine(disappear(card.transform.GetChild(i).gameObject));
+        } 
+        card.GetComponent<UnityEngine.Playables.PlayableDirector>().Play();     
     }
+
+    public void leaveHand(GameObject card){
+        // put the card out of the hand
+        card.transform.parent = gameObject.transform;
+    }
+
     public void moveOut(GameObject card)
     {
         // duplicate a card
@@ -70,28 +62,76 @@ public class PokerController : MonoBehaviour
         card2.name = posIdx.ToString();
         card2.transform.localPosition = pos[posIdx];
         card2.transform.localRotation = rot[posIdx];
-        // put the card out of the hand
-        card.transform.parent = gameObject.transform;
-        card.GetComponent<UnityEngine.Playables.PlayableDirector>().Play();
-        StartCoroutine(rotate(cardOwned[posIdx]));
-        StartCoroutine(disappear(card));
-        if (!isTutorial)
-        {
-            tutorial.SetActive(false);
-            isTutorial = true;
+
+        // find destination wall anchor
+        Vector3 dst = new Vector3(0f, 0f, 0f);
+        float target;
+        int phase = 0;
+        if(Mathf.Abs(Mathf.Abs(player.transform.forward.x) - 1) < 0.2) phase = 2;
+        else if(Mathf.Abs(Mathf.Abs(player.transform.forward.z) - 1) < 0.2) phase = 3;
+        switch(posIdx){
+            case 0: // up
+                dst = new Vector3(0f, -200f, 0f);
+                for(int i = 0; i < 6; i++){
+                    if(anchors[i].transform.position.y > dst.y){
+                        dst = anchors[i].transform.position;
+                    }
+                }
+                break;
+            case 2: // left x
+                dst = new Vector3(0f, 0f, 200f);
+                for(int i = 0; i < 6; i++){
+                    if(anchors[i].transform.position.z < dst.z){
+                        dst = anchors[i].transform.position;
+                    }
+                }
+                break;
+            case 4: // right x
+                dst = new Vector3(0f, 0f, -200f);
+                for(int i = 0; i < 6; i++){
+                    if(anchors[i].transform.position.z > dst.z){
+                        dst = anchors[i].transform.position;
+                    }
+                }
+                break;
+            case 3: // left z
+                dst = new Vector3(0f, -200f, 0f);
+                for(int i = 0; i < 6; i++){
+                    if(anchors[i].transform.position.x < dst.x){
+                        dst = anchors[i].transform.position;
+                    }
+                }
+                break;
+            case 6: // right z
+                dst = new Vector3(0f, -200f, 0f);
+                for(int i = 0; i < 6; i++){
+                    if(anchors[i].transform.position.x > dst.x){
+                        dst = anchors[i].transform.position;
+                    }
+                }
+                break;
+            default:
+                break;
         }
-        // gameMaster.nxt = true;
+        travel.GetComponent<PokerTravel>().move(card.transform.position, dst);
+        StartCoroutine(dissolve(card, posIdx));
     }
+    IEnumerator dissolve(GameObject card, int idx){
+        yield return new WaitForSeconds(2f);
+        card.GetComponent<UnityEngine.Playables.PlayableDirector>().Play();
+        StartCoroutine(rotate(idx));
+        StartCoroutine(disappear(card));
+    }
+
     IEnumerator rotate(int idx)
     {
         yield return new WaitForSeconds(1.5f);
         rotateRoom.rotate(idx);
-
     }
+
     IEnumerator disappear(GameObject card)
     {
         yield return new WaitForSeconds(2f);
         card.SetActive(false);
-        // GameObject.Destroy(card);
     }
 }
