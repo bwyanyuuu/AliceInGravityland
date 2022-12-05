@@ -61,14 +61,14 @@ public class PokerController : MonoBehaviour
         card2.transform.localRotation = rot[posIdx];
 
         card.GetComponent<UnityEngine.Playables.PlayableDirector>().Play();
-        StartCoroutine(rotate(posIdx));
+        StartCoroutine(rotate(posIdx, card.transform.position));
         StartCoroutine(disappear(card));
     }
 
-    IEnumerator rotate(int idx)
+    IEnumerator rotate(int idx, Vector3 src)
     {
         yield return new WaitForSeconds(1.5f);
-        rotateRoom.rotate(idx);
+        rotateRoom.rotate(idx, src);
     }
 
     IEnumerator disappear(GameObject card)

@@ -11,15 +11,14 @@ public class RotateRoom : MonoBehaviour
     public GameObject mirrorCollider;
     public GameObject Chandelier;
     public GameObject pokerTravel;
-    public GameObject[] anchors; // 0: +x, 1: -x, 2: +z, 3: -z, 4 +y
-    //转动速度
+    public Transform[] anchors; // 0: +x, 1: -x, 2: +z, 3: -z, 4 +y
     public float rotationSpeed=10;
     public int RotateTime=0;
     public bool ChandelierFloor=false;
-    // public bool ChandelierMirror=false;
+
     private bool isRotating = false;
     private Vector3 rot;
-    public float threshold;
+    private bool wait = true;
     
     void Start()
     {
@@ -30,26 +29,8 @@ public class RotateRoom : MonoBehaviour
         {
             player.transform.localEulerAngles = rot;
         }
-        else print(player.transform.localEulerAngles);
-        // else if(!isRotating) // lock x and z
-        // {
-        //     player.transform.localEulerAngles = new Vector3(rot.x, player.transform.localEulerAngles.y, rot.z);
-        // }
-        //跟随center转圈圈
-        // 面向+z軸
-        //if (black.GetBool("start"))
-        //{
-        //    black.SetBool("start", false);
-        //}
-        //print(player.transform.forward);
+        // else print(player.transform.localEulerAngles);
 
-        //站起來測試box
-        // if (testbox.transform.right.y < 1.2f && testbox.transform.right.y > 0.9f){
-        //     startroatate = true;
-        // }
-        // if (startroatate){
-        //     testbox.transform.Rotate(new Vector3(0,0,-0.05f));
-        // }
         if (RotateTime >= 5)
         {
             // Rigidbody ChandelierRigidBody = Chandelier.AddComponent<Rigidbody>();
@@ -58,10 +39,6 @@ public class RotateRoom : MonoBehaviour
             Chandelier.GetComponent<Collider>().enabled = true;
             mirrorCollider.SetActive(true);
         }
-        // if (RotateTime >= 5)
-        // {
-        //     Debug.Log(ChandelierFloor);
-        // }
 
         if (player.transform.eulerAngles.y%360 > 315.0f || player.transform.eulerAngles.y%360 < 45.0f){ 
             if (Input.GetKeyDown(KeyCode.W)){   
@@ -174,11 +151,7 @@ public class RotateRoom : MonoBehaviour
         
 		
 	}
-    // void OnCollisionEnter(Collision collision)
-    // {
-
-    // }
-    public void rotate(int i)//, Vector3 cardPos)
+    public void rotate(int i, Vector3 src)
     {
         if (isRotating) return;
         else isRotating = true;
@@ -189,15 +162,18 @@ public class RotateRoom : MonoBehaviour
             switch (i)
             {
                 case 0: // up
-                    StartCoroutine(rotateAll(0, Vector3.forward));
+                    activateAnchor(new Vector3(0f, 1f, 0f), src);
+                    StartCoroutine(rotateWait(0, Vector3.forward));
                     RotateTime++;
                     break;
                 case 1: // left
-                    StartCoroutine(rotateAll(1, Vector3.forward));
+                    activateAnchor(new Vector3(-1f, 0f, 0f), src);
+                    StartCoroutine(rotateWait(1, Vector3.forward));
                     if (ChandelierFloor) ChandelierFloor = false;
                     break;
                 case 2: // right
-                    StartCoroutine(rotateAll(2, Vector3.forward));
+                    activateAnchor(new Vector3(1f, 0f, 0f), src);
+                    StartCoroutine(rotateWait(2, Vector3.forward));
                     if (ChandelierFloor) ChandelierFloor = false;
                     break;
                 default:
@@ -210,14 +186,17 @@ public class RotateRoom : MonoBehaviour
             switch (i)
             {
                 case 0: // up
-                    StartCoroutine(rotateAll(0, Vector3.forward));
+                    activateAnchor(new Vector3(0f, 1f, 0f), src);
+                    StartCoroutine(rotateWait(0, Vector3.forward));
                     break;
                 case 1: // left
-                    StartCoroutine(rotateAll(2, Vector3.forward));
+                    activateAnchor(new Vector3(1f, 0f, 0f), src);
+                    StartCoroutine(rotateWait(2, Vector3.forward));
                     if (ChandelierFloor) ChandelierFloor = false;
                     break;
                 case 2: // right
-                    StartCoroutine(rotateAll(1, Vector3.forward));
+                    activateAnchor(new Vector3(-1f, 0f, 0f), src);
+                    StartCoroutine(rotateWait(1, Vector3.forward));
                     if (ChandelierFloor) ChandelierFloor = false;
                     break;
                 default:
@@ -230,14 +209,17 @@ public class RotateRoom : MonoBehaviour
             switch (i)
             {
                 case 0: // up
-                    StartCoroutine(rotateAll(0, Vector3.forward));
+                    activateAnchor(new Vector3(0f, 1f, 0f), src);
+                    StartCoroutine(rotateWait(0, Vector3.forward));
                     break;
                 case 1: // left
-                    StartCoroutine(rotateAll(1, Vector3.right));
+                    activateAnchor(new Vector3(0f, 0f, 1f), src);
+                    StartCoroutine(rotateWait(1, Vector3.right));
                     if (ChandelierFloor) ChandelierFloor = false;
                     break;
                 case 2: // right
-                    StartCoroutine(rotateAll(2, Vector3.right));
+                    activateAnchor(new Vector3(0f, 0f, -1f), src);
+                    StartCoroutine(rotateWait(2, Vector3.right));
                     if (ChandelierFloor) ChandelierFloor = false;
                     break;
                 default:
@@ -250,34 +232,50 @@ public class RotateRoom : MonoBehaviour
             switch (i)
             {
                 case 0: // up
-                    StartCoroutine(rotateAll(0, Vector3.forward));
+                    activateAnchor(new Vector3(0f, 1f, 0f), src);
+                    StartCoroutine(rotateWait(0, Vector3.forward));
                     break;
                 case 1: // left
-                    StartCoroutine(rotateAll(2, Vector3.right));
+                    activateAnchor(new Vector3(0f, 0f, -1f), src);
+                    StartCoroutine(rotateWait(2, Vector3.right));
                     if (ChandelierFloor) ChandelierFloor = false;
                     break;
                 case 2: // right
-                    StartCoroutine(rotateAll(1, Vector3.right));
+                    activateAnchor(new Vector3(0f, 0f, 1f), src);
+                    StartCoroutine(rotateWait(1, Vector3.right));
                     if (ChandelierFloor) ChandelierFloor = false;
                     break;
                 default:
                     break;
             }
         }
-        
-        
     }
-    private void activateAnchor()
+    private void activateAnchor(Vector3 orient, Vector3 src)
     {
-        Vector3 dst = new Vector3(0f, 0f, 0f);
-        for(int i = 0; i < 5; i++)
+        if (src.x == 0 && src.y == 0 && src.z == 0)
         {
-            break;
+            wait = false;
+            return;
         }
+        Vector3 dst = new Vector3(0f, 0f, 0f);
+        float target = -200f;
+        for(int i = 0; i < 6; i++)
+        {
+            var c = Vector3.Dot(anchors[i].position, orient);
+            if(c > target)
+            {
+                target = c;
+                dst = anchors[i].position;
+            }
+        }
+        pokerTravel.SetActive(true);
+        pokerTravel.GetComponent<PokerTravel>().move(dst, dst);
     }
-    IEnumerator rotateAll(int mode, Vector3 dir)
+    IEnumerator rotateWait(int mode, Vector3 dir)
     {
-        yield return new WaitForSeconds(2f);
+        if (wait) yield return new WaitForSeconds(2f);
+        else wait = true;
+        pokerTravel.SetActive(false);
         switch (mode)
         {
             case 0:

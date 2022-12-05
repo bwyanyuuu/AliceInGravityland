@@ -120,21 +120,6 @@ public class GameMaster : MonoBehaviour
                 section = Section.backToA;
             }
         }
-        // if(section == Section.roomB)
-        // {
-        //     if (!isSet)
-        //     {
-        //         clock.SetActive(true);
-        //         mirrorCollider.SetActive(true);
-        //         isSet = true;
-        //     }
-        //     if (nxt)
-        //     {
-        //         isSet = false;
-        //         nxt = false;
-        //         section = Section.backToA;
-        //     }
-        // }
         if(section == Section.backToA)
         {
             if (!isSet)
@@ -146,7 +131,7 @@ public class GameMaster : MonoBehaviour
                 mirrorCollider.SetActive(false);
                 Invoke("backMirror", 3f);
                 clock.SetActive(false);
-                rotateRoom.rotate(0); // turn gavaity back to normal
+                rotateRoom.rotate(0, new Vector3(0f, 0f, 0f)); // turn gavaity back to normal
                 isSet = true;
             }
             if (nxt)
