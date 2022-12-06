@@ -20,6 +20,7 @@ public class BreakPocketClockController : MonoBehaviour
     {
         // put the card onto the hand        
         StartCoroutine(disappear(breakpocketclock));
+        breakpocketclock.GetComponent<UnityEngine.Playables.PlayableDirector>().Play();   
     }
 
     IEnumerator disappear(GameObject breakpocketclock)
