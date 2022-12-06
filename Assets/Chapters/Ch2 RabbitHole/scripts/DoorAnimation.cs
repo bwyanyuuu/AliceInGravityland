@@ -8,10 +8,7 @@ public class DoorAnimation : MonoBehaviour
 {
     private GameMaster gameMaster;
     public GameObject player;
-    public GameObject CenterEye;
-    // public GameObject rightEye;
-    // public GameObject leftEye;
-    public GameObject timeline;
+    public GameObject bigdoor;
     public GameObject wall;
     private Vector3 OriginRotate;
     // Start is called before the first frame update
@@ -22,22 +19,28 @@ public class DoorAnimation : MonoBehaviour
         gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
         player.transform.position = new Vector3(4.0f, 0.25f, 2.518f);
         player.transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);    
-        // OriginRotate = CenterEye.transform.eulerAngles;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (timeline.GetComponent<PlayableDirector>().state == PlayState.Paused)
+        // if (timeline.GetComponent<PlayableDirector>().state == PlayState.Paused)
+        // {
+        //     // player.transform.SetParent(GameObject.Find("House").transform, true);
+            
+        // }
+        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
         {
-            // player.transform.SetParent(GameObject.Find("House").transform, true);
+            bigdoor.transform.rotation = Quaternion.Euler(-90.0f,0.0f,0.0f);
             wall.GetComponent<BoxCollider>().enabled = true;
             GameObject.Find("House").GetComponent<RotateRoom>().enabled = true;
             gameMaster.nxt = true;
+            
         }
-        // else
-        // {
-        //     CenterEye.transform.eulerAngles = OriginRotate;
-        // }
     }
 }
