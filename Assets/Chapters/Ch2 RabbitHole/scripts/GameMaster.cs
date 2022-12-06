@@ -29,6 +29,7 @@ public class GameMaster : MonoBehaviour
     public GameObject[] roomAAfter2;
     public GameObject tutorial;
     public GameObject mirrorNormal;
+    public GameObject mirrorNormalBreak;
     public GameObject mirrorBreak;
     public GameObject clock;
     public GameObject mirrorCollider;
@@ -103,7 +104,7 @@ public class GameMaster : MonoBehaviour
                 mirrorCollider.SetActive(false);
                 handGesture.SetActive(false);
                 Destroy(poker);
-                mirrorNormal.SetActive(false);
+                mirrorNormalBreak.SetActive(false);
                 mirrorBreak.SetActive(true);
                 activeSet(roomA, false);
                 activeSet(roomB, true);

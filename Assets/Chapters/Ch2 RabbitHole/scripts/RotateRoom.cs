@@ -11,6 +11,13 @@ public class RotateRoom : MonoBehaviour
     public GameObject mirrorCollider;
     public GameObject Chandelier;
     public GameObject pokerTravel;
+    public GameObject mirror;
+    public GameObject mirrorglass;
+    public GameObject mirrorbreak1;
+    public GameObject mirrorbreak2;
+    public GameObject mirrorbreak3;
+    public GameObject mirrorbreak4;
+    public GameObject mirrorbreak5;
     public Transform[] anchors; // 0: +x, 1: -x, 2: +z, 3: -z, 4 +y
     public float rotationSpeed=10;
     public int RotateTime=0;
@@ -30,11 +37,32 @@ public class RotateRoom : MonoBehaviour
             player.transform.localEulerAngles = rot;
         }
         // else print(player.transform.localEulerAngles);
-
-        if (RotateTime >= 5)
+        if (RotateTime == 1)
+        {
+            mirrorbreak1.SetActive(true);
+            mirrorglass.SetActive(false);
+        }
+        else if (RotateTime == 2)
+        {
+            mirrorbreak2.SetActive(true);
+            mirrorbreak1.SetActive(false);
+        }
+        else if (RotateTime == 3)
+        {
+            mirrorbreak3.SetActive(true);
+            mirrorbreak2.SetActive(false);  
+        }
+        else if (RotateTime == 4)
+        {
+            mirrorbreak4.SetActive(true);
+            mirrorbreak3.SetActive(false);    
+        }
+        else if (RotateTime >= 5)
         {
             // Rigidbody ChandelierRigidBody = Chandelier.AddComponent<Rigidbody>();
             // ChandelierRigidBody.useGravity = true;
+            mirrorbreak5.SetActive(true);
+            mirrorbreak4.SetActive(false);
             Chandelier.GetComponent<Rigidbody>().useGravity = true;
             Chandelier.GetComponent<Collider>().enabled = true;
             mirrorCollider.SetActive(true);
@@ -291,7 +319,10 @@ public class RotateRoom : MonoBehaviour
             default:
                 break;
         }
-        RotateTime++;
+        if (mirror.transform.up.y == 1.0f)
+        {
+            RotateTime++;
+        }
         StartCoroutine(standUp());
     }
     IEnumerator rotatePlayer(float x, float y, float z)
