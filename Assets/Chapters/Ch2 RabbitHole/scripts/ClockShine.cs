@@ -19,7 +19,7 @@ public class ClockShine : MonoBehaviour
     public Material clockblackGlowMaterial;
     public Material knobGlowMaterial;
 
-    private bool Bscene = false;
+    // private bool Bscene = false;
     // private bool FirstTake = false;
     // private bool TurnShine = false;
     //private GameMaster gameMaster;

@@ -17,7 +17,7 @@ public class DoorAnimation : MonoBehaviour
         // player.transform.parent = null;
         // player.transform.SetParent(this.transform, true);
         gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
-        player.transform.position = new Vector3(4.0f, 0.25f, 2.518f);
+        player.transform.position = new Vector3(4.0f, 1.5f, 2.518f);
         player.transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);    
     }
 

@@ -33,7 +33,7 @@ public class GameMaster : MonoBehaviour
     public GameObject mirrorBreak;
     public GameObject clock;
     public GameObject mirrorCollider;
-    public GameObject chandelier;
+    public GameObject mirrorPhysical;
     
 
     [Header("Controllers")]
@@ -88,7 +88,10 @@ public class GameMaster : MonoBehaviour
                 pokerStack.SetActive(true);
                 mirrorNormal.SetActive(true);
             }   
-            if(!isSet) tutorial.SetActive(true);
+            if(!isSet){
+                tutorial.SetActive(true);
+                isSet = true;
+            }
             if (nxt)
             {
                 isSet = false;
@@ -106,6 +109,7 @@ public class GameMaster : MonoBehaviour
                 Destroy(poker);
                 mirrorNormalBreak.SetActive(false);
                 mirrorBreak.SetActive(true);
+                mirrorPhysical.SetActive(false);
                 activeSet(roomA, false);
                 activeSet(roomB, true);
                 activeSet(roomAAfter1, true);

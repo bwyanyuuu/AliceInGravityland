@@ -8,6 +8,7 @@ public class PokerController : MonoBehaviour
     public GameObject cards;
     public Vector3[] pos;
     public Quaternion[] rot;
+    public GameObject handGesture;
     
     // private GameMaster gameMaster;   
     private bool isTutorial = false;
@@ -37,13 +38,13 @@ public class PokerController : MonoBehaviour
 
     public void pickUp(GameObject card)
     {
-        // put the card onto the hand
         for(int i = 0; i < 3; i++)
         {
-            cards.transform.GetChild(i).gameObject.SetActive(true);        
-            StartCoroutine(disappear(card.transform.GetChild(i).gameObject));
+            cards.transform.GetChild(i).gameObject.SetActive(true); 
         } 
-        card.GetComponent<UnityEngine.Playables.PlayableDirector>().Play();     
+        card.GetComponent<UnityEngine.Playables.PlayableDirector>().Play();
+        StartCoroutine(disappear(card));    
+        // handGesture.SetActive(false);
     }
 
     public void leaveHand(GameObject card){
@@ -59,6 +60,7 @@ public class PokerController : MonoBehaviour
         card2.name = posIdx.ToString();
         card2.transform.localPosition = pos[posIdx];
         card2.transform.localRotation = rot[posIdx];
+        card2.transform.localScale = new Vector3(1f, 1f, 1f);
 
         card.GetComponent<UnityEngine.Playables.PlayableDirector>().Play();
         StartCoroutine(rotate(posIdx, card.transform.position));
@@ -67,6 +69,7 @@ public class PokerController : MonoBehaviour
 
     IEnumerator rotate(int idx, Vector3 src)
     {
+        print("poker "+ src);
         yield return new WaitForSeconds(1.5f);
         rotateRoom.rotate(idx, src);
     }

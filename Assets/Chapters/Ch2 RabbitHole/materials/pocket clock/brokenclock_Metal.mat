@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: brokenclock_Metal
-  m_Shader: {fileID: -6465566751694194690, guid: 9bbfeaa933511874b9aaa009ace0df7d, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 4395e19197a5591418d9cfe81ca0e54c, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -82,7 +82,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Vector1_5A9773FD: 30
+    - Vector1_5A9773FD: 31.6
     - Vector1_98DF7943: 0.01
     - Vector1_DABB2478: 1
     - _AlphaClip: 0
@@ -113,7 +113,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_C40FE515: {r: 16, g: 0.0627451, b: 0, a: 0}
+    - Color_C40FE515: {r: 0, g: 0, b: 0, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

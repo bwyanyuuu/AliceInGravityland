@@ -16,8 +16,8 @@ public class RotateRoom : MonoBehaviour
     public GameObject mirrorbreak1;
     public GameObject mirrorbreak2;
     public GameObject mirrorbreak3;
-    public GameObject mirrorbreak4;
-    public GameObject mirrorbreak5;
+    // public GameObject mirrorbreak4;
+    // public GameObject mirrorbreak5;
     public Transform[] anchors; // 0: +x, 1: -x, 2: +z, 3: -z, 4 +y
     public float rotationSpeed=10;
     public int RotateTime=0;
@@ -50,23 +50,20 @@ public class RotateRoom : MonoBehaviour
         else if (RotateTime == 3)
         {
             mirrorbreak3.SetActive(true);
-            mirrorbreak2.SetActive(false);  
-        }
-        else if (RotateTime == 4)
-        {
-            mirrorbreak4.SetActive(true);
-            mirrorbreak3.SetActive(false);    
-        }
-        else if (RotateTime >= 5)
-        {
-            // Rigidbody ChandelierRigidBody = Chandelier.AddComponent<Rigidbody>();
-            // ChandelierRigidBody.useGravity = true;
-            mirrorbreak5.SetActive(true);
-            mirrorbreak4.SetActive(false);
+            mirrorbreak2.SetActive(false);
             Chandelier.GetComponent<Rigidbody>().useGravity = true;
             Chandelier.GetComponent<Collider>().enabled = true;
             mirrorCollider.SetActive(true);
+            RotateTime++;
         }
+        // else if (RotateTime == 5)
+        // {
+        //     // Rigidbody ChandelierRigidBody = Chandelier.AddComponent<Rigidbody>();
+        //     // ChandelierRigidBody.useGravity = true;
+        //     mirrorbreak5.SetActive(true);
+        //     mirrorbreak4.SetActive(false);
+            
+        // }
 
         if (player.transform.eulerAngles.y%360 > 315.0f || player.transform.eulerAngles.y%360 < 45.0f){ 
             if (Input.GetKeyDown(KeyCode.W)){   
@@ -181,6 +178,7 @@ public class RotateRoom : MonoBehaviour
 	}
     public void rotate(int i, Vector3 src)
     {
+        print("rotate "+src);
         if (isRotating) return;
         else isRotating = true;
         float phase = camera.transform.eulerAngles.y;
@@ -296,14 +294,14 @@ public class RotateRoom : MonoBehaviour
                 dst = anchors[i].position;
             }
         }
-        pokerTravel.SetActive(true);
-        pokerTravel.GetComponent<PokerTravel>().move(dst, dst);
+        // pokerTravel.SetActive(true);
+        pokerTravel.GetComponent<PokerTravel>().move(src, dst);
     }
     IEnumerator rotateWait(int mode, Vector3 dir)
     {
-        if (wait) yield return new WaitForSeconds(2f);
-        else wait = true;
-        pokerTravel.SetActive(false);
+        if (wait) yield return new WaitForSeconds(3f);
+        wait = true;
+        // pokerTravel.SetActive(false);
         switch (mode)
         {
             case 0:
@@ -319,10 +317,7 @@ public class RotateRoom : MonoBehaviour
             default:
                 break;
         }
-        if (mirror.transform.up.y == 1.0f)
-        {
-            RotateTime++;
-        }
+        
         StartCoroutine(standUp());
     }
     IEnumerator rotatePlayer(float x, float y, float z)
@@ -349,6 +344,10 @@ public class RotateRoom : MonoBehaviour
        
         player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
         yield return new WaitForSeconds(3f);
+        if (mirror.transform.up.y == 1.0f)
+        {
+            RotateTime++;
+        }
         player.GetComponent<Rigidbody>().isKinematic = true;
         print(camera.transform.forward+" "+camera.transform.right);
         print(player.transform.forward+" "+player.transform.right);

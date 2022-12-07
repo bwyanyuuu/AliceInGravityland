@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class PokerTravel : MonoBehaviour
 {
+    private GameObject p;
+    void Start(){
+        p = gameObject.transform.GetChild(0).gameObject;
+    }
     public void move(Vector3 src, Vector3 dst){
-        transform.position = src;
-        dst = (dst - src) / 60;
+        print("dstsrc " + dst+" "+src);
+
+        p.transform.position = src;
+        p.SetActive(true);
+        StartCoroutine(trans((dst - src) / 100));
     }
     IEnumerator trans(Vector3 step){
-        for(int i = 0; i < 60; i++){
-            transform.position += step;
-            yield return new WaitForSeconds(0.02f);
+        print("step " + step);
+        for(int i = 0; i < 100; i++){
+            p.transform.position += step;
+            yield return new WaitForSeconds(0.03f);
         }
+        p.SetActive(false);
     }
 }
