@@ -114,7 +114,7 @@ public class GameMaster : MonoBehaviour
                 activeSet(roomB, true);
                 activeSet(roomAAfter1, true);
                 clock.SetActive(true);
-                chandelier.SetActive(false);
+                // chandelier.SetActive(false);
                 Invoke("back", 15f);
                 isSet = true;
             }
