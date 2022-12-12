@@ -5,11 +5,12 @@ using UnityEngine;
 public class SceneTransitionToMaze : MonoBehaviour
 {
     [SerializeField] private LevelLoader levelLoader;
-
+    private bool isEnter = false;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (!isEnter && other.CompareTag("Player"))
         {
+            isEnter = true;
             levelLoader.LoadNextLevel();
         }
     }
