@@ -14,6 +14,8 @@ public class EatMushroom : MonoBehaviour
     private bool isGrabbing = false;
     private bool isSmalling = false;
     AudioSource audioData;
+
+    [SerializeField] private GameObject sceneTransitionTrigger;
     void Start()
     {
         audioData = GetComponent<AudioSource>();
@@ -30,10 +32,13 @@ public class EatMushroom : MonoBehaviour
             // Activate gate            
             bubble.SetActive(false);
             magicGate.SetActive(true);
+            sceneTransitionTrigger.SetActive(true);
             player.GetComponent<ZeroGravity>().enabled = false;
             player.GetComponent<Rigidbody>().useGravity = true;
             player.GetComponent<ArmSwingMover>().enabled = true;
             StartCoroutine(envSmaller());
+
+            
 
             
             // Let Alice fall to ground
