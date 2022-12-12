@@ -131,7 +131,7 @@ Material:
     - _DepthCutoff: 0.8
     - _DepthDensity: 0.36
     - _DetailNormalMapScale: 1
-    - _DeviceType: 0
+    - _DeviceType: 1
     - _DistanceDensity: 0.02
     - _DstBlend: 0
     - _EdgeFoamDepth: 0.2
