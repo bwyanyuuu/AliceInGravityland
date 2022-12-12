@@ -6,6 +6,7 @@ public class DoorCollider : MonoBehaviour
 {
     public GameObject wall;
     public Animator sphere;
+    public LevelLoader cutScene;
     private GameMaster gameMaster;
     private bool ishahaed = false;
     // Start is called before the first frame update
@@ -39,6 +40,7 @@ public class DoorCollider : MonoBehaviour
         yield return new WaitForSeconds(0.01f);
         sphere.SetBool("fadeout", false);
         ishahaed = true;
+        cutScene.LoadNextLevel();
     }
     private void haha()
     {

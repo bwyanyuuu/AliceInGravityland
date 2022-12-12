@@ -9,7 +9,7 @@ public class RotateRoom : MonoBehaviour
     public GameObject camera;
     public Animator black;
     public GameObject mirrorCollider;
-    public GameObject Chandelier;
+    //public GameObject Chandelier;
     public GameObject pokerTravel;
     public GameObject mirror;
     public GameObject mirrorglass;
@@ -51,8 +51,8 @@ public class RotateRoom : MonoBehaviour
         {
             mirrorbreak3.SetActive(true);
             mirrorbreak2.SetActive(false);
-            Chandelier.GetComponent<Rigidbody>().useGravity = true;
-            Chandelier.GetComponent<Collider>().enabled = true;
+            //Chandelier.GetComponent<Rigidbody>().useGravity = true;
+            //Chandelier.GetComponent<Collider>().enabled = true;
             mirrorCollider.SetActive(true);
             RotateTime++;
         }
