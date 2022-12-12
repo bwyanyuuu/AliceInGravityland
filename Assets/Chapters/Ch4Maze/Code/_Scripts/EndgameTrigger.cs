@@ -9,14 +9,14 @@ public class EndgameTrigger : MonoBehaviour
     [SerializeField] private GameObject _player;
 
     private Rigidbody _rigidbody;
-    private ArmSwingMover _armSwingMover;
+    private ArmSwingMoverMaze _armSwingMoverMaze;
 
     [SerializeField] private float _fallingDownSpeed;
     [SerializeField] private float _fallingDownSeconds;
 
     private void Start()
     {
-        _armSwingMover = _player.GetComponent<ArmSwingMover>();
+        _armSwingMoverMaze = _player.GetComponent<ArmSwingMoverMaze>();
         _rigidbody = _player.GetComponent<Rigidbody>();
     }
     
@@ -31,7 +31,7 @@ public class EndgameTrigger : MonoBehaviour
     IEnumerator EndgameSequence()
     {
         // Disable movement
-        _armSwingMover.enabled = false;
+        _armSwingMoverMaze.enabled = false;
         
         // Drop down by constant velocity
         _rigidbody.useGravity = false;
