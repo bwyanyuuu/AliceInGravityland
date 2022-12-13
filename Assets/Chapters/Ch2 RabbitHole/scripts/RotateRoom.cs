@@ -386,22 +386,13 @@ public class RotateRoom : MonoBehaviour
             print("d");
         }
 
-        black.SetBool("start", true);
-        yield return new WaitForSeconds(0.01f);
-        black.SetBool("start", false);
+        black.SetTrigger("wink");
         float time = 60f;
         for (float i = 0; i < time; i++)
         {
             yield return new WaitForSeconds(0.01f);
             player.transform.Rotate(x / time, y / time, z / time, Space.Self);
         }
-        // for (float i = 1; i <= time; i++)
-        // {
-        //     yield return new WaitForSeconds(0.01f);
-        //     player.transform.localEulerAngles = new Vector3 (rot.x + x / time * i, rot.y, rot.z + z / time * i);
-        //     //print("after " + player.transform.localEulerAngles);
-
-        // }
         print("new " + new Vector3(rot.x + x, rot.y + y, rot.z + z) + " " + x + " " + y + " " + z);
         
         print("after " + player.transform.localEulerAngles);print("ROTATE " + x + " " + y + " " + z);
