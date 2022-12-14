@@ -32,7 +32,11 @@ public class LevelLoader : MonoBehaviour
         //black.SetTrigger("fadeoutt");
         //StartCoroutine(changeScene());
     }
-
+    public void load()
+    {
+        black.SetTrigger("fadeOut");
+        StartCoroutine(changeScene());
+    }
     IEnumerator LoadLevel(int sceneIndex)
     {
         black.SetTrigger("Start");

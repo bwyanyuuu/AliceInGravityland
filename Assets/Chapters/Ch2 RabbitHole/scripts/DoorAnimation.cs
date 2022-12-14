@@ -10,6 +10,8 @@ public class DoorAnimation : MonoBehaviour
     public GameObject player;
     public GameObject bigdoor;
     public GameObject wall;
+    public GameObject rabbit;
+    public GameObject rabbittext;
     private Vector3 OriginRotate;
     // Start is called before the first frame update
     void Start()
@@ -37,6 +39,8 @@ public class DoorAnimation : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             bigdoor.transform.rotation = Quaternion.Euler(-90.0f,0.0f,0.0f);
+            rabbit.SetActive(false);
+            rabbittext.SetActive(false);
             wall.GetComponent<BoxCollider>().enabled = true;
             GameObject.Find("House").GetComponent<RotateRoom>().enabled = true;
             gameMaster.nxt = true;

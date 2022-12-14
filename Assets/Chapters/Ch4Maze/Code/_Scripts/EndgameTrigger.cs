@@ -16,7 +16,7 @@ public class EndgameTrigger : MonoBehaviour
     [SerializeField] private float _fallingDownSpeed;
     [SerializeField] private float _fallingDownSeconds;
     
-    [SerializeField] private Animator black;
+    //[SerializeField] private Animator black;
     private bool isEnabled = false;
 
 
@@ -49,25 +49,8 @@ public class EndgameTrigger : MonoBehaviour
 
         // Load next level
         //_levelLoader.LoadNextLevel();
-        
-        // Load next level, via CCCC's code
-        black.SetTrigger("fadeOut");
-        var sc = SceneManager.GetActiveScene();
-        GameObject[] g = sc.GetRootGameObjects();
-        for (int i = 0; i < g.Length; i++)
-        {
-            //if (!g[i].CompareTag("Player")) Destroy(g[i]);
-            //print(g[i].tag);
-        }
-        UnityEditor.EditorUtility.UnloadUnusedAssetsImmediate();
 
-        AsyncOperation async = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
-        //async.allowSceneActivation = false;
-        while (!async.isDone)
-        {
-            //print(async.progress);
-            if(async.progress >= 0.9f) break;
-            yield return null;
-        }
+        // Load next level, via CCCC's code
+        gameObject.GetComponent<LevelLoader>().load();
     }
 }

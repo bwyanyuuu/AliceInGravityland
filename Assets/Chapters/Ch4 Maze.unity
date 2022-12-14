@@ -23,10 +23,10 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.23829654, g: 0.31564158, b: 0.5943396, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
-  m_AmbientMode: 3
-  m_SubtractiveShadowColor: {r: 0.5188679, g: 0.13950694, b: 0.13950694, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 9153b2dbef5d0b0428e60c092d1b4a12, type: 2}
+  m_AmbientIntensity: 0
+  m_AmbientMode: 0
+  m_SubtractiveShadowColor: {r: 1, g: 1, b: 1, a: 1}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 133347283e115d147a5fcce7f47a538f, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.07686583, g: 0.009821113, b: 0.027660415, a: 1}
+  m_IndirectSpecularColor: {r: 0.38810045, g: 0.7278148, b: 0.7324987, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8287,6 +8287,22 @@ PrefabInstance:
     - target: {fileID: 7044617479380484523, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 67.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.b
+      value: 0.740566
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.g
+      value: 0.97560877
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Intensity
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7676476732484557585, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
       propertyPath: m_Name
@@ -22865,6 +22881,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 67.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.b
+      value: 0.740566
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.g
+      value: 0.97560877
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Intensity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7676476732484557585, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
       propertyPath: m_Name
       value: LampWithLightAndCollider (8)
@@ -28075,6 +28107,7 @@ GameObject:
   - component: {fileID: 792888976}
   - component: {fileID: 792888975}
   - component: {fileID: 792888977}
+  - component: {fileID: 792888978}
   m_Layer: 6
   m_Name: EndgameTrigger
   m_TagString: Untagged
@@ -28175,6 +28208,18 @@ MonoBehaviour:
   _player: {fileID: 438675845}
   _fallingDownSpeed: 2
   _fallingDownSeconds: 4
+--- !u!114 &792888978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792888969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1879d70e1c35204ebc3c4f917b5ec5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   black: {fileID: 274400887}
 --- !u!1 &793001065
 GameObject:
@@ -30200,6 +30245,22 @@ PrefabInstance:
     - target: {fileID: 7044617479380484523, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 67.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.b
+      value: 0.740566
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.g
+      value: 0.97560877
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Intensity
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7676476732484557585, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
       propertyPath: m_Name
@@ -36411,6 +36472,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 22.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.b
+      value: 0.740566
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.g
+      value: 0.97560877
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Intensity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7676476732484557585, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
       propertyPath: m_Name
       value: LampWithLightAndCollider (11)
@@ -38384,7 +38461,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.754717, g: 0.35243857, b: 0.47230867, a: 1}
+  m_Color: {r: 1, g: 0.9899806, b: 0.8254717, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -54996,6 +55073,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.b
+      value: 0.740566
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.g
+      value: 0.97560877
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Intensity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7676476732484557585, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
       propertyPath: m_Name
       value: LampWithLightAndCollider
@@ -58858,6 +58951,22 @@ PrefabInstance:
     - target: {fileID: 7044617479380484523, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 67.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.b
+      value: 0.740566
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.g
+      value: 0.97560877
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Intensity
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7676476732484557585, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
       propertyPath: m_Name
@@ -64669,6 +64778,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 67.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.b
+      value: 0.740566
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.g
+      value: 0.97560877
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Intensity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7676476732484557585, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
       propertyPath: m_Name
       value: LampWithLightAndCollider (4)
@@ -69833,6 +69958,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 22.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.b
+      value: 0.740566
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.g
+      value: 0.97560877
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Intensity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7676476732484557585, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
       propertyPath: m_Name
       value: LampWithLightAndCollider (13)
@@ -71378,6 +71519,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 247.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.b
+      value: 0.740566
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.g
+      value: 0.97560877
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Intensity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7676476732484557585, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
       propertyPath: m_Name
       value: LampWithLightAndCollider (3)
@@ -71604,6 +71761,22 @@ PrefabInstance:
     - target: {fileID: 7044617479380484523, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 22.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.b
+      value: 0.740566
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.g
+      value: 0.97560877
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Intensity
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7370487390875017959, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
       propertyPath: m_IsActive
@@ -71887,6 +72060,22 @@ PrefabInstance:
     - target: {fileID: 7044617479380484523, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.b
+      value: 0.740566
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.g
+      value: 0.97560877
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Intensity
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7676476732484557585, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
       propertyPath: m_Name
@@ -75045,6 +75234,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -22.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.b
+      value: 0.740566
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.g
+      value: 0.97560877
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Intensity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7676476732484557585, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
       propertyPath: m_Name
       value: LampWithLightAndCollider (9)
@@ -77751,6 +77956,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 22.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.b
+      value: 0.740566
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.g
+      value: 0.97560877
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Intensity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7676476732484557585, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
       propertyPath: m_Name
       value: LampWithLightAndCollider (2)
@@ -79767,6 +79988,22 @@ PrefabInstance:
     - target: {fileID: 7044617479380484523, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 157.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.b
+      value: 0.740566
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.g
+      value: 0.97560877
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Intensity
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7676476732484557585, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
       propertyPath: m_Name
@@ -85100,6 +85337,10 @@ PrefabInstance:
       propertyPath: _BackgroundMusic
       value: 
       objectReference: {fileID: 8300000, guid: e5ab324bea3ab0748bbefdcde2f4678b, type: 3}
+    - target: {fileID: 420527477421732859, guid: 4f40c6f601497154595d754f44a90cd4, type: 3}
+      propertyPath: m_Center.y
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 420527477421732862, guid: 4f40c6f601497154595d754f44a90cd4, type: 3}
       propertyPath: m_Mass
       value: 999
@@ -85126,7 +85367,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 420527477421861187, guid: 4f40c6f601497154595d754f44a90cd4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 36.25
+      value: -6.27
       objectReference: {fileID: 0}
     - target: {fileID: 420527477421861187, guid: 4f40c6f601497154595d754f44a90cd4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -87243,7 +87484,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: -5873867555058054712, guid: 2b204f5cb5005184887f02ee3893fd34, type: 3}
-  - {fileID: 2100000, guid: 45d03a279a300db45a9b0f811b6ad28a, type: 2}
+  - {fileID: 5576799535730928761, guid: 2b204f5cb5005184887f02ee3893fd34, type: 3}
   - {fileID: 5576799535730928761, guid: 2b204f5cb5005184887f02ee3893fd34, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0

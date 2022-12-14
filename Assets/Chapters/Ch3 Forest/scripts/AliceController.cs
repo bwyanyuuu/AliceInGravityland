@@ -6,6 +6,8 @@ public class AliceController : MonoBehaviour
 {
     public Transform view;
     public float yDiff;
+    public float xDiff;
+    public float zDiff;
     private Vector3 posDiff;
     private void Start()
     {
@@ -14,7 +16,7 @@ public class AliceController : MonoBehaviour
     void Update()
     {
         //print(view.position + " " + transform.position+" "+ (view.position - transform.position));
-        transform.position = new Vector3(view.position.x, view.position.y + yDiff, view.position.z);
+        transform.position = new Vector3(view.position.x + xDiff, view.position.y + yDiff, view.position.z + zDiff);
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, view.eulerAngles.y + 90f, transform.eulerAngles.z);
     }
 }
