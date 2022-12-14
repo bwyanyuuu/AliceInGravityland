@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class EndgameTrigger : MonoBehaviour
 {
-    [SerializeField] private LevelLoader _levelLoader;
+    //[SerializeField] private LevelLoader _levelLoader;
     [SerializeField] private GameObject _player;
 
     private Rigidbody _rigidbody;
@@ -13,6 +15,10 @@ public class EndgameTrigger : MonoBehaviour
 
     [SerializeField] private float _fallingDownSpeed;
     [SerializeField] private float _fallingDownSeconds;
+    
+    [SerializeField] private Animator black;
+    private bool isEnabled = false;
+
 
     private void Start()
     {
@@ -22,8 +28,9 @@ public class EndgameTrigger : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (!isEnabled && other.CompareTag("Player"))
         {
+            isEnabled = true;
             StartCoroutine(EndgameSequence());
         }
     }
@@ -41,6 +48,26 @@ public class EndgameTrigger : MonoBehaviour
         yield return new WaitForSeconds(_fallingDownSeconds);
 
         // Load next level
-        _levelLoader.LoadNextLevel();
+        //_levelLoader.LoadNextLevel();
+        
+        // Load next level, via CCCC's code
+        black.SetTrigger("fadeOut");
+        var sc = SceneManager.GetActiveScene();
+        GameObject[] g = sc.GetRootGameObjects();
+        for (int i = 0; i < g.Length; i++)
+        {
+            //if (!g[i].CompareTag("Player")) Destroy(g[i]);
+            //print(g[i].tag);
+        }
+        UnityEditor.EditorUtility.UnloadUnusedAssetsImmediate();
+
+        AsyncOperation async = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        //async.allowSceneActivation = false;
+        while (!async.isDone)
+        {
+            //print(async.progress);
+            if(async.progress >= 0.9f) break;
+            yield return null;
+        }
     }
 }
