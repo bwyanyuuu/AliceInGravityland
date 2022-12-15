@@ -20,13 +20,10 @@ public class QueenHandler : MonoBehaviour
     private int _isRunningHash;
     private int _isDeadHash;
 
-    // Queen will kill butterflies
-    private List<BreadButterfly> _aliveButterflies;
-    [SerializeField] private float _killButterfliesDistance = 5.0f;
-
+    // Audios
     [Header("Audio")]
-    [SerializeField] private AudioClip _queenIdleAudio;
     private AudioSource _audioSource;
+    [SerializeField] private AudioClip _queenIdleAudio;
 
 
     IEnumerator Start()
@@ -34,17 +31,9 @@ public class QueenHandler : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
-        _audioSource.loop = false;
         _teleportParticle.Stop();
         _isRunningHash = Animator.StringToHash("isRunning");
-
-        // Collecting butterflies to be killed
-        _aliveButterflies = new List<BreadButterfly>();
-        GameObject[] tmp = GameObject.FindGameObjectsWithTag("Killable");
-        foreach (var butterflyObj in tmp)
-        {
-            _aliveButterflies.Add(butterflyObj.GetComponent<BreadButterfly>());
-        }
+        _audioSource.loop = false;
 
         // Movement for crossing nav mesh link
         _agent.autoTraverseOffMeshLink = false;
@@ -84,47 +73,24 @@ public class QueenHandler : MonoBehaviour
                 _audioSource.PlayOneShot(_queenIdleAudio);
             }
         }
-        
-        // Killing butterflies
-        if (_aliveButterflies.Count == 0) return;
-        for (int i = _aliveButterflies.Count - 1; i >= 0; i--)
-        {
-            BreadButterfly butterfly = _aliveButterflies[i];
-            if (Vector3.Distance(transform.position, butterfly.BonePosition) < _killButterfliesDistance)
-            {
-                butterfly.Kill();
-                _aliveButterflies.RemoveAt(i);
-            }
-        }
     }
     
-
     private bool HasVelocity()
     {
-        bool result = false;
-        Vector3 velocity = _agent.velocity;
-        
-        if (velocity.sqrMagnitude > Mathf.Epsilon) {
-            result = true;
-        }
-        return result;
+        return _agent.velocity.sqrMagnitude > Mathf.Epsilon;
     }
 
 
     private bool TargetOutsideMeshLink()
     {
-        bool result = false;
         const float safeDistance = 5f;
         OffMeshLinkData data = _agent.currentOffMeshLinkData;
         Vector3 startPosition = _agent.transform.position;
         Vector3 endPosition = data.endPos;
         Vector3 targetPosition = _target.position;
-
-        if (Vector3.Distance(startPosition, targetPosition)>safeDistance && Vector3.Distance(endPosition, targetPosition)>safeDistance)
-        {
-            result = true;
-        }
-        return result;
+        bool isOutsideStartPosition = Vector3.Distance(startPosition, targetPosition) > safeDistance;
+        bool isOutsideEndPosition = Vector3.Distance(endPosition, targetPosition) > safeDistance;
+        return isOutsideStartPosition && isOutsideEndPosition;
     }
 
     IEnumerator CrossAfterSeconds(NavMeshAgent agent, float delaySeconds)
