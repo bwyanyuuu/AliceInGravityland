@@ -23,9 +23,20 @@ public class QueenHandler : MonoBehaviour
     // Audios
     [Header("Audio")]
     private AudioSource _audioSource;
-    [SerializeField] private AudioClip _queenIdleAudio;
+    [SerializeField] private AudioClip _foundTargetAudio;
+    [SerializeField] private AudioClip _startTeleportAudio;
+    [SerializeField] private AudioClip _endTeleportAudio;
+    [SerializeField] private AudioClip _waitTeleportAudio;
 
+    private bool isWaitTeleportAudioPlayed = false;
+    private bool isFoundTargetAudioPlayed = false;
+    
+    // Timers for audio cooldown
+    private ActionOnTimer _waitTeleportAudioTimer;
+    private ActionOnTimer _foundTargetAudioTimer;
+    private float timerCooldownSeconds = 10.0f;
 
+    
     IEnumerator Start()
     {
         _agent = GetComponent<NavMeshAgent>();
@@ -35,15 +46,27 @@ public class QueenHandler : MonoBehaviour
         _isRunningHash = Animator.StringToHash("isRunning");
         _audioSource.loop = false;
 
+        // Timers for audio cooldown
+        _waitTeleportAudioTimer = gameObject.AddComponent<ActionOnTimer>();
+        _foundTargetAudioTimer = gameObject.AddComponent<ActionOnTimer>();
+
         // Movement for crossing nav mesh link
         _agent.autoTraverseOffMeshLink = false;
         while (true)
         {
             if (_agent.isOnOffMeshLink)
             {
-                if (TargetOutsideMeshLink())
+                if (!_audioSource.isPlaying && TargetOutsideMeshLink())
                 {
                     yield return StartCoroutine(CrossAfterSeconds(_agent, 3.0f));
+                }
+                else
+                {
+                    if (!_audioSource.isPlaying && !isWaitTeleportAudioPlayed) {
+                        _audioSource.PlayOneShot(_waitTeleportAudio);
+                        isWaitTeleportAudioPlayed = true;
+                        _waitTeleportAudioTimer.SetTimer(timerCooldownSeconds, () => { isWaitTeleportAudioPlayed = false; });
+                    }
                 }
             }
             yield return null;
@@ -68,9 +91,10 @@ public class QueenHandler : MonoBehaviour
         {
             _animator.SetBool(_isRunningHash, false);
 
-            if (!_audioSource.isPlaying)
-            {
-                _audioSource.PlayOneShot(_queenIdleAudio);
+            if (!_audioSource.isPlaying && !isFoundTargetAudioPlayed) {
+                _audioSource.PlayOneShot(_foundTargetAudio);
+                isFoundTargetAudioPlayed = true;
+                _foundTargetAudioTimer.SetTimer(timerCooldownSeconds, () => { isFoundTargetAudioPlayed = false; });
             }
         }
     }
@@ -98,8 +122,15 @@ public class QueenHandler : MonoBehaviour
         if (!_teleportParticle.isPlaying) {
             _teleportParticle.Play();
         }
+        if (!_audioSource.isPlaying) {
+            _audioSource.PlayOneShot(_startTeleportAudio);
+        }
         yield return new WaitForSeconds(delaySeconds);
         agent.CompleteOffMeshLink();
+        if (!_audioSource.isPlaying) {
+            _audioSource.PlayOneShot(_endTeleportAudio);
+        }
         _teleportParticle.Stop();
     }
+    
 }
