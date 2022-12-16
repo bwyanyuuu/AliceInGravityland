@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private RotateRoom rotateRoom;
     private bool mirrorbroke=false;
     private GameMaster gameMaster;
+    public GameObject mirror;
     // int a = 0;
     // Start is called before the first frame update
     void Start()
@@ -73,10 +74,12 @@ public class PlayerController : MonoBehaviour
         gameObject.transform.parent = null;
         gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
         float step = roomScale / speed;
-        for(int i = 0; i < speed; i++)
+        float stepMirror = (23.93f - mirror.transform.position.y) / speed;
+        for (int i = 0; i < speed; i++)
         {
             room.transform.localScale += new Vector3(step, step, step);
             transform.position = pos * (1 + i * step);
+            mirror.transform.position = new Vector3(mirror.transform.position.x, mirror.transform.position.y + stepMirror, mirror.transform.position.z);
             yield return new WaitForSeconds(0.01f);
         }
         gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;

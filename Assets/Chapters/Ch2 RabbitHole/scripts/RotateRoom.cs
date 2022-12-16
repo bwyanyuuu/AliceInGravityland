@@ -379,7 +379,7 @@ public class RotateRoom : MonoBehaviour
         else if (transform.up.z < 1.1f && transform.up.z > 0.9f)//Vector3(0.119999997,6.44999981,-2.08999991)
         {
             followVector = AkilliMum.SRP.Mirror.FollowVector.RedX_Negative;
-            mirror_reflect.transform.position = new Vector3(0.119999997f, 6.44999981f, 0.230000004f);
+            mirror_reflect.transform.position = new Vector3(0.119999997f, 6.44999981f, -2.09f);
         }
         else if (transform.up.z > -1.1f && transform.up.z < -0.9f)
         {

@@ -86755,6 +86755,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 2547788368392925306, guid: 4f40c6f601497154595d754f44a90cd4, type: 3}
+      propertyPath: _rigidbody
+      value: 
+      objectReference: {fileID: 2547788368540214967}
     - target: {fileID: 2555014510712890578, guid: 4f40c6f601497154595d754f44a90cd4, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -88308,6 +88312,11 @@ PrefabInstance:
 --- !u!4 &2547788368540214966 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 420527477421861189, guid: 4f40c6f601497154595d754f44a90cd4, type: 3}
+  m_PrefabInstance: {fileID: 2547788368540214965}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &2547788368540214967 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 420527477421732862, guid: 4f40c6f601497154595d754f44a90cd4, type: 3}
   m_PrefabInstance: {fileID: 2547788368540214965}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2778038751101931510 stripped

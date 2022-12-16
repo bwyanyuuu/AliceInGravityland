@@ -12,9 +12,10 @@ public class AliceVisual : MonoBehaviour
     private Vector3 _localRotationOffset;
 
     private Transform _selfTransform;
-    private Rigidbody _rigidbody;
+    [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private Animator _animator;
     private int _isWalkingHash;
+
 
     private void Awake()
     {
@@ -26,7 +27,7 @@ public class AliceVisual : MonoBehaviour
 
     void Start()
     {
-        _rigidbody = transform.root.GetComponent<Rigidbody>();
+        //_rigidbody = transform.root.GetComponent<Rigidbody>();
         _isWalkingHash = Animator.StringToHash("isWalking");
     }
 
@@ -34,10 +35,13 @@ public class AliceVisual : MonoBehaviour
     {
         // Local position & rotation follow camera 
         Vector3 localRotationRef = _transformReference.localRotation.eulerAngles;
-        float convertedYAngle = convertAngle(localRotationRef.y);
+        //float convertedYAngle = convertAngle(localRotationRef.y);
+        //_selfTransform.localRotation = Quaternion.Euler(0f + _localRotationOffset.x,
+                                                        //(convertedYAngle * .8f + _localRotationOffset.y),
+                                                       // 0f + _localRotationOffset.z);
         _selfTransform.localRotation = Quaternion.Euler(0f + _localRotationOffset.x,
-                                                        (convertedYAngle * .8f + _localRotationOffset.y),
-                                                        0f + _localRotationOffset.z);
+                                                (localRotationRef.y + _localRotationOffset.y),
+                                                0f + _localRotationOffset.z);
         Vector3 localPositionRef = _transformReference.localPosition;
         _selfTransform.localPosition = localPositionRef + _localPositionOffset;
         

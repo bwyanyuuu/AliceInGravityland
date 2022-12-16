@@ -8,6 +8,7 @@ public class CookieCollider : MonoBehaviour
     public float roomScale;
     public float speed;
     private GameObject player;
+    public GameObject mirror;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,12 +36,15 @@ public class CookieCollider : MonoBehaviour
         player.transform.parent = null;
         player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
         float step = roomScale / speed;
+        float stepMirror = (23.93f - mirror.transform.position.y) / speed;
         for (int i = 0; i < speed; i++)
         {
             //print(1 + i * step);
 
             room.transform.localScale += new Vector3(step, step, step);
+
             player.transform.position = pos * (1 + i * step);
+            mirror.transform.position = new Vector3(mirror.transform.position.x, mirror.transform.position.y + stepMirror, mirror.transform.position.z);
             yield return new WaitForSeconds(0.01f);
         }
         player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
