@@ -12,6 +12,7 @@ public class DoorAnimation : MonoBehaviour
     public GameObject wall;
     public GameObject rabbit;
     public GameObject rabbittext;
+    public GameObject tutorial;
     private Vector3 OriginRotate;
     // Start is called before the first frame update
     void Start()
@@ -19,7 +20,8 @@ public class DoorAnimation : MonoBehaviour
         // player.transform.parent = null;
         // player.transform.SetParent(this.transform, true);
         gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
-        player.transform.position = new Vector3(4.0f, 1.5f, 2.518f);
+        player.transform.position = new Vector3(3.86f, 0.03f, 2.725f);
+        //Vector3(3.86527634, 0.0336545706, 2.72514415)
         player.transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);    
     }
 
@@ -43,6 +45,7 @@ public class DoorAnimation : MonoBehaviour
             rabbittext.SetActive(false);
             wall.GetComponent<BoxCollider>().enabled = true;
             GameObject.Find("House").GetComponent<RotateRoom>().enabled = true;
+            tutorial.SetActive(false);
             gameMaster.nxt = true;
             
         }

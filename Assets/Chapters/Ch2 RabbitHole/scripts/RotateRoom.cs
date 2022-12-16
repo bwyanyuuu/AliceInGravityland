@@ -22,10 +22,14 @@ public class RotateRoom : MonoBehaviour
     public float rotationSpeed=10;
     public int RotateTime=0;
     public bool ChandelierFloor=false;
+    public AkilliMum.SRP.Mirror.CameraShade cameraShade;
+    public GameObject mirror_reflect;
+    private AkilliMum.SRP.Mirror.FollowVector followVector;
 
     private bool isRotating = false;
     private Vector3 rot;
     private bool wait = true;
+    private int idx;
     
     void Start()
     {
@@ -292,8 +296,12 @@ public class RotateRoom : MonoBehaviour
             {
                 target = c;
                 dst = anchors[i].position;
+                idx = i;
             }
         }
+        
+        //print(player.transform.up);
+        
         // pokerTravel.SetActive(true);
         pokerTravel.GetComponent<PokerTravel>().move(src, dst);
     }
@@ -322,6 +330,7 @@ public class RotateRoom : MonoBehaviour
     }
     IEnumerator rotatePlayer(float x, float y, float z)
     {
+        
         //Quaternion final = new Quaternion(player.transform.rotation.x + x, player.transform.rotation.y + y, player.transform.rotation.z + z, 1f);
         for (int i = 0; i < 60; i++)
         {
@@ -343,6 +352,20 @@ public class RotateRoom : MonoBehaviour
     {
        
         player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+        mirror_reflect.transform.position = new Vector3(0.119999997f, 4.3499999f, 1.97000003f);
+        if (idx == 5) followVector = AkilliMum.SRP.Mirror.FollowVector.GreenY;
+        else if (idx == 4) followVector = AkilliMum.SRP.Mirror.FollowVector.GreenY_Negative;
+        else if (transform.up.x < 1.1f && transform.up.x > 0.9f) followVector = AkilliMum.SRP.Mirror.FollowVector.BlueZ_Negative;
+        else if (transform.up.x > -1.1f && transform.up.x < 0.9f) followVector = AkilliMum.SRP.Mirror.FollowVector.BlueZ;
+        else if (transform.up.z < 1.1f && transform.up.z > 0.9f)
+        {
+            followVector = AkilliMum.SRP.Mirror.FollowVector.RedX_Negative;
+            mirror_reflect.transform.position = new Vector3(0.119999997f, 6.44999981f, 0.230000004f);
+        }
+        else if (transform.up.z > -1.1f && transform.up.z < 0.9f) followVector = AkilliMum.SRP.Mirror.FollowVector.RedX;
+        //Vector3(0.119999997, 6.44999981, 0.230000004)
+        print(followVector);
+        cameraShade.UpVector = followVector;
         yield return new WaitForSeconds(3f);
         if (mirror.transform.up.y == 1.0f)
         {
@@ -398,7 +421,9 @@ public class RotateRoom : MonoBehaviour
         print("after " + player.transform.localEulerAngles);print("ROTATE " + x + " " + y + " " + z);
         player.GetComponent<Rigidbody>().isKinematic = false;
         player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
-        
+        print("up "+transform.up);
+        print("right " + transform.right);
+
         
         rot = player.transform.localEulerAngles;print("set "+rot);
         // yield return new WaitForSeconds(2f);
