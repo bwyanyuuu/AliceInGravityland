@@ -352,19 +352,42 @@ public class RotateRoom : MonoBehaviour
     {
        
         player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-        mirror_reflect.transform.position = new Vector3(0.119999997f, 4.3499999f, 1.97000003f);
-        if (idx == 5) followVector = AkilliMum.SRP.Mirror.FollowVector.GreenY;
-        else if (idx == 4) followVector = AkilliMum.SRP.Mirror.FollowVector.GreenY_Negative;
-        else if (transform.up.x < 1.1f && transform.up.x > 0.9f) followVector = AkilliMum.SRP.Mirror.FollowVector.BlueZ_Negative;
-        else if (transform.up.x > -1.1f && transform.up.x < 0.9f) followVector = AkilliMum.SRP.Mirror.FollowVector.BlueZ;
-        else if (transform.up.z < 1.1f && transform.up.z > 0.9f)
+        print("up " + transform.up);
+        print("right " + transform.right);
+        mirror_reflect.transform.position = new Vector3(0.12f, 2.13f, 1.97f);
+        if (idx == 5)
+        {
+            followVector = AkilliMum.SRP.Mirror.FollowVector.GreenY;
+            mirror_reflect.transform.position = new Vector3(0.12f, 2.13f, 1.97f);
+
+        }
+        else if (idx == 4)
+        {
+            followVector = AkilliMum.SRP.Mirror.FollowVector.GreenY_Negative;
+            mirror_reflect.transform.position = new Vector3(0.12f, 6.1f, 1.97f);//Vector3(0.119999997,6.0999999,1.97000003)
+        }
+        else if (transform.up.x < 1.1f && transform.up.x > 0.9f)
+        {
+            followVector = AkilliMum.SRP.Mirror.FollowVector.BlueZ_Negative;//Vector3(0.119999997,145,1.97000003)
+            mirror_reflect.transform.position = new Vector3(0.12f, 145f, 1.97f);
+        }
+        else if (transform.up.x > -1.1f && transform.up.x < -0.9f)
+        {
+            followVector = AkilliMum.SRP.Mirror.FollowVector.BlueZ;//Vector3(0.119999997,-123.559998,1.97000003)
+            mirror_reflect.transform.position = new Vector3(0.12f, -123.56f, 1.97f);
+        }
+        else if (transform.up.z < 1.1f && transform.up.z > 0.9f)//Vector3(0.119999997,6.44999981,-2.08999991)
         {
             followVector = AkilliMum.SRP.Mirror.FollowVector.RedX_Negative;
             mirror_reflect.transform.position = new Vector3(0.119999997f, 6.44999981f, 0.230000004f);
         }
-        else if (transform.up.z > -1.1f && transform.up.z < 0.9f) followVector = AkilliMum.SRP.Mirror.FollowVector.RedX;
-        //Vector3(0.119999997, 6.44999981, 0.230000004)
-        print(followVector);
+        else if (transform.up.z > -1.1f && transform.up.z < -0.9f)
+        {
+            followVector = AkilliMum.SRP.Mirror.FollowVector.RedX; // Vector3(0.119999997,4.3499999,1.97000003)
+            mirror_reflect.transform.position = new Vector3(0.12f, 4.35f, 1.97f);
+        }
+            //Vector3(0.119999997, 6.44999981, 0.230000004)
+            print(followVector);
         cameraShade.UpVector = followVector;
         yield return new WaitForSeconds(3f);
         if (mirror.transform.up.y == 1.0f)

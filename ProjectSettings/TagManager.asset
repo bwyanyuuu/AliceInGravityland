@@ -6,6 +6,8 @@ TagManager:
   tags:
   - poker
   - cookie
+  - Queen
+  - Killable
   layers:
   - Default
   - TransparentFX
@@ -15,9 +17,9 @@ TagManager:
   - UI
   - No Reflection
   - No PostProcessing
-  - 
-  - 
-  - 
+  - walls
+  - player
+  - objects
   - 
   - 
   - 
