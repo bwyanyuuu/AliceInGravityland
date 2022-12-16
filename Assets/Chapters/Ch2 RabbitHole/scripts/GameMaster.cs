@@ -34,7 +34,9 @@ public class GameMaster : MonoBehaviour
     public GameObject clock;
     public GameObject mirrorCollider;
     public GameObject mirrorPhysical;
-    
+    public GameObject mirror_reflect;
+    public AkilliMum.SRP.Mirror.CameraShade cameraShade;
+
 
     [Header("Controllers")]
     public bool nxt = false;
@@ -136,6 +138,8 @@ public class GameMaster : MonoBehaviour
                 Invoke("backMirror", 3f);
                 clock.SetActive(false);
                 rotateRoom.rotate(0, new Vector3(0f, 0f, 0f)); // turn gavaity back to normal
+                cameraShade.UpVector = AkilliMum.SRP.Mirror.FollowVector.GreenY;
+                mirror_reflect.transform.position = new Vector3(0.12f, 2.13f, 1.97f);
                 isSet = true;
             }
             if (nxt)
