@@ -34,7 +34,10 @@ public class AliceVisual : MonoBehaviour
     {
         // Local position & rotation follow camera 
         Vector3 localRotationRef = _transformReference.localRotation.eulerAngles;
-        _selfTransform.localRotation = Quaternion.Euler(0f + _localRotationOffset.x, localRotationRef.y + _localRotationOffset.y, 0f + _localRotationOffset.z);
+        float convertedYAngle = convertAngle(localRotationRef.y);
+        _selfTransform.localRotation = Quaternion.Euler(0f + _localRotationOffset.x,
+                                                        (convertedYAngle * .8f + _localRotationOffset.y),
+                                                        0f + _localRotationOffset.z);
         Vector3 localPositionRef = _transformReference.localPosition;
         _selfTransform.localPosition = localPositionRef + _localPositionOffset;
         
@@ -62,5 +65,15 @@ public class AliceVisual : MonoBehaviour
             result = true;
         }
         return result;
+    }
+
+    private float convertAngle(float angle)
+    {
+        if (angle > 180f)
+        {
+            angle -= 360f;
+        }
+
+        return angle;
     }
 }
