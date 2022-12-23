@@ -66013,6 +66013,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8180980702400264900, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e26baaa305c4b6f41bc06e5ee3bcdd8f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
 --- !u!4 &1615629191 stripped
@@ -67062,6 +67066,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8180980702400264900, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e26baaa305c4b6f41bc06e5ee3bcdd8f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
 --- !u!4 &1639798663 stripped
@@ -70935,14 +70943,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
       propertyPath: m_Color.b
-      value: 0.740566
+      value: 0.7411765
       objectReference: {fileID: 0}
     - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
       propertyPath: m_Color.g
-      value: 0.97560877
+      value: 0.9764706
       objectReference: {fileID: 0}
     - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
       propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7370487390875017956, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
@@ -70955,6 +70967,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7676476732484557585, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8180980702400264900, guid: e4f8ca6348ee4fa4bb9685be65484b9d, type: 3}
+      propertyPath: m_CastShadows
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
