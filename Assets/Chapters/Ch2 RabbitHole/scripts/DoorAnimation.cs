@@ -14,6 +14,7 @@ public class DoorAnimation : MonoBehaviour
     public GameObject rabbittext;
     public GameObject cave;
     public GameObject tutorial;
+    public GameObject doorBoxBlack;
     private Vector3 OriginRotate;
     // Start is called before the first frame update
     void Start()
@@ -48,6 +49,7 @@ public class DoorAnimation : MonoBehaviour
             wall.GetComponent<BoxCollider>().enabled = true;
             GameObject.Find("House").GetComponent<RotateRoom>().enabled = true;
             tutorial.SetActive(false);
+            doorBoxBlack.SetActive(true);
             gameMaster.nxt = true;
             
         }
