@@ -35,6 +35,7 @@ public class GameMaster : MonoBehaviour
     public GameObject mirrorCollider;
     public GameObject mirrorPhysical;
     public GameObject mirror_reflect;
+    public GameObject boxVolume;
     public AkilliMum.SRP.Mirror.CameraShade cameraShade;
 
 
@@ -112,6 +113,7 @@ public class GameMaster : MonoBehaviour
                 mirrorNormalBreak.SetActive(false);
                 mirrorBreak.SetActive(true);
                 mirrorPhysical.SetActive(false);
+                boxVolume.SetActive(false);
                 activeSet(roomA, false);
                 activeSet(roomB, true);
                 activeSet(roomAAfter1, true);

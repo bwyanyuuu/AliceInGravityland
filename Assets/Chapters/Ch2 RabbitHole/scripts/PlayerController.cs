@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        //print(collision.collider.name);
+        print(collision.collider.name);
         if (collision.collider.name == "Plane")
         {
             // Debug.Log("floor");
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator roomBigger()
     {
-        print("big");
+        //print("big");
         Vector3 pos = transform.position;
         gameObject.transform.parent = null;
         gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;

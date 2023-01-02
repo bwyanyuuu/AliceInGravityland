@@ -69,114 +69,6 @@ public class RotateRoom : MonoBehaviour
             
         // }
 
-        if (player.transform.eulerAngles.y%360 > 315.0f || player.transform.eulerAngles.y%360 < 45.0f){ 
-            if (Input.GetKeyDown(KeyCode.W)){   
-                this.transform.RotateAround(center.position, Vector3.forward, 180);
-                RotateTime++;
-            }
-            if (Input.GetKeyDown(KeyCode.A)){   //吸到左邊(-x)
-                this.transform.RotateAround(center.position, Vector3.forward, 90);  //以Z軸為中心逆時針轉90
-                RotateTime++;
-                if (ChandelierFloor) ChandelierFloor = false;
-            }
-            if (Input.GetKeyDown(KeyCode.D)){   //吸到右邊(+x)
-                this.transform.RotateAround(center.position, Vector3.forward, -90); //以Z軸為中心逆時針轉270(-90)
-                RotateTime++;
-                if (ChandelierFloor) ChandelierFloor = false;
-            }
-            if (Input.GetKeyDown(KeyCode.X)){   //吸到前面(+z)
-                this.transform.RotateAround(center.position, Vector3.right, 90);    //以X軸為中心逆時針轉90
-                RotateTime++;
-                if (ChandelierFloor) ChandelierFloor = false;
-            }
-            if (Input.GetKeyDown(KeyCode.C)){   //吸到後面(-z)
-                this.transform.RotateAround(center.position, Vector3.right, -90);   //以X軸為中心逆時針轉-90
-                RotateTime++;
-                if (ChandelierFloor) ChandelierFloor = false;
-            }
-        }
-        // 面向-z軸
-        if (player.transform.eulerAngles.y%360 >= 135.0f && player.transform.eulerAngles.y%360 < 225.0f){ 
-            if (Input.GetKeyDown(KeyCode.W)){   
-                this.transform.RotateAround(center.position, Vector3.forward, 180);
-                RotateTime++;
-            }
-            if (Input.GetKeyDown(KeyCode.A)){   //吸到左邊(-x)
-                this.transform.RotateAround(center.position, Vector3.forward, -90);  //以Z軸為中心逆時針轉-90
-                RotateTime++;
-                if (ChandelierFloor) ChandelierFloor = false;
-            }
-            if (Input.GetKeyDown(KeyCode.D)){   //吸到右邊(+x)
-                this.transform.RotateAround(center.position, Vector3.forward, 90);   //以Z軸為中心逆時針轉90
-                RotateTime++;
-                if (ChandelierFloor) ChandelierFloor = false;
-            }
-            if (Input.GetKeyDown(KeyCode.X)){   //吸到前面(-z)
-                this.transform.RotateAround(center.position, Vector3.right, -90);    //以X軸為中心逆時針轉-90
-                RotateTime++;
-                if (ChandelierFloor) ChandelierFloor = false;
-            }
-            if (Input.GetKeyDown(KeyCode.C)){   //吸到後面(+z)
-                this.transform.RotateAround(center.position, Vector3.right, 90);     //以X軸為中心逆時針轉90
-                RotateTime++;
-                if (ChandelierFloor) ChandelierFloor = false;
-            }
-        }
-        // 面向+x軸
-        if (player.transform.eulerAngles.y%360 >= 45.0f && player.transform.eulerAngles.y%360 < 135.0f){ 
-            if (Input.GetKeyDown(KeyCode.W)){   
-                this.transform.RotateAround(center.position, Vector3.right, 180);
-                RotateTime++;
-            }
-            if (Input.GetKeyDown(KeyCode.A)){   //吸到左邊(+z)
-                this.transform.RotateAround(center.position, Vector3.right, 90);    //以X軸為中心逆時針轉90
-                RotateTime++;
-                if (ChandelierFloor) ChandelierFloor = false;
-            }
-            if (Input.GetKeyDown(KeyCode.D)){   //吸到右邊(-z)
-                this.transform.RotateAround(center.position, Vector3.right, -90);   //以X軸為中心逆時針轉-90
-                RotateTime++;
-                if (ChandelierFloor) ChandelierFloor = false;
-            }
-            if (Input.GetKeyDown(KeyCode.X)){   //吸到前面(+x)
-                this.transform.RotateAround(center.position, Vector3.forward, -90);  //以Z軸為中心逆時針轉-90
-                RotateTime++;
-                if (ChandelierFloor) ChandelierFloor = false;
-            }
-            if (Input.GetKeyDown(KeyCode.C)){   //吸到後面(-x)
-                this.transform.RotateAround(center.position, Vector3.forward, 90); //以Z軸為中心逆時針轉90
-                RotateTime++;
-                if (ChandelierFloor) ChandelierFloor = false;
-            }
-        }
-        // 面向-x軸
-        if (player.transform.eulerAngles.y%360 >= 225.0f && player.transform.eulerAngles.y%360 < 315.0f){ 
-            if (Input.GetKeyDown(KeyCode.W)){   
-                this.transform.RotateAround(center.position, Vector3.right, 180);
-                RotateTime++;
-                if (ChandelierFloor) ChandelierFloor = false;
-            }
-            if (Input.GetKeyDown(KeyCode.A)){   //吸到左邊(-z)
-                this.transform.RotateAround(center.position, Vector3.right, -90);    //以X軸為中心逆時針轉-90
-                RotateTime++;
-                if (ChandelierFloor) ChandelierFloor = false;
-            }
-            if (Input.GetKeyDown(KeyCode.D)){   //吸到右邊(+z)
-                this.transform.RotateAround(center.position, Vector3.right, 90);   //以X軸為中心逆時針轉90
-                RotateTime++;
-                if (ChandelierFloor) ChandelierFloor = false;
-            }
-            if (Input.GetKeyDown(KeyCode.X)){   //吸到前面(-x)
-                this.transform.RotateAround(center.position, Vector3.forward, 90);  //以Z軸為中心逆時針轉90
-                RotateTime++;
-                if (ChandelierFloor) ChandelierFloor = false;
-            }
-            if (Input.GetKeyDown(KeyCode.C)){   //吸到後面(+x)
-                this.transform.RotateAround(center.position, Vector3.forward, -90); //以Z軸為中心逆時針轉-90
-                RotateTime++;
-                if (ChandelierFloor) ChandelierFloor = false;
-            }
-        }
         
 		
 	}
@@ -185,6 +77,7 @@ public class RotateRoom : MonoBehaviour
         print("rotate "+src);
         if (isRotating) return;
         else isRotating = true;
+
         float phase = camera.transform.eulerAngles.y;
         // 面向+z軸
         if (phase % 360 > 315.0f || phase % 360 < 45.0f)
@@ -299,10 +192,6 @@ public class RotateRoom : MonoBehaviour
                 idx = i;
             }
         }
-        
-        //print(player.transform.up);
-        
-        // pokerTravel.SetActive(true);
         pokerTravel.GetComponent<PokerTravel>().move(src, dst);
     }
     IEnumerator rotateWait(int mode, Vector3 dir)
@@ -330,17 +219,17 @@ public class RotateRoom : MonoBehaviour
     }
     IEnumerator rotatePlayer(float x, float y, float z)
     {
-        
+
         //Quaternion final = new Quaternion(player.transform.rotation.x + x, player.transform.rotation.y + y, player.transform.rotation.z + z, 1f);
+        player.GetComponent<Collider>().enabled = false;
+        Vector3 movePos = new Vector3(1f/60f, 0f, 0f);
         for (int i = 0; i < 60; i++)
         {
-            // player.GetComponent<Rigidbody>().isKinematic = true;
-            // player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             yield return new WaitForSeconds(0.01f);
             // player.transform.rotation = new Quaternion(player.transform.rotation.x+x / 60f, player.transform.rotation.y+y / 60f, player.transform.rotation.z+z / 60f, 1f);
             player.transform.Rotate(x/60f, y/60f, z/60f, Space.Self);
-            // player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
-            // player.GetComponent<Rigidbody>().isKinematic = false;
+            if(i == 45) player.GetComponent<Collider>().enabled = true;
+            //player.transform.position += movePos;
         }  
         // for(int i = 0; i < 60; i++)
         // {
@@ -350,10 +239,9 @@ public class RotateRoom : MonoBehaviour
     }
     IEnumerator standUp()
     {
-       
         player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-        print("up " + transform.up);
-        print("right " + transform.right);
+        //print("up " + transform.up);
+        //print("right " + transform.right);
         mirror_reflect.transform.position = new Vector3(0.12f, 2.13f, 1.97f);
         if (idx == 5)
         {
@@ -387,16 +275,20 @@ public class RotateRoom : MonoBehaviour
             mirror_reflect.transform.position = new Vector3(0.12f, 4.35f, 1.97f);
         }
             //Vector3(0.119999997, 6.44999981, 0.230000004)
-            print(followVector);
+            //print(followVector);
         cameraShade.UpVector = followVector;
+
         yield return new WaitForSeconds(3f);
+        player.GetComponent<Rigidbody>().isKinematic = true;
+
+        rot = player.transform.localEulerAngles;
         if (mirror.transform.up.y == 1.0f)
         {
             RotateTime++;
         }
-        player.GetComponent<Rigidbody>().isKinematic = true;
-        print(camera.transform.forward+" "+camera.transform.right);
-        print(player.transform.forward+" "+player.transform.right);
+        
+        //print(camera.transform.forward+" "+camera.transform.right);
+        //print(player.transform.forward+" "+player.transform.right);
         float forward = camera.transform.forward.y;
         float right = camera.transform.right.y;
         Vector3 pf = player.transform.forward;
@@ -439,16 +331,22 @@ public class RotateRoom : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
             player.transform.Rotate(x / time, y / time, z / time, Space.Self);
         }
-        print("new " + new Vector3(rot.x + x, rot.y + y, rot.z + z) + " " + x + " " + y + " " + z);
-        
-        print("after " + player.transform.localEulerAngles);print("ROTATE " + x + " " + y + " " + z);
+        //print("new " + new Vector3(rot.x + x, rot.y + y, rot.z + z) + " " + x + " " + y + " " + z);
+        //print("new2 " + new Vector3(rot.x + x - player.transform.localEulerAngles.x, rot.y + y - player.transform.localEulerAngles.y, rot.z + z - player.transform.localEulerAngles.z));
+
+        //print("after " + player.transform.localEulerAngles);
+        //player.transform.Rotate(rot.x + x - player.transform.localEulerAngles.x, rot.y + y - player.transform.localEulerAngles.y, rot.z + z - player.transform.localEulerAngles.z, Space.Self);
+        //player.transform.localEulerAngles = new Vector3(rot.x + x, rot.y + y, rot.z + z);
+
+        //print("ROTATE " + x + " " + y + " " + z);
         player.GetComponent<Rigidbody>().isKinematic = false;
         player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
-        print("up "+transform.up);
-        print("right " + transform.right);
+        //print("up "+transform.up);
+        //print("right " + transform.right);
 
         
-        rot = player.transform.localEulerAngles;print("set "+rot);
+        rot = player.transform.localEulerAngles;
+        //print("set "+rot);
         // yield return new WaitForSeconds(2f);
         isRotating = false;  
     }
