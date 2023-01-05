@@ -4,12 +4,10 @@ using Oculus.Interaction;
 
 public class ZeroGravity : MonoBehaviour
 {
-    [SerializeField] float swimForce = 10f;
-    [SerializeField] float dragForce = 1f;
-    [SerializeField] float minForce;
+    [SerializeField] float swimForce = 15f;
+    [SerializeField] float dragForce = 2f;
+    [SerializeField] float minForce = 1.1f;
     [SerializeField] float minTimeBetweenStrokes;
-    [SerializeField] float rotateSpeed;
-    [SerializeField] float minRotateAngle;
 
     [SerializeField] OVRHand leftHandReference;
     [SerializeField] Vector3 leftHandVelocity;
@@ -26,9 +24,6 @@ public class ZeroGravity : MonoBehaviour
 
     bool _poseActiveRight;
     bool _poseActiveLeft;
-
-    // Speed of Y-axis rotation
-    //Vector3 m_EulerAngleVelocity = new Vector3(0, 20, 0);
     
     public void setActiveRight(bool state)
     {
@@ -53,38 +48,14 @@ public class ZeroGravity : MonoBehaviour
         previousPositionRight = rightHandReference.PointerPose.position;
     }
 
-    //private float modulo(float x, float n)
-    //{
-    //    return (float)(x - Math.Floor(x / n) * n);
-    //}
-
-    void Update()
-    {   
-        //// Adjust camera movement relative to player head rotation
-        //var rotationalDifference = transform.rotation.eulerAngles.y - cameraReference.transform.rotation.eulerAngles.y;
-        //rotationalDifference = modulo((rotationalDifference + 180), 360) - 180;
-
-        //if (rotationalDifference > minRotateAngle) {
-        //    Quaternion deltaRotation = Quaternion.Euler(-m_EulerAngleVelocity * rotateSpeed * (.8f * rotationalDifference) * Time.fixedDeltaTime);
-        //    _rigidbody.MoveRotation(_rigidbody.rotation * deltaRotation);
-        //}
-        //else if (rotationalDifference < -minRotateAngle)
-        //{
-        //    Quaternion deltaRotation = Quaternion.Euler(m_EulerAngleVelocity * rotateSpeed * (-.8f * rotationalDifference) * Time.fixedDeltaTime);
-        //    _rigidbody.MoveRotation(_rigidbody.rotation * deltaRotation);
-
-        //}
-        //else
-        //{
-        //    _rigidbody.angularVelocity = Vector3.zero;
-        //}
-    }
     void FixedUpdate()
     {
-        leftHandVelocity = (leftHandReference.PointerPose.position - previousPositionLeft) / Time.deltaTime;
+        var leftHandDelta = leftHandReference.PointerPose.position - previousPositionLeft;
+        leftHandVelocity = leftHandDelta / Time.deltaTime;
         previousPositionLeft = leftHandReference.PointerPose.position;
 
-        rightHandVelocity = (rightHandReference.PointerPose.position - previousPositionRight) / Time.deltaTime;
+        var rightHandDelta = rightHandReference.PointerPose.position - previousPositionRight;
+        rightHandVelocity = rightHandDelta / Time.deltaTime;
         previousPositionRight = rightHandReference.PointerPose.position;
 
         _cooldownTimer += Time.fixedDeltaTime;
