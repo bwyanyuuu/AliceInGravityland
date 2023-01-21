@@ -23,11 +23,12 @@ public class EatMushroom : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (isGrabbing && other.name == "EatCollider")
+        // if (isGrabbing && other.name == "EatCollider") // debug
+        if (other.name == "EatCollider")
         {
             // Play a funny eating sound
             //audioData.Play();
-
+            Debug.Log("testing");
             // Disable mushroom and bubble
             // Activate gate            
             bubble.SetActive(false);
@@ -36,14 +37,7 @@ public class EatMushroom : MonoBehaviour
             player.GetComponent<ZeroGravity>().enabled = false;
             player.GetComponent<Rigidbody>().useGravity = true;
             player.GetComponent<ArmSwingMover>().enabled = true;
-            StartCoroutine(envSmaller());
-
-            
-
-            
-            // Let Alice fall to ground
-            // Play animation of getting up
-            // How to resize world ?
+            // StartCoroutine(envSmaller());
             
         }
     }
