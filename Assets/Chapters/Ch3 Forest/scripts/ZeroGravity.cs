@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using Oculus.Interaction;
+using UnityEditor;
 
 public class ZeroGravity : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class ZeroGravity : MonoBehaviour
 
     [SerializeField] Transform trackingReference;
     [SerializeField] Transform cameraReference;
+    [SerializeField] TactileMotionPattern hapticsManager;
     
     Rigidbody _rigidbody;
     float _cooldownTimer;
@@ -46,6 +48,12 @@ public class ZeroGravity : MonoBehaviour
 
         previousPositionLeft = leftHandReference.PointerPose.position;
         previousPositionRight = rightHandReference.PointerPose.position;
+    }
+
+    private void Update() {
+        if (Input.GetKeyDown("space")) {
+            hapticsManager.DoubleTactileMotionSample();
+        }
     }
 
     void FixedUpdate()
@@ -87,6 +95,7 @@ public class ZeroGravity : MonoBehaviour
                 Vector3 worldVelocity = trackingReference.TransformDirection(localVelocity);
                 worldVelocity = Vector3.ClampMagnitude(worldVelocity, 10.0f);
                 _rigidbody.AddForce(worldVelocity * swimForce, ForceMode.Acceleration);
+                hapticsManager.DoubleTactileMotionSample();
                 _cooldownTimer = 0;
             }
         }
