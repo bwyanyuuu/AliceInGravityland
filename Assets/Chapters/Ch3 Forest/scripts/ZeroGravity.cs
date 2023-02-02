@@ -50,6 +50,13 @@ public class ZeroGravity : MonoBehaviour
 
     void FixedUpdate()
     {
+        Debug.DrawLine(transform.position,
+            transform.position + _rigidbody.transform.forward.normalized,
+            Color.red);
+        Debug.DrawLine(transform.position,
+            transform.position + cameraReference.transform.forward.normalized,
+            Color.blue);
+
         var leftHandDelta = leftHandReference.PointerPose.position - previousPositionLeft;
         leftHandVelocity = leftHandDelta / Time.deltaTime;
         previousPositionLeft = leftHandReference.PointerPose.position;
