@@ -19,13 +19,15 @@ public class ZeroGravity : MonoBehaviour
 
     [SerializeField] Transform trackingReference;
     [SerializeField] Transform cameraReference;
-    [SerializeField] TactileMotionPattern hapticsManager;
+    [SerializeField] CustomTactileMotionPattern hapticsManager;
     
     Rigidbody _rigidbody;
     float _cooldownTimer;
 
     bool _poseActiveRight;
     bool _poseActiveLeft;
+
+    float _angularDifference;
     
     public void setActiveRight(bool state)
     {
@@ -52,18 +54,27 @@ public class ZeroGravity : MonoBehaviour
 
     private void Update() {
         if (Input.GetKeyDown("space")) {
-            hapticsManager.DoubleTactileMotionSample();
+            hapticsManager.TactileMotionDebugger(true, _angularDifference, getEndAngle(_angularDifference));
+            hapticsManager.TactileMotionDebugger(false, _angularDifference, getEndAngle(_angularDifference));
         }
+    }
+
+    private float getEndAngle(float startAngle) {
+        float endAngle = startAngle + 180.0f;
+        if (endAngle < -180.0f) { endAngle += 360.0f; }
+        else if (endAngle > 180.0f) { endAngle -= 360.0f; }
+        return endAngle;
     }
 
     void FixedUpdate()
     {
-        Debug.DrawLine(transform.position,
-            transform.position + _rigidbody.transform.forward.normalized,
-            Color.red);
-        Debug.DrawLine(transform.position,
-            transform.position + cameraReference.transform.forward.normalized,
-            Color.blue);
+        Vector3 rigidBodyDirection = _rigidbody.transform.forward.normalized;
+        Vector3 CameraDirection = cameraReference.transform.forward.normalized;
+        Debug.DrawLine(transform.position, transform.position + rigidBodyDirection, Color.red);
+        Debug.DrawLine(transform.position, transform.position + CameraDirection, Color.blue);
+        _angularDifference = Vector3.SignedAngle(rigidBodyDirection, CameraDirection, Vector3.up);
+        Debug.Log("StartAngle = " + _angularDifference);
+        Debug.Log("EndAngle = " + getEndAngle(_angularDifference));
 
         var leftHandDelta = leftHandReference.PointerPose.position - previousPositionLeft;
         leftHandVelocity = leftHandDelta / Time.deltaTime;
@@ -95,7 +106,7 @@ public class ZeroGravity : MonoBehaviour
                 Vector3 worldVelocity = trackingReference.TransformDirection(localVelocity);
                 worldVelocity = Vector3.ClampMagnitude(worldVelocity, 10.0f);
                 _rigidbody.AddForce(worldVelocity * swimForce, ForceMode.Acceleration);
-                hapticsManager.DoubleTactileMotionSample();
+                //hapticsManager.TactileMotionDebugger(true, angularDifference, angularDifference - 90);
                 _cooldownTimer = 0;
             }
         }
