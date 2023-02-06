@@ -25,6 +25,8 @@ public class RotateRoom : MonoBehaviour
     public AkilliMum.SRP.Mirror.CameraShade cameraShade;
     public GameObject mirror_reflect;
     private AkilliMum.SRP.Mirror.FollowVector followVector;
+    public GameObject[] vibes;
+    public CustomTactileMotionPattern testPattern;
 
     private bool isRotating = false;
     private Vector3 rot;
@@ -74,7 +76,7 @@ public class RotateRoom : MonoBehaviour
 	}
     public void rotate(int i, Vector3 src)
     {
-        print("rotate "+src);
+        //print("rotate "+src);
         if (isRotating) return;
         else isRotating = true;
 
@@ -240,8 +242,34 @@ public class RotateRoom : MonoBehaviour
     IEnumerator standUp()
     {
         player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-        //print("up " + transform.up);
-        //print("right " + transform.right);
+        // 落地有風，判斷風的方向
+        // 面朝地：物體Z軸為(0,-1,0)
+        print(camera.transform.forward.y + " " + camera.transform.right.y);
+        if (camera.transform.forward.y > -1.5f && camera.transform.forward.y < -0.5f) {
+            testPattern.TactileMotionDebugger(true, 0f, testPattern.getEndAngle(0f));
+            testPattern.TactileMotionDebugger(false, 0f, testPattern.getEndAngle(0f));
+            print("a");
+        }
+        // 面朝上：物體Z軸為(0,1,0)
+        if (camera.transform.forward.y < 1.5f && camera.transform.forward.y > 0.5f) {
+            testPattern.TactileMotionDebugger(true, 180f, testPattern.getEndAngle(180f));
+            testPattern.TactileMotionDebugger(false, 180f, testPattern.getEndAngle(180f));
+            print("b");
+        }
+        // 右手朝下：物體X軸為(0,-1,0)
+        if (camera.transform.right.y > -1.5f && camera.transform.right.y < -0.5f) {
+            testPattern.TactileMotionDebugger(true, -90f, testPattern.getEndAngle(-90f));
+            testPattern.TactileMotionDebugger(false, -90f, testPattern.getEndAngle(-90f));
+            print("c");
+        }
+        // 左手朝下：物體X軸為(0,1,0)
+        if (camera.transform.right.y < 1.5f && camera.transform.right.y > 0.5f) {
+            testPattern.TactileMotionDebugger(true, 90f, testPattern.getEndAngle(90f));
+            testPattern.TactileMotionDebugger(false, 90f, testPattern.getEndAngle(90f));
+            print("d");
+        }
+
+        // 換鏡子反射
         mirror_reflect.transform.position = new Vector3(0.12f, 2.13f, 1.97f);
         if (idx == 5)
         {
@@ -274,56 +302,61 @@ public class RotateRoom : MonoBehaviour
             followVector = AkilliMum.SRP.Mirror.FollowVector.RedX; // Vector3(0.119999997,4.3499999,1.97000003)
             mirror_reflect.transform.position = new Vector3(0.12f, 4.35f, 1.97f);
         }
-            //Vector3(0.119999997, 6.44999981, 0.230000004)
-            //print(followVector);
         cameraShade.UpVector = followVector;
 
-        yield return new WaitForSeconds(3f);
-        player.GetComponent<Rigidbody>().isKinematic = true;
+        // 打開震動碰撞
+        for(int i = 0; i < vibes.Length; i++) {
+            vibes[i].SetActive(true);
+        }
 
+        // 開始掉落
+        yield return new WaitForSeconds(3f); 
+        // 掉落完成
+
+        // 關掉震動碰撞
+        for (int i = 0; i < vibes.Length; i++) {
+            vibes[i].SetActive(false);
+        }
+
+        player.GetComponent<Rigidbody>().isKinematic = true;
         rot = player.transform.localEulerAngles;
         if (mirror.transform.up.y == 1.0f)
         {
             RotateTime++;
         }
         
-        //print(camera.transform.forward+" "+camera.transform.right);
-        //print(player.transform.forward+" "+player.transform.right);
+        // 判斷站起來的方向
         float forward = camera.transform.forward.y;
         float right = camera.transform.right.y;
         Vector3 pf = player.transform.forward;
         Vector3 pr = player.transform.right;
-        // print(rot);
-        // if (rot.y > 180) rot.y -= 360f;
         float x = 0f;
         float y = 0f;// -rot.y;
         float z = 0f;
+       
         
-        // print(rot.y);
-        
-        // 面朝地：物體Z軸為(0,-1,0) == -1f
-        // if()
         // 面朝地：物體Z軸為(0,-1,0)
         if (player.transform.forward.y > -1.2f && player.transform.forward.y < -0.8f){
             x = -90f;
-            print("a");
+            //print("a");
         }
         // 面朝上：物體Z軸為(0,1,0)
         if (player.transform.forward.y < 1.2f && player.transform.forward.y > 0.8f){
            x = 90f;
-            print("b");
+            //print("b");
         }
         // 右手朝下：物體X軸為(0,-1,0)
         if (player.transform.right.y > -1.2f && player.transform.right.y < -0.8f){
             z = 90f;
-            print("c");
+            //print("c");
         }
         // 左手朝下：物體X軸為(0,1,0)
         if (player.transform.right.y < 1.2f && player.transform.right.y > 0.8f){
             z = -90f;
-            print("d");
+            //print("d");
         }
 
+        // 站起來
         black.SetTrigger("wink");
         float time = 60f;
         for (float i = 0; i < time; i++)
@@ -331,23 +364,10 @@ public class RotateRoom : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
             player.transform.Rotate(x / time, y / time, z / time, Space.Self);
         }
-        //print("new " + new Vector3(rot.x + x, rot.y + y, rot.z + z) + " " + x + " " + y + " " + z);
-        //print("new2 " + new Vector3(rot.x + x - player.transform.localEulerAngles.x, rot.y + y - player.transform.localEulerAngles.y, rot.z + z - player.transform.localEulerAngles.z));
 
-        //print("after " + player.transform.localEulerAngles);
-        //player.transform.Rotate(rot.x + x - player.transform.localEulerAngles.x, rot.y + y - player.transform.localEulerAngles.y, rot.z + z - player.transform.localEulerAngles.z, Space.Self);
-        //player.transform.localEulerAngles = new Vector3(rot.x + x, rot.y + y, rot.z + z);
-
-        //print("ROTATE " + x + " " + y + " " + z);
         player.GetComponent<Rigidbody>().isKinematic = false;
         player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
-        //print("up "+transform.up);
-        //print("right " + transform.right);
-
-        
         rot = player.transform.localEulerAngles;
-        //print("set "+rot);
-        // yield return new WaitForSeconds(2f);
         isRotating = false;  
     }
     public void up()

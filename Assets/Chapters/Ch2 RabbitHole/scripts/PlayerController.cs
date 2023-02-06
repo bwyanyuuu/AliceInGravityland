@@ -21,7 +21,6 @@ public class PlayerController : MonoBehaviour
         gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
         rotateRoom = room.GetComponent<RotateRoom>();
         anim.SetFloat("speed", 0.0f);
-        
     }
     
 
@@ -50,7 +49,7 @@ public class PlayerController : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        print(collision.collider.name);
+        //print(collision.collider.name);
         if (collision.collider.name == "Plane")
         {
             // Debug.Log("floor");
@@ -58,7 +57,7 @@ public class PlayerController : MonoBehaviour
             {
                 rotateRoom.ChandelierFloor = true;
                 
-                print(gameObject.name+" set true "+rotateRoom.RotateTime);
+                //print(gameObject.name+" set true "+rotateRoom.RotateTime);
             }
         }
         // f

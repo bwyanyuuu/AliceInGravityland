@@ -89,7 +89,7 @@ public class CustomTactileMotionPattern : Pattern {
         for (int i = 0; i < 16; i++) {
             activateThisIndex = false;
             if (isClockwise) {
-                if (currentAngle > AngleOfEachVibrator[i] && nextAngle <= AngleOfEachVibrator[i]) {
+                if (currentAngle >= AngleOfEachVibrator[i] && nextAngle <= AngleOfEachVibrator[i]) {
                     activateThisIndex = true;
                 }
                 else if (i == 8 && currentAngle < 0 && nextAngle >= 0) {
@@ -97,7 +97,7 @@ public class CustomTactileMotionPattern : Pattern {
                 }
             }
             else {
-                if (currentAngle < AngleOfEachVibrator[i] && nextAngle >= AngleOfEachVibrator[i]) {
+                if (currentAngle <= AngleOfEachVibrator[i] && nextAngle >= AngleOfEachVibrator[i]) {
                     activateThisIndex = true;
                 }
                 else if (i == 8 && currentAngle >= 0 && nextAngle < 0) {
@@ -115,6 +115,13 @@ public class CustomTactileMotionPattern : Pattern {
         StartCoroutine(generateMotion(isClockwise, startAngle, endAngle, nextAngle));
         yield break;
     }
+
+    public float getEndAngle(float startAngle) {
+        float endAngle = startAngle + 180.0f;
+        if (endAngle < -180.0f) { endAngle += 360.0f; }
+        else if (endAngle > 180.0f) { endAngle -= 360.0f; }
+        return endAngle;
+    }
 }
 
 [CustomEditor(typeof(CustomTactileMotionPattern))]
@@ -125,7 +132,10 @@ public class CustomTactileMotionPatternBtn : Editor {
 
         if (GUILayout.Button("Tactile Motion Sample")) {
             //motionScript.DoubleTactileMotionSample();
-            motionScript.TactileMotionDebugger(motionScript._isClockwise, motionScript._startAngle, motionScript._endAngle);
+            motionScript.TactileMotionDebugger(true, motionScript._startAngle, motionScript.getEndAngle(motionScript._startAngle));
+            motionScript.TactileMotionDebugger(false, motionScript._startAngle, motionScript.getEndAngle(motionScript._startAngle));
+            //motionScript.SingleTactileMotion(true, motionScript._startAngle, motionScript._endAngle);
+            //motionScript.SingleTactileMotion(false, motionScript._startAngle, motionScript._endAngle);
         }
     }
 }

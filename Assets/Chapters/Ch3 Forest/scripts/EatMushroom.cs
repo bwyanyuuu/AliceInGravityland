@@ -15,7 +15,7 @@ public class EatMushroom : MonoBehaviour
     private bool isSmalling = false;
     AudioSource audioData;
 
-    [SerializeField] private GameObject sceneTransitionTrigger;
+    //[SerializeField] private GameObject sceneTransitionTrigger;
     void Start()
     {
         audioData = GetComponent<AudioSource>();
@@ -23,22 +23,23 @@ public class EatMushroom : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        // if (isGrabbing && other.name == "EatCollider") // debug
-        if (other.name == "EatCollider")
+        if (isGrabbing && other.name == "EatCollider") // debug
+            //if (other.name == "EatCollider")
         {
             // Play a funny eating sound
-            //audioData.Play();
+            StartCoroutine(envSmaller());
+            audioData.Play();
             Debug.Log("testing");
             // Disable mushroom and bubble
             // Activate gate            
             bubble.SetActive(false);
             magicGate.SetActive(true);
-            sceneTransitionTrigger.SetActive(true);
+            //sceneTransitionTrigger.SetActive(true);
             player.GetComponent<ZeroGravity>().enabled = false;
-            player.GetComponent<Rigidbody>().useGravity = true;
-            player.GetComponent<ArmSwingMover>().enabled = true;
-            // StartCoroutine(envSmaller());
             
+            player.GetComponent<ArmSwingMover>().enabled = true;
+
+
         }
     }
     IEnumerator envSmaller()
@@ -50,17 +51,15 @@ public class EatMushroom : MonoBehaviour
             print("player " + pos);
             player.transform.parent = null;
             float step = (1f-envScale) / speed;
-            //Vector3 oriSize1 = terrains[0].terrainData.size;
-            //Vector3 oriSize2 = terrains[1].terrainData.size;
+            print(step);
             for (int i = 0; i < speed; i++)
             {
+                if(i == 45) player.GetComponent<Rigidbody>().useGravity = true;
                 environment.transform.localScale -= new Vector3(step, step, step);
+                print(environment.transform.localScale);
                 player.transform.position = new Vector3(pos.x * (1 - i * step), player.transform.position.y, pos.z * (1 - i * step));
                 yield return new WaitForSeconds(0.01f);
             }
-            //print(step + " " + (1 - speed * step));
-            //print(terrains[0].terrainData.size);
-            //print(terrains[1].terrainData.size);
             print("player after " + player.transform.position);
 
             transform.parent.gameObject.SetActive(false);

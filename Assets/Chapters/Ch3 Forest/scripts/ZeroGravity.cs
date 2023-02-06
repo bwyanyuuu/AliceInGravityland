@@ -70,11 +70,11 @@ public class ZeroGravity : MonoBehaviour
     {
         Vector3 rigidBodyDirection = _rigidbody.transform.forward.normalized;
         Vector3 CameraDirection = cameraReference.transform.forward.normalized;
-        Debug.DrawLine(transform.position, transform.position + rigidBodyDirection, Color.red);
-        Debug.DrawLine(transform.position, transform.position + CameraDirection, Color.blue);
+        //Debug.DrawLine(transform.position, transform.position + rigidBodyDirection, Color.red);
+        //Debug.DrawLine(transform.position, transform.position + CameraDirection, Color.blue);
         _angularDifference = Vector3.SignedAngle(rigidBodyDirection, CameraDirection, Vector3.up);
-        Debug.Log("StartAngle = " + _angularDifference);
-        Debug.Log("EndAngle = " + getEndAngle(_angularDifference));
+        //Debug.Log("StartAngle = " + _angularDifference);
+        //Debug.Log("EndAngle = " + getEndAngle(_angularDifference));
 
         var leftHandDelta = leftHandReference.PointerPose.position - previousPositionLeft;
         leftHandVelocity = leftHandDelta / Time.deltaTime;
@@ -106,7 +106,8 @@ public class ZeroGravity : MonoBehaviour
                 Vector3 worldVelocity = trackingReference.TransformDirection(localVelocity);
                 worldVelocity = Vector3.ClampMagnitude(worldVelocity, 10.0f);
                 _rigidbody.AddForce(worldVelocity * swimForce, ForceMode.Acceleration);
-                //hapticsManager.TactileMotionDebugger(true, angularDifference, angularDifference - 90);
+                hapticsManager.TactileMotionDebugger(true, _angularDifference, getEndAngle(_angularDifference));
+                hapticsManager.TactileMotionDebugger(false, _angularDifference, getEndAngle(_angularDifference));
                 _cooldownTimer = 0;
             }
         }
