@@ -305,9 +305,9 @@ public class RotateRoom : MonoBehaviour
         cameraShade.UpVector = followVector;
 
         // 打開震動碰撞
-        for(int i = 0; i < vibes.Length; i++) {
-            vibes[i].SetActive(true);
-        }
+        //for(int i = 0; i < vibes.Length; i++) {
+        //    vibes[i].SetActive(true);
+        //}
 
         // 開始掉落
         yield return new WaitForSeconds(3f); 
