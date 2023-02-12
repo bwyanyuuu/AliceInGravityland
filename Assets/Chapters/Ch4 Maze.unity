@@ -26557,8 +26557,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 724342219}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.77902997, y: 0.77902997, z: 0.77902997}
+  m_LocalPosition: {x: 0, y: 0, z: 56.8}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 265654540}
@@ -67566,7 +67566,7 @@ MonoBehaviour:
   ISOI: 0.05
   DurationOverlapByMotor: 4
   MotionIntervalByMotor: 5
-  MotionIntensity: 40
+  MotionIntensity: 100
   _startAngle: 0
   _endAngle: 180
   _isClockwise: 1
@@ -67584,8 +67584,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HeadbandIntensity: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   Patterns:
-  - {fileID: 1617217859}
   - {fileID: 1617217864}
+  - {fileID: 1617217859}
 --- !u!114 &1617217861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67598,8 +67598,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a62a8756799872488670c0bbe1b2745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VibratorIntensityWeight: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  minValue: 20
+  VibratorIntensityWeight: 64000000640000006400000064000000640000006400000064000000640000006400000064000000640000006400000064000000640000006400000064000000
+  minValue: 10
   maxValue: 40
   globalMultiplier: 100
   FramesPerUpdate: 2
@@ -67616,7 +67616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arduinoPaused: 1
-  showString: 0
+  showString: 1
 --- !u!4 &1617217863
 Transform:
   m_ObjectHideFlags: 0
@@ -88962,6 +88962,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 5492354761072433172, guid: 4f40c6f601497154595d754f44a90cd4, type: 3}
+      propertyPath: hapticsScript1
+      value: 
+      objectReference: {fileID: 1617217859}
+    - target: {fileID: 5492354761072433172, guid: 4f40c6f601497154595d754f44a90cd4, type: 3}
+      propertyPath: hapticsScript2
+      value: 
+      objectReference: {fileID: 1617217864}
     - target: {fileID: 5497825327518444995, guid: 4f40c6f601497154595d754f44a90cd4, type: 3}
       propertyPath: m_Layer
       value: 7

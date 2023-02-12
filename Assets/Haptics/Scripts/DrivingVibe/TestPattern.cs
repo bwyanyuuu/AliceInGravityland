@@ -5,9 +5,9 @@ using UnityEditor;
 
 public class TestPattern : Pattern {
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            MultipleVibration(new List<int> { 0, 1, 2,14, 15 }, 200, 0.25f);
-        }
+        // if (Input.GetKeyDown(KeyCode.Space)) {
+        //     MultipleVibration(new List<int> { 0, 1, 2,14, 15 }, 200, 0.25f);
+        // }
     }
     private bool isBusy = false;
     public void SingleVibration(int index, int intensity, float duration) {

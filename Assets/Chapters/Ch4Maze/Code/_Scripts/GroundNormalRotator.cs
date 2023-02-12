@@ -9,7 +9,8 @@ public class GroundNormalRotator : MonoBehaviour
     public OVRCameraRig CameraRig;
     private Rigidbody _rigidbody;
     private Vector3 _groundNormalVector;
-    
+    private float _hapticsCooldownTimer;
+
     [SerializeField] private float rotationSpeed;
     [SerializeField] private Transform[] groundChecks;
     [SerializeField] private LayerMask groundLayer;
@@ -27,8 +28,8 @@ public class GroundNormalRotator : MonoBehaviour
 
     void Update() {
         if (Input.GetKeyDown("space")) {
+            hapticsScript2.AllVibration(40, 1.0f);
             hapticsScript1.DoubleTactileMotionSample();
-            hapticsScript2.AllVibration(40, 5.0f);
         }
     }
 
@@ -65,8 +66,6 @@ public class GroundNormalRotator : MonoBehaviour
 
     private void StandOnGroundRotation()
     {
-        hapticsScript1.DoubleTactileMotionSample();
-        hapticsScript2.AllVibration(40, 5.0f);
         Vector3 currentDir = _rigidbody.transform.up;
         Vector3 targetDir = _groundNormalVector;
         targetDir = Vector3.Lerp(currentDir, targetDir, Time.fixedDeltaTime * rotationSpeed);
@@ -76,6 +75,15 @@ public class GroundNormalRotator : MonoBehaviour
     private void SetGravityDirection()
     {
         Vector3 gravityDirection = -_groundNormalVector;
+
+        _hapticsCooldownTimer += Time.fixedDeltaTime;
+        bool isGravityChanging = Vector3.Dot(gravityDirection.normalized, Physics.gravity.normalized) != 1;
+        if (_hapticsCooldownTimer > 3.0f && isGravityChanging) {
+            hapticsScript1.DoubleTactileMotionSample();
+            hapticsScript2.AllVibration(20, 1.0f);
+            _hapticsCooldownTimer = 0;
+        }
+
         Physics.gravity = gravityForce * gravityDirection;
     }
 }

@@ -131,11 +131,8 @@ public class CustomTactileMotionPatternBtn : Editor {
         CustomTactileMotionPattern motionScript = (CustomTactileMotionPattern)target;
 
         if (GUILayout.Button("Tactile Motion Sample")) {
-            //motionScript.DoubleTactileMotionSample();
             motionScript.TactileMotionDebugger(true, motionScript._startAngle, motionScript.getEndAngle(motionScript._startAngle));
             motionScript.TactileMotionDebugger(false, motionScript._startAngle, motionScript.getEndAngle(motionScript._startAngle));
-            //motionScript.SingleTactileMotion(true, motionScript._startAngle, motionScript._endAngle);
-            //motionScript.SingleTactileMotion(false, motionScript._startAngle, motionScript._endAngle);
         }
     }
 }
