@@ -21,7 +21,7 @@ public class ZeroGravity : MonoBehaviour
     [SerializeField] Transform cameraReference;
     [SerializeField] CustomTactileMotionPattern hapticsManager;
 
-    GameObject mushroom;
+    [SerializeField] GameObject mushroom;
     Rigidbody _rigidbody;
     float _cooldownTimer;
     float _hapticsCooldownTimer;
@@ -71,8 +71,8 @@ public class ZeroGravity : MonoBehaviour
             dragForce = 1.0f;
         }
         else {
-            swimForce = 18.0f;
-            dragForce = 1.2f;
+            swimForce = 12.0f;
+            dragForce = 2.4f;
         }
     }
 

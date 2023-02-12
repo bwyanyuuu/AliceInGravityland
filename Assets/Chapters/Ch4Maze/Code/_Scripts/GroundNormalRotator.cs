@@ -14,12 +14,22 @@ public class GroundNormalRotator : MonoBehaviour
     [SerializeField] private Transform[] groundChecks;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float gravityForce;
+
+    [SerializeField] CustomTactileMotionPattern hapticsScript1;
+    [SerializeField] TestPattern hapticsScript2;
     
     void Start()
     {
         _rigidbody = transform.root.GetComponent<Rigidbody>();
         _groundNormalVector = transform.up;
         Physics.gravity = - gravityForce * _groundNormalVector;
+    }
+
+    void Update() {
+        if (Input.GetKeyDown("space")) {
+            hapticsScript1.DoubleTactileMotionSample();
+            hapticsScript2.AllVibration(40, 5.0f);
+        }
     }
 
     private void FixedUpdate()
@@ -52,9 +62,11 @@ public class GroundNormalRotator : MonoBehaviour
         }
         _groundNormalVector = _groundNormalVector.normalized;
     }
-    
+
     private void StandOnGroundRotation()
     {
+        hapticsScript1.DoubleTactileMotionSample();
+        hapticsScript2.AllVibration(40, 5.0f);
         Vector3 currentDir = _rigidbody.transform.up;
         Vector3 targetDir = _groundNormalVector;
         targetDir = Vector3.Lerp(currentDir, targetDir, Time.fixedDeltaTime * rotationSpeed);
