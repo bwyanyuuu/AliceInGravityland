@@ -20,15 +20,14 @@ public class ZeroGravity : MonoBehaviour
     [SerializeField] Transform trackingReference;
     [SerializeField] Transform cameraReference;
     [SerializeField] CustomTactileMotionPattern hapticsManager;
-    
+
+    GameObject mushroom;
     Rigidbody _rigidbody;
     float _cooldownTimer;
     float _hapticsCooldownTimer;
 
     bool _poseActiveRight;
     bool _poseActiveLeft;
-
-    float movementDirection;
     
     public void setActiveRight(bool state)
     {
@@ -53,13 +52,6 @@ public class ZeroGravity : MonoBehaviour
         previousPositionRight = rightHandReference.PointerPose.position;
     }
 
-    private void Update() {
-        if (Input.GetKeyDown("space")) {
-            hapticsManager.TactileMotionDebugger(true, movementDirection, getEndAngle(movementDirection));
-            hapticsManager.TactileMotionDebugger(false, movementDirection, getEndAngle(movementDirection));
-        }
-    }
-
     private float getEndAngle(float startAngle) {
         float endAngle = startAngle + 180.0f;
         if (endAngle < -180.0f) { endAngle += 360.0f; }
@@ -70,6 +62,18 @@ public class ZeroGravity : MonoBehaviour
     private void generateDragHaptics(float direction) {
         hapticsManager.TactileMotionDebugger(true, direction, getEndAngle(direction));
         hapticsManager.TactileMotionDebugger(false, direction, getEndAngle(direction));
+    }
+
+    private void Update() {
+        float distanceToMushroom = Vector3.Distance(_rigidbody.transform.position, mushroom.transform.position);
+        if (distanceToMushroom > 10.0f) {
+            swimForce = 24.0f;
+            dragForce = 1.0f;
+        }
+        else {
+            swimForce = 18.0f;
+            dragForce = 1.2f;
+        }
     }
 
     void FixedUpdate()
@@ -112,11 +116,11 @@ public class ZeroGravity : MonoBehaviour
                 Vector3 worldVelocity = trackingReference.TransformDirection(localVelocity);
                 worldVelocity = Vector3.ClampMagnitude(worldVelocity, 10.0f);
                 _rigidbody.AddForce(worldVelocity * swimForce, ForceMode.Acceleration);
-                movementDirection = Vector3.SignedAngle(worldVelocity, CameraDirection, Vector3.up);
-                if (_hapticsCooldownTimer >= 0.5
-                    && movementDirection <= 45.0f
-                    && movementDirection >= -45.0f) {
-                    generateDragHaptics(movementDirection);
+                float hapticsOrigin = Vector3.SignedAngle(worldVelocity, CameraDirection, Vector3.up) * 0.5f - 10;
+                hapticsOrigin = Math.Min(Math.Max(hapticsOrigin, -45), 45);
+                // Debug.Log("ANGLE" + hapticsOrigin);
+                if (_hapticsCooldownTimer >= 1.0) {
+                    generateDragHaptics(hapticsOrigin);
                     _hapticsCooldownTimer = 0;
                 }
                 _cooldownTimer = 0;
