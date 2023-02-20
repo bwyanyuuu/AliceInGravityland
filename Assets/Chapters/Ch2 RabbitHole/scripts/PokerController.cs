@@ -9,6 +9,7 @@ public class PokerController : MonoBehaviour
     public Vector3[] pos;
     public Quaternion[] rot;
     public GameObject handGesture;
+    public bool useTutorial;
     
     // private GameMaster gameMaster;   
     private bool isTutorial = false;
@@ -30,7 +31,7 @@ public class PokerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!isTutorial && cards.activeSelf){
+        if(useTutorial && !isTutorial && cards.activeSelf){
             tutorial.SetActive(true);
             isTutorial = true;
         }

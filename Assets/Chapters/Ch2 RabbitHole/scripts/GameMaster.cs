@@ -56,7 +56,7 @@ public class GameMaster : MonoBehaviour
         activeSet(roomB, false);
         activeSet(roomAAfter1, false);
         activeSet(roomAAfter2, false);
-        tutorial.SetActive(false);
+        //tutorial.SetActive(false);
         mirrorNormal.SetActive(false);
         mirrorBreak.SetActive(false);
         clock.SetActive(false);
@@ -92,7 +92,7 @@ public class GameMaster : MonoBehaviour
                 mirrorNormal.SetActive(true);
             }   
             if(!isSet){
-                tutorial.SetActive(true);
+                //tutorial.SetActive(true);
                 isSet = true;
             }
             if (nxt)

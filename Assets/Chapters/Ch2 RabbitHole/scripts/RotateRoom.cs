@@ -230,7 +230,7 @@ public class RotateRoom : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
             // player.transform.rotation = new Quaternion(player.transform.rotation.x+x / 60f, player.transform.rotation.y+y / 60f, player.transform.rotation.z+z / 60f, 1f);
             player.transform.Rotate(x/60f, y/60f, z/60f, Space.Self);
-            if(i == 45) player.GetComponent<Collider>().enabled = true;
+            if(i == 20) player.GetComponent<Collider>().enabled = true;
             //player.transform.position += movePos;
         }  
         // for(int i = 0; i < 60; i++)
@@ -250,19 +250,19 @@ public class RotateRoom : MonoBehaviour
             testPattern.TactileMotionDebugger(false, 0f, testPattern.getEndAngle(0f));
             print("a");
         }
-        // 面朝上：物體Z軸為(0,1,0)
+        //面朝上：物體Z軸為(0, 1, 0)
         if (camera.transform.forward.y < 1.5f && camera.transform.forward.y > 0.5f) {
             testPattern.TactileMotionDebugger(true, 180f, testPattern.getEndAngle(180f));
             testPattern.TactileMotionDebugger(false, 180f, testPattern.getEndAngle(180f));
             print("b");
         }
-        // 右手朝下：物體X軸為(0,-1,0)
+        //右手朝下：物體X軸為(0, -1, 0)
         if (camera.transform.right.y > -1.5f && camera.transform.right.y < -0.5f) {
             testPattern.TactileMotionDebugger(true, -90f, testPattern.getEndAngle(-90f));
             testPattern.TactileMotionDebugger(false, -90f, testPattern.getEndAngle(-90f));
             print("c");
         }
-        // 左手朝下：物體X軸為(0,1,0)
+        //左手朝下：物體X軸為(0, 1, 0)
         if (camera.transform.right.y < 1.5f && camera.transform.right.y > 0.5f) {
             testPattern.TactileMotionDebugger(true, 90f, testPattern.getEndAngle(90f));
             testPattern.TactileMotionDebugger(false, 90f, testPattern.getEndAngle(90f));
@@ -305,12 +305,12 @@ public class RotateRoom : MonoBehaviour
         cameraShade.UpVector = followVector;
 
         // 打開震動碰撞
-        //for(int i = 0; i < vibes.Length; i++) {
-        //    vibes[i].SetActive(true);
-        //}
+        for (int i = 0; i < vibes.Length; i++) {
+            vibes[i].SetActive(true);
+        }
 
         // 開始掉落
-        yield return new WaitForSeconds(3f); 
+        yield return new WaitForSeconds(3f);
         // 掉落完成
 
         // 關掉震動碰撞

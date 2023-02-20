@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
         //print(collision.collider.name);
         if (collision.collider.name == "Plane")
         {
-            // Debug.Log("floor");
+            Debug.Log("floor");
             if (rotateRoom.RotateTime >= 3)
             {
                 rotateRoom.ChandelierFloor = true;
@@ -65,6 +65,10 @@ public class PlayerController : MonoBehaviour
         //    collision.collider.gameObject.SetActive(false);
         //    StartCoroutine(roomBigger());
         //}
+        if (collision.collider.name == "mirror physical") 
+        {
+            print("player mirror physical");
+        }
     }
     IEnumerator roomBigger()
     {
