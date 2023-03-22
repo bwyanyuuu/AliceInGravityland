@@ -16,11 +16,11 @@ public class VibrationTest : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown("space")) {
-            // hapticsScript2.AllVibration(40, 1.0f);
+            //hapticsScript2.AllVibration(40, 1.0f);
             hapticsScript1.DoubleTactileMotionSample();
         }
         if (Input.GetKeyDown(KeyCode.A)) {
-            hapticsScript2.MultipleVibration(new List<int> { 0, 1,2, 14, 15 }, 80, 0.25f);
+            hapticsScript2.MultipleVibration(new List<int> { 0, 1, 2, 14, 15 }, 80, 0.25f);
            
         }
 

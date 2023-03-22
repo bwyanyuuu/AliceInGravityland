@@ -1402,11 +1402,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HeadbandIntensities: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   ISOI: 0.05
-  DurationOverlapByMotor: 4
+  DurationOverlapByMotor: 5
   MotionIntervalByMotor: 5
-  MotionIntensity: 40
-  _startAngle: 90
-  _endAngle: 180
+  MotionIntensity: 80
+  _startAngle: 0
+  _endAngle: 90
   _isClockwise: 0
 --- !u!1 &1485231708
 GameObject:
