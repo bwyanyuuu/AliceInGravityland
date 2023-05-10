@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     private bool mirrorbroke=false;
     private GameMaster gameMaster;
     public GameObject mirror;
+    public GameObject camera;
+    private BoxCollider collider;
     // int a = 0;
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,7 @@ public class PlayerController : MonoBehaviour
         gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
         rotateRoom = room.GetComponent<RotateRoom>();
         anim.SetFloat("speed", 0.0f);
+        collider = gameObject.GetComponent<BoxCollider>();
     }
     
 
@@ -45,7 +48,7 @@ public class PlayerController : MonoBehaviour
             }
             anime = false;
         }
-        
+        collider.center = new Vector3(camera.transform.localPosition.x, 0.8447914f, camera.transform.localPosition.z + 0.2f);
     }
     void OnCollisionEnter(Collision collision)
     {
