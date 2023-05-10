@@ -19,8 +19,8 @@ public class VibeCollider : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("env")) {
-            testPattern.MultipleVibration(pattern, 200, 0.2f);
-            print(other.name);
+            testPattern.MultipleVibration(pattern, 100, 0.2f);
+            // print(other.name);
         }
     }
 }

@@ -26,7 +26,9 @@ public class RotateRoom : MonoBehaviour
     public GameObject mirror_reflect;
     private AkilliMum.SRP.Mirror.FollowVector followVector;
     public GameObject[] vibes;
-    public CustomTactileMotionPattern testPattern;
+    public GameObject hapticManager;
+    private CustomTactileMotionPattern tactilePattern;
+    private TestPattern testPattern;
 
     private bool isRotating = false;
     private Vector3 rot;
@@ -36,6 +38,8 @@ public class RotateRoom : MonoBehaviour
     void Start()
     {
         rot = player.transform.localEulerAngles;
+        tactilePattern = hapticManager.GetComponent<CustomTactileMotionPattern>();
+        testPattern = hapticManager.GetComponent<TestPattern>();
     }
     void Update() {
         if (!isRotating) // lock all
@@ -221,7 +225,7 @@ public class RotateRoom : MonoBehaviour
     }
     IEnumerator rotatePlayer(float x, float y, float z)
     {
-
+        // 往上的時候空中轉90度
         //Quaternion final = new Quaternion(player.transform.rotation.x + x, player.transform.rotation.y + y, player.transform.rotation.z + z, 1f);
         player.GetComponent<Collider>().enabled = false;
         Vector3 movePos = new Vector3(1f/60f, 0f, 0f);
@@ -240,34 +244,39 @@ public class RotateRoom : MonoBehaviour
         // }        
     }
     IEnumerator standUp()
-    {
+    {   // 往下落的過程
         player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-        // 落地有風，判斷風的方向
+
+        // 落地有風，判斷風的方向 (不包括往上)
         // 面朝地：物體Z軸為(0,-1,0)
-        print(camera.transform.forward.y + " " + camera.transform.right.y);
+        // print(camera.transform.forward.y + " " + camera.transform.right.y);
         if (camera.transform.forward.y > -1.5f && camera.transform.forward.y < -0.5f) {
-            testPattern.TactileMotionDebugger(true, 0f, testPattern.getEndAngle(0f));
-            testPattern.TactileMotionDebugger(false, 0f, testPattern.getEndAngle(0f));
-            print("a");
+            tactilePattern.TactileMotionDebugger(true, 0f, tactilePattern.getEndAngle(0f));
+            tactilePattern.TactileMotionDebugger(false, 0f, tactilePattern.getEndAngle(0f));
+            // print("a");
         }
         //面朝上：物體Z軸為(0, 1, 0)
-        if (camera.transform.forward.y < 1.5f && camera.transform.forward.y > 0.5f) {
-            testPattern.TactileMotionDebugger(true, 180f, testPattern.getEndAngle(180f));
-            testPattern.TactileMotionDebugger(false, 180f, testPattern.getEndAngle(180f));
-            print("b");
+        else if (camera.transform.forward.y < 1.5f && camera.transform.forward.y > 0.5f) {
+            tactilePattern.TactileMotionDebugger(true, 180f, tactilePattern.getEndAngle(180f));
+            tactilePattern.TactileMotionDebugger(false, 180f, tactilePattern.getEndAngle(180f));
+            // print("b");
         }
         //右手朝下：物體X軸為(0, -1, 0)
-        if (camera.transform.right.y > -1.5f && camera.transform.right.y < -0.5f) {
-            testPattern.TactileMotionDebugger(true, -90f, testPattern.getEndAngle(-90f));
-            testPattern.TactileMotionDebugger(false, -90f, testPattern.getEndAngle(-90f));
-            print("c");
+        else if (camera.transform.right.y > -1.5f && camera.transform.right.y < -0.5f) {
+            tactilePattern.TactileMotionDebugger(true, -90f, tactilePattern.getEndAngle(-90f));
+            tactilePattern.TactileMotionDebugger(false, -90f, tactilePattern.getEndAngle(-90f));
+            // print("c");
         }
         //左手朝下：物體X軸為(0, 1, 0)
-        if (camera.transform.right.y < 1.5f && camera.transform.right.y > 0.5f) {
-            testPattern.TactileMotionDebugger(true, 90f, testPattern.getEndAngle(90f));
-            testPattern.TactileMotionDebugger(false, 90f, testPattern.getEndAngle(90f));
-            print("d");
+        else if (camera.transform.right.y < 1.5f && camera.transform.right.y > 0.5f) {
+            tactilePattern.TactileMotionDebugger(true, 90f, tactilePattern.getEndAngle(90f));
+            tactilePattern.TactileMotionDebugger(false, 90f, tactilePattern.getEndAngle(90f));
+            // print("d");
         }
+        else{
+            testPattern.AllVibration(40, 0.75f);
+        }
+
 
         // 換鏡子反射
         mirror_reflect.transform.position = new Vector3(0.12f, 2.13f, 1.97f);
@@ -318,6 +327,7 @@ public class RotateRoom : MonoBehaviour
             vibes[i].SetActive(false);
         }
 
+        // 進行設定
         player.GetComponent<Rigidbody>().isKinematic = true;
         rot = player.transform.localEulerAngles;
         if (mirror.transform.up.y == 1.0f)
