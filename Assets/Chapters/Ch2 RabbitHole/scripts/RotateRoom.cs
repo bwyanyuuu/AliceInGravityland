@@ -47,6 +47,7 @@ public class RotateRoom : MonoBehaviour
             player.transform.localEulerAngles = rot;
         }
         // else print(player.transform.localEulerAngles);
+        // 要改撞玻璃的次數這邊改完還要去PlayController.cs->OnCollisionEnter改撞擊次數
         if (RotateTime == 1)
         {
             mirrorbreak1.SetActive(true);
@@ -54,18 +55,20 @@ public class RotateRoom : MonoBehaviour
         }
         else if (RotateTime == 2)
         {
-            mirrorbreak2.SetActive(true);
+           // mirrorbreak2.SetActive(true);
             mirrorbreak1.SetActive(false);
-        }
-        else if (RotateTime == 3)
-        {
-            mirrorbreak3.SetActive(true);
-            mirrorbreak2.SetActive(false);
-            //Chandelier.GetComponent<Rigidbody>().useGravity = true;
-            //Chandelier.GetComponent<Collider>().enabled = true;
             mirrorCollider.SetActive(true);
             RotateTime++;
         }
+        //else if (RotateTime == 3)
+        //{
+        //    mirrorbreak3.SetActive(true);
+        //    mirrorbreak2.SetActive(false);
+        //    //Chandelier.GetComponent<Rigidbody>().useGravity = true;
+        //    //Chandelier.GetComponent<Collider>().enabled = true;
+        //    mirrorCollider.SetActive(true);
+        //    RotateTime++;
+        //}
         // else if (RotateTime == 5)
         // {
         //     // Rigidbody ChandelierRigidBody = Chandelier.AddComponent<Rigidbody>();
@@ -93,7 +96,7 @@ public class RotateRoom : MonoBehaviour
                 case 0: // up
                     activateAnchor(new Vector3(0f, 1f, 0f), src);
                     StartCoroutine(rotateWait(0, Vector3.forward));
-                    RotateTime++;
+                    //RotateTime++;
                     break;
                 case 1: // left
                     activateAnchor(new Vector3(-1f, 0f, 0f), src);
@@ -244,7 +247,11 @@ public class RotateRoom : MonoBehaviour
         // }        
     }
     IEnumerator standUp()
-    {   // 往下落的過程
+    {
+        if (mirror.transform.up.y == 1.0f) {
+            RotateTime++;
+        }
+        // 往下落的過程
         player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
 
         // 落地有風，判斷風的方向 (不包括往上)
@@ -330,10 +337,7 @@ public class RotateRoom : MonoBehaviour
         // 進行設定
         player.GetComponent<Rigidbody>().isKinematic = true;
         rot = player.transform.localEulerAngles;
-        if (mirror.transform.up.y == 1.0f)
-        {
-            RotateTime++;
-        }
+        
         
         // 判斷站起來的方向
         float forward = camera.transform.forward.y;

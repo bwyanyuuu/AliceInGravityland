@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
         if (collision.collider.name == "Plane")
         {
             Debug.Log("floor");
-            if (rotateRoom.RotateTime >= 3)
+            if (rotateRoom.RotateTime >= 1)
             {
                 rotateRoom.ChandelierFloor = true;
                 
