@@ -9,10 +9,12 @@ public class CookieCollider : MonoBehaviour
     public float speed;
     private GameObject player;
     public GameObject mirror;
+    AudioSource audioData;
     // Start is called before the first frame update
     void Start()
     {
         player = transform.parent.parent.parent.gameObject;
+        audioData = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -26,6 +28,7 @@ public class CookieCollider : MonoBehaviour
         if (other.CompareTag("cookie"))
         {
             other.gameObject.SetActive(false);
+            audioData.Play();
             StartCoroutine(roomBigger());
         }
     }
