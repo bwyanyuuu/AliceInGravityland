@@ -47,7 +47,7 @@ public class RotateRoom : MonoBehaviour
             player.transform.localEulerAngles = rot;
         }
         // else print(player.transform.localEulerAngles);
-        // 要改撞玻璃的次數這邊改完還要去PlayController.cs->OnCollisionEnter改撞擊次數
+        // 要改撞玻璃的次數這邊改完還要去PlayController.cs->OnCollisionEnter改撞擊次數->mirrorbreak1.SetActive修改
         if (RotateTime == 1)
         {
             mirrorbreak1.SetActive(true);
@@ -55,8 +55,8 @@ public class RotateRoom : MonoBehaviour
         }
         else if (RotateTime == 2)
         {
-           // mirrorbreak2.SetActive(true);
-            mirrorbreak1.SetActive(false);
+            //mirrorbreak2.SetActive(true);
+            //mirrorbreak1.SetActive(false);
             mirrorCollider.SetActive(true);
             RotateTime++;
         }
@@ -248,9 +248,9 @@ public class RotateRoom : MonoBehaviour
     }
     IEnumerator standUp()
     {
-        if (mirror.transform.up.y == 1.0f) {
-            RotateTime++;
-        }
+        //if (mirror.transform.up.y == 1.0f) {
+        //    RotateTime++;
+        //}
         // 往下落的過程
         player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
 
@@ -283,6 +283,7 @@ public class RotateRoom : MonoBehaviour
         else{
             testPattern.AllVibration(40, 0.75f);
         }
+        
 
 
         // 換鏡子反射
@@ -320,14 +321,25 @@ public class RotateRoom : MonoBehaviour
         }
         cameraShade.UpVector = followVector;
 
+        
+
         // 打開震動碰撞
         for (int i = 0; i < vibes.Length; i++) {
             vibes[i].SetActive(true);
         }
 
+
+        
         // 開始掉落
-        yield return new WaitForSeconds(3f);
+        //yield return new WaitForSeconds(3f); 
+        yield return new WaitForSeconds(0.7f);
+        if (mirror.transform.up.y == 1.0f) {
+            RotateTime++;
+        }
+        yield return new WaitForSeconds(2.3f);
         // 掉落完成
+
+
 
         // 關掉震動碰撞
         for (int i = 0; i < vibes.Length; i++) {
@@ -337,8 +349,9 @@ public class RotateRoom : MonoBehaviour
         // 進行設定
         player.GetComponent<Rigidbody>().isKinematic = true;
         rot = player.transform.localEulerAngles;
+
         
-        
+
         // 判斷站起來的方向
         float forward = camera.transform.forward.y;
         float right = camera.transform.right.y;

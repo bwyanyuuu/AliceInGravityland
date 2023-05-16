@@ -137,7 +137,7 @@ public class GameMaster : MonoBehaviour
                 activeSet(roomB, false);
                 mirrorBreak.SetActive(false);
                 mirrorCollider.SetActive(false);
-                Invoke("backMirror", 3f);
+                Invoke("backMirror", 1f);
                 clock.SetActive(false);
                 rotateRoom.rotate(0, new Vector3(0f, 0f, 0f)); // turn gavaity back to normal
                 cameraShade.UpVector = AkilliMum.SRP.Mirror.FollowVector.GreenY;
