@@ -9,6 +9,8 @@ public class EatMushroom : MonoBehaviour
     public GameObject bubble;
     public GameObject player;
     public GameObject environment;
+    public GameObject guideTrail1;
+    public GameObject guideTrail2;
     public float envScale;
     public float speed;
     private bool isGrabbing = false;
@@ -23,8 +25,8 @@ public class EatMushroom : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (isGrabbing && other.name == "EatCollider") // debug
-            //if (other.name == "EatCollider")
+        // if (isGrabbing && other.name == "EatCollider")
+        if (other.name == "EatCollider")
         {
             // Play a funny eating sound
             StartCoroutine(envSmaller());
@@ -34,9 +36,10 @@ public class EatMushroom : MonoBehaviour
             // Activate gate            
             bubble.SetActive(false);
             magicGate.SetActive(true);
+            guideTrail1.SetActive(false);
+            guideTrail2.SetActive(true);
             //sceneTransitionTrigger.SetActive(true);
             player.GetComponent<ZeroGravity>().enabled = false;
-            
             player.GetComponent<ArmSwingMover>().enabled = true;
 
 
