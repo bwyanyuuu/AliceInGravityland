@@ -14,6 +14,7 @@ public class BackToA : MonoBehaviour
         gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
         playerController = GameObject.Find("OVRCameraRig_TouchGrab").GetComponent<PlayerController>();
         rotateRoom = GameObject.Find("House").GetComponent<RotateRoom>();
+        
     }
     private void OnTriggerEnter(Collider other)
     {

@@ -31,6 +31,7 @@ public class GameMaster : MonoBehaviour
     public GameObject mirrorNormal;
     public GameObject mirrorNormalBreak;
     public GameObject mirrorBreak;
+    public GameObject SafeCube;
     public GameObject clock;
     public GameObject mirrorCollider;
     public GameObject mirrorPhysical;
@@ -167,6 +168,7 @@ public class GameMaster : MonoBehaviour
         {
             mirrorBreak.transform.GetChild(i).GetComponent<Collider>().enabled = true;
         }
+        SafeCube.GetComponent<Collider>().enabled = true;
     }
     private void backMirror()
     {

@@ -19,12 +19,21 @@ public class DoorAnimation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // player.transform.parent = null;
-        // player.transform.SetParent(this.transform, true);
+        
         gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
-        player.transform.position = new Vector3(3.86f, 0.03f, 2.725f);
-        //Vector3(3.86527634, 0.0336545706, 2.72514415)
-        player.transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);    
+        // player.transform.position = new Vector3(3.86f, 0.03f, 2.725f);
+        // //Vector3(3.86527634, 0.0336545706, 2.72514415)
+        // player.transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
+
+        bigdoor.transform.rotation = Quaternion.Euler(-90.0f,0.0f,0.0f);
+        rabbit.SetActive(false);
+        rabbittext.SetActive(false);
+        cave.SetActive(false);
+        wall.GetComponent<BoxCollider>().enabled = true;
+        GameObject.Find("House").GetComponent<RotateRoom>().enabled = true;
+        // tutorial.SetActive(false);
+        doorBoxBlack.SetActive(true);
+        gameMaster.nxt = true; 
     }
 
     // Update is called once per frame
@@ -42,15 +51,15 @@ public class DoorAnimation : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            bigdoor.transform.rotation = Quaternion.Euler(-90.0f,0.0f,0.0f);
-            rabbit.SetActive(false);
-            rabbittext.SetActive(false);
-            cave.SetActive(false);
-            wall.GetComponent<BoxCollider>().enabled = true;
-            GameObject.Find("House").GetComponent<RotateRoom>().enabled = true;
-            tutorial.SetActive(false);
-            doorBoxBlack.SetActive(true);
-            gameMaster.nxt = true;
+            // bigdoor.transform.rotation = Quaternion.Euler(-90.0f,0.0f,0.0f);
+            // rabbit.SetActive(false);
+            // rabbittext.SetActive(false);
+            // cave.SetActive(false);
+            // wall.GetComponent<BoxCollider>().enabled = true;
+            // GameObject.Find("House").GetComponent<RotateRoom>().enabled = true;
+            // tutorial.SetActive(false);
+            // doorBoxBlack.SetActive(true);
+            // gameMaster.nxt = true;
             
         }
     }
