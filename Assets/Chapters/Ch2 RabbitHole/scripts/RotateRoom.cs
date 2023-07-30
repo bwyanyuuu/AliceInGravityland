@@ -21,12 +21,17 @@ public class RotateRoom : MonoBehaviour
     public Transform[] anchors; // 0: +x, 1: -x, 2: +z, 3: -z, 4 +y
     public float rotationSpeed=10;
     public int RotateTime=0;
+    public int RotateCount=0;   // RotateCount: 刪去RoomB後用來計算選轉了幾次
     public bool ChandelierFloor=false;
     public AkilliMum.SRP.Mirror.CameraShade cameraShade;
     public GameObject mirror_reflect;
     private AkilliMum.SRP.Mirror.FollowVector followVector;
     public GameObject[] vibes;
     public GameObject hapticManager;
+
+    public GameObject[] WallColliders;    // WallColliders: 刪去RoomB後把wall collider關掉
+    public GameObject[] WallBlack;        // WallBlack: 刪去RoomB後把wall black關掉
+
     private CustomTactileMotionPattern tactilePattern;
     private TestPattern testPattern;
 
@@ -47,19 +52,34 @@ public class RotateRoom : MonoBehaviour
             player.transform.localEulerAngles = rot;
         }
         // else print(player.transform.localEulerAngles);
-        // 要改撞玻璃的次數這邊改完還要去PlayController.cs->OnCollisionEnter改撞擊次數->mirrorbreak1.SetActive修改
-        if (RotateTime == 1)
+
+        ////////////////////////
+        // 要改撞玻璃的次數這邊改完還要去PlayController.cs(掛在camera上)->OnCollisionEnter改撞擊次數->mirrorbreak1.SetActive修改
+        // if (RotateTime == 1)
+        // {
+        //     mirrorbreak1.SetActive(true);
+        //     mirrorglass.SetActive(false);
+        // }
+        // else if (RotateTime == 2)
+        // {
+        //     //mirrorbreak2.SetActive(true);
+        //     //mirrorbreak1.SetActive(false);
+        //     mirrorCollider.SetActive(true);
+        //     RotateTime++;
+        // }
+        ////////////////////////
+
+        // 去掉RoomB後玩家轉10次就把房間牆壁和地板collider全部拔掉->掉下去切scene
+        if (RotateCount == 10)
         {
-            mirrorbreak1.SetActive(true);
-            mirrorglass.SetActive(false);
+            BreakRoom();
+            RotateCount++;
         }
-        else if (RotateTime == 2)
-        {
-            //mirrorbreak2.SetActive(true);
-            //mirrorbreak1.SetActive(false);
-            mirrorCollider.SetActive(true);
-            RotateTime++;
-        }
+
+
+
+
+
         //else if (RotateTime == 3)
         //{
         //    mirrorbreak3.SetActive(true);
@@ -78,9 +98,20 @@ public class RotateRoom : MonoBehaviour
             
         // }
 
-        
 		
 	}
+    public void BreakRoom()
+    {
+        for (int i = 0; i < WallColliders.Length; i++) {
+            WallColliders[i].GetComponent<Collider>().enabled = false;
+        }
+        for (int i = 0; i < WallBlack.Length; i++) {
+            WallBlack[i].SetActive(false);
+        }
+        
+    }
+
+
     public void rotate(int i, Vector3 src)
     {
         //print("rotate "+src);
@@ -333,9 +364,15 @@ public class RotateRoom : MonoBehaviour
         // 開始掉落
         //yield return new WaitForSeconds(3f); 
         yield return new WaitForSeconds(0.7f);
+        // 撞到鏡子RotateTime++
         if (mirror.transform.up.y == 1.0f) {
             RotateTime++;
         }
+        // 計算轉了幾次(撞到鏡子除外)
+        if (mirror.transform.up.y != 1.0f) {
+            RotateCount++;
+        }
+        
         yield return new WaitForSeconds(2.3f);
         // 掉落完成
 

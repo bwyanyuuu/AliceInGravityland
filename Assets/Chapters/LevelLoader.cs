@@ -13,6 +13,7 @@ public class LevelLoader : MonoBehaviour
     {
         if (!isEnabled && other.CompareTag("Player"))
         {
+            print("loading~");
             isEnabled = true;
             black.SetTrigger("fadeOut");
             StartCoroutine(changeScene());

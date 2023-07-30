@@ -51,7 +51,7 @@ public class LevelLoaderBetween : MonoBehaviour
     }
     IEnumerator changeScene()
     {
-        yield return new WaitForSeconds(2.1f);
+        // yield return new WaitForSeconds(2.1f);
 
         var sc = SceneManager.GetActiveScene();
         GameObject[] g = sc.GetRootGameObjects();

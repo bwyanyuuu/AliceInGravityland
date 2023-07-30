@@ -11,6 +11,8 @@ public class EatMushroom : MonoBehaviour
     public GameObject environment;
     public GameObject guideTrail1;
     public GameObject guideTrail2;
+    public GameObject[] Deleteterrain;
+    
     public float envScale;
     public float speed;
     private bool isGrabbing = false;
@@ -41,8 +43,10 @@ public class EatMushroom : MonoBehaviour
             //sceneTransitionTrigger.SetActive(true);
             player.GetComponent<ZeroGravity>().enabled = false;
             player.GetComponent<ArmSwingMover>().enabled = true;
-
-
+            // falling and load to next scene
+            for (int i = 0; i < Deleteterrain.Length; i++) {
+                Deleteterrain[i].GetComponent<Collider>().enabled = false;
+            }
         }
     }
     IEnumerator envSmaller()
