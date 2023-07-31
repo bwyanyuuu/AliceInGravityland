@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.707
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.40733445, g: 0.27299047, b: 0.3761048, a: 0.707}
+  m_IndirectSpecularColor: {r: 0.40733448, g: 0.2729904, b: 0.3761048, a: 0.707}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -68235,6 +68235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a47e28c575a3c444b4c7acbc6a7718c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deviceIP: 192.168.50.56
   arduinoPaused: 1
   showString: 1
 --- !u!4 &1617217863

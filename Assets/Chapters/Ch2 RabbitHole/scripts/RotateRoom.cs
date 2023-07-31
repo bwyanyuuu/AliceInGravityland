@@ -70,7 +70,7 @@ public class RotateRoom : MonoBehaviour
         ////////////////////////
 
         // 去掉RoomB後玩家轉10次就把房間牆壁和地板collider全部拔掉->掉下去切scene
-        if (RotateCount == 10)
+        if (RotateCount == 3)
         {
             BreakRoom();
             RotateCount++;

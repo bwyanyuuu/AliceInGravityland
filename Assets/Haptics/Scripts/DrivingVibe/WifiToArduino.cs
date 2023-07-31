@@ -11,7 +11,7 @@ public class WifiToArduino : MonoBehaviour
     private int motorCount = 16;
     private byte[] setZeroBytes;
     // public static string deviceIP = "192.168.50.20";
-    public static string deviceIP = "192.168.4.1";
+    public string deviceIP;
     public static int devicePort = 80;
     private Socket socket;
     public bool arduinoPaused = true;

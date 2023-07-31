@@ -19,7 +19,8 @@ public class DrawLine : MonoBehaviour
         lineRenderer.endWidth = lineWidth;
         lineRenderer.SetPosition(0, origin.position);
         lineRenderer.SetPosition(1, destination.position);
-        offset.y = 0.5f;
+        offset.x = -0.2f;
+        offset.y = -1.0f;
     }
 
     // Update is called once per frame

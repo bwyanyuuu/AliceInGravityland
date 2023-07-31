@@ -36,6 +36,11 @@ public class TactileMotionPattern : Pattern
         StartCoroutine(generateMotion(true, 0.0f, -180.0f, 0.0f));
         StartCoroutine(generateMotion(false, 0.0f, 180.0f, 0.0f));
     }
+    public void revirseDoubleTactileMotionSample()
+    {
+        StartCoroutine(generateReviseMotion(true, 180.0f, 0.0f, 180.0f));
+        StartCoroutine(generateReviseMotion(false, -180.0f, 0.0f, -180.0f));
+    }
 
     private void FixedUpdate()
     {
@@ -119,6 +124,74 @@ public class TactileMotionPattern : Pattern
                 }
             }
             if (i == 0 && currentAngle == startAngle)
+            {
+                activateThisIndex = true;
+            }
+
+            if (activateThisIndex)
+            {
+                tactileMotionLifeSpans[i] = duration;
+                rawIntensity[i] = MotionIntensity;
+            }
+        }
+
+        yield return new WaitForFixedUpdate();
+        StartCoroutine(generateMotion(isClockwise, startAngle, endAngle, nextAngle));
+        yield break;
+    }
+    private IEnumerator generateReviseMotion(bool isClockwise, float startAngle, float endAngle, float currentAngle)
+    {
+        if ((isClockwise && currentAngle < endAngle) || (!isClockwise && currentAngle > endAngle))
+        {
+            yield break;
+        }
+        float angleSpeed = 22.5f / ISOI;
+        float angleStep = angleSpeed * Time.fixedDeltaTime;
+        float nextAngle = currentAngle;
+        bool activateThisIndex = false;
+        if (isClockwise)
+        {
+            nextAngle = currentAngle - angleStep;
+        }
+        else
+        {
+            nextAngle = currentAngle + angleStep;
+        }
+
+        for (int i = 0; i < 16; i++)
+        {
+            activateThisIndex = false;
+            if (isClockwise)
+            {
+                if (currentAngle > AngleOfEachVibrator[i] && nextAngle <= AngleOfEachVibrator[i])
+                {
+                    activateThisIndex = true;
+                }
+                else if (currentAngle > AngleOfEachVibrator[i] + 360.0f && nextAngle <= AngleOfEachVibrator[i] + 360.0f)
+                {
+                    activateThisIndex = true;
+                }
+                else if (currentAngle > AngleOfEachVibrator[i] - 360.0f && nextAngle <= AngleOfEachVibrator[i] - 360.0f)
+                {
+                    activateThisIndex = true;
+                }
+            }
+            else
+            {
+                if (currentAngle < AngleOfEachVibrator[i] && nextAngle >= AngleOfEachVibrator[i])
+                {
+                    activateThisIndex = true;
+                }
+                else if (currentAngle < AngleOfEachVibrator[i] + 360.0f && nextAngle >= AngleOfEachVibrator[i] + 360.0f)
+                {
+                    activateThisIndex = true;
+                }
+                else if (currentAngle < AngleOfEachVibrator[i] - 360.0f && nextAngle >= AngleOfEachVibrator[i] - 360.0f)
+                {
+                    activateThisIndex = true;
+                }
+            }
+            if (i == 8 && currentAngle == startAngle)
             {
                 activateThisIndex = true;
             }
