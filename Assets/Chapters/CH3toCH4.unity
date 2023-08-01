@@ -558,7 +558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a47e28c575a3c444b4c7acbc6a7718c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deviceIP: 192.168.50.56
+  deviceIP: 192.168.0.180
   arduinoPaused: 1
   showString: 1
 --- !u!1 &53280835
