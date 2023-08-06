@@ -15,14 +15,14 @@ EditorBuildSettings:
     path: Assets/Chapters/CH3toCH4.unity
     guid: 708dff49db1dd0a44b8df8416c3d6aa9
   - enabled: 1
-    path: Assets/Chapters/Ch4 Maze.unity
-    guid: ebbb12cabebeed04db8106cdb4042ddb
+    path: Assets/Chapters/Ch2 RabbitHole.unity
+    guid: 1c3ea99bbec363543b0869adf3f4be67
   - enabled: 1
     path: Assets/Chapters/CH2toCH3.unity
     guid: 9b5eea8a6f0bc0f43b719d097a9d6ad5
   - enabled: 1
-    path: Assets/Chapters/Ch2 RabbitHole.unity
-    guid: 1c3ea99bbec363543b0869adf3f4be67
+    path: Assets/Chapters/Ch4 Maze.unity
+    guid: ebbb12cabebeed04db8106cdb4042ddb
   - enabled: 1
     path: Assets/Chapters/Ch5 Ending.unity
     guid: 9453f78fa90684b6b8fc25e5907e332a

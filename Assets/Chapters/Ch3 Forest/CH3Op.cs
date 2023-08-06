@@ -9,6 +9,7 @@ public class CH3Op : MonoBehaviour
     public GameObject bubble_new;
     public GameObject player;
     public GameObject guideTrail;
+    public GameObject hapticManager;
     private bool isEnabled = false;
     // Start is called before the first frame update
     void Start()
@@ -33,6 +34,8 @@ public class CH3Op : MonoBehaviour
         guideTrail.SetActive(true);
         player.GetComponent<Animator>().enabled = false;
         player.GetComponent<ZeroGravity>().enabled = true;
+        hapticManager.SetActive(true);
+
         
 
     }
