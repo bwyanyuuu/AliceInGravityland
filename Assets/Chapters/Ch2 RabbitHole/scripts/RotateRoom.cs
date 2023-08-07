@@ -70,7 +70,7 @@ public class RotateRoom : MonoBehaviour
         ////////////////////////
 
         // 去掉RoomB後玩家轉10次就把房間牆壁和地板collider全部拔掉->掉下去切scene
-        if (RotateCount == 3)
+        if (RotateCount >= 3)
         {
             BreakRoom();
             RotateCount++;
@@ -365,13 +365,13 @@ public class RotateRoom : MonoBehaviour
         //yield return new WaitForSeconds(3f); 
         yield return new WaitForSeconds(0.7f);
         // 撞到鏡子RotateTime++
-        if (mirror.transform.up.y == 1.0f) {
-            RotateTime++;
-        }
-        // 計算轉了幾次(撞到鏡子除外)
-        if (mirror.transform.up.y != 1.0f) {
-            RotateCount++;
-        }
+        //if (mirror.transform.up.y == 1.0f) {
+        //    RotateTime++;
+        //}
+        //// 計算轉了幾次(撞到鏡子除外)
+        //if (mirror.transform.up.y != 1.0f) {
+        //    RotateCount++;
+        //}
         
         yield return new WaitForSeconds(2.3f);
         // 掉落完成

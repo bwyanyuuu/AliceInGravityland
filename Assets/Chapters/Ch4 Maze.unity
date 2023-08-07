@@ -68237,7 +68237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deviceIP: 192.168.0.180
   arduinoPaused: 1
-  showString: 1
+  showString: 0
 --- !u!4 &1617217863
 Transform:
   m_ObjectHideFlags: 0

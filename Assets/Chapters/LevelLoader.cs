@@ -9,6 +9,7 @@ public class LevelLoader : MonoBehaviour
     [SerializeField] private Animator black;
     private float transitionTime = 1f;
     private bool isEnabled = false;
+    private bool isChanging = false;
     private void OnTriggerEnter(Collider other)
     {
         if (!isEnabled && other.CompareTag("Player"))
@@ -17,6 +18,15 @@ public class LevelLoader : MonoBehaviour
             isEnabled = true;
             black.SetTrigger("fadeOut");
             StartCoroutine(changeScene());
+        }
+    }
+    private void Update()
+    {
+        if (!isChanging && Input.GetKeyDown(KeyCode.Space))
+        {
+            print("space");
+            StartCoroutine(changeScene());
+            isChanging = true;
         }
     }
     public void LoadNextLevel()
